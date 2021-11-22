@@ -23,7 +23,7 @@ export class QueryNearbyService {
   getBusStopNearby(Lat: any, Lon: any) {
     const headers = this.commonService.GetAuthorizationHeader();
     return new Promise((resolve, reject) => {
-      this.http.get<any>(`https://ptx.transportdata.tw/MOTC/v2/Bus/Stop/NearBy?$spatialFilter=nearby(${Lat},${Lon},1000)`, { headers }).subscribe(res => {
+      this.http.get<any>(`https://ptx.transportdata.tw/MOTC/v2/Bus/Station/NearBy?$spatialFilter=nearby(${Lat},${Lon},1000)`, { headers }).subscribe(res => {
         if (res) {
           resolve(res);
         }

@@ -5,14 +5,18 @@
     </div>
 
     <div class="main-container">
-        <div class="bus-data-item">
+        <div class="bus-data-item" *ngFor="let item of busStopData; let i = index;"
+            [ngStyle]="{ 'background-color': ((i % 2) == 0) ? '#1C1D1D' : '#131414' }">
             <div class="bus-data-title">
-                衡陽路
+                {{item.StationName.Zh_tw}}
             </div>
-            <div class="bus-data-content">
-                9, 12, 20, 49, 202, 202區, 205, 206, 212, 212夜, 212直, 218, 218直, 220中山幹線, 223, 231, 232, 234, 242, 243,
-                245, 246, 249
+            <div class="bus-data-content-container">
+                <div class="bus-data-content" *ngFor="let station of item.Stops; let j = index; let last = last">
+                    {{station.RouteName.Zh_tw}}
+                    <div *ngIf="!last">,&nbsp;</div>
+                </div>
             </div>
+
         </div>
     </div>
 </div>
