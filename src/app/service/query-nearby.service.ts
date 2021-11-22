@@ -32,4 +32,23 @@ export class QueryNearbyService {
     })
   }
 
+
+  /**
+   * 取得該站點的所有經過之公車資訊
+   * @param city
+   * @param stationID
+   * @returns
+   */
+  getPassThroughData(city: string, stationID: string) {
+    const headers = this.commonService.GetAuthorizationHeader();
+    return new Promise((resolve, reject) => {
+      this.http.get<any>(`https://ptx.transportdata.tw/MOTC/v2/Bus/Route/City/${city}/PassThrough/Station/${stationID}`, { headers }).subscribe(res => {
+        if (res) {
+          resolve(res);
+        }
+        reject('fail : getPassThroughData')
+      })
+    })
+  }
+
 }

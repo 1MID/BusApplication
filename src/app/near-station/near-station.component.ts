@@ -18,10 +18,16 @@ export class NearStationComponent implements OnInit {
   ngOnInit(): void {
     this.getPosition();
 
+    this.commonService.getMyPositionV2().then(res => {
+      console.log('當前位置', res)
+    })
   }
 
+  /**
+   * 透過Web API取得當前位置
+   */
   private getPosition() {
-    this.commonService.getPosition().then(res => {
+    this.commonService.getMyPositionV1().then(res => {
       this.myPosition.lng = res.lng;
       this.myPosition.lat = res.lat;
       this.getBusStopNearby();
@@ -30,6 +36,9 @@ export class NearStationComponent implements OnInit {
     })
   }
 
+  /**
+   * 透過網路API取得當前位置，主要是要取得當前城市
+   */
   private getBusStopNearby() {
     this.queryNearbyService.getBusStopNearby(this.myPosition.lat, this.myPosition.lng).then(res => {
       this.busStopData = res;

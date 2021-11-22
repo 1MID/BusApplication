@@ -52,7 +52,12 @@
             .bus-data-content-container {
                 display: flex;
                 flex-direction: row;
-                width: 100%;
+
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                width: 80vw;
+                overflow: hidden;
+
                 .bus-data-content {
                     font-size: 1.9444vh;
                     line-height: 2.7777vh;

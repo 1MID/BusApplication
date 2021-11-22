@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { NearStationComponent } from './near-station/near-station.component';
+import { PositionDetailComponent } from './near-station/position-detail/position-detail.component';
 const routes: Routes = [
   {
     path: 'home',
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'nearby',
     component: NearStationComponent,
+  },
+  {
+    path: 'nearby/position-detail',
+    component: PositionDetailComponent,
   },
   {
     path: '**',
