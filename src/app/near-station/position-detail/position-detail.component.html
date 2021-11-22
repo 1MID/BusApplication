@@ -2,6 +2,25 @@
     <div class="header">
         <img src="assets/nearby/back-arrow.svg" class="back-arrow">
         <img src="assets/nearby/main-logo.svg" class="main-logo">
-        <div class="main-text">大智路</div>
+        <div class="main-text">{{paramsRes.stationName}}</div>
     </div>
+
+
+    <div class="main-container" *ngIf="paramsRes">
+        <div class="bus-data-item" *ngFor="let item of queryRes;let i = index;"
+            [ngStyle]="{ 'background-color': ((i % 2) == 0) ? '#1C1D1D' : '#131414' }">
+            <div class="bus-data-title">
+                {{item.RouteName.Zh_tw}}
+            </div>
+            <div class="bus-data-content-container">
+                <div class="bus-data-title">
+                    往
+                </div>
+                <div class="bus-data-content">
+                    {{item.DestinationStopNameZh}}
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NearStationComponent } from './near-station/near-station.component';
 import { PositionDetailComponent } from './near-station/position-detail/position-detail.component';
+import { PositionBusComponent } from './near-station/position-detail/position-bus/position-bus.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { PositionDetailComponent } from './near-station/position-detail/position
     HomeComponent,
     NearStationComponent,
     PositionDetailComponent,
+    PositionBusComponent,
   ],
   imports: [
     BrowserModule,

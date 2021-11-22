@@ -6,7 +6,7 @@
 
     <div class="main-container">
         <div class="bus-data-item" *ngFor="let item of busStopData; let i = index;"
-            [ngStyle]="{ 'background-color': ((i % 2) == 0) ? '#1C1D1D' : '#131414' }">
+            [ngStyle]="{ 'background-color': ((i % 2) == 0) ? '#1C1D1D' : '#131414' }" (click)="itemOnClick(item)">
             <div class="bus-data-title">
                 {{item.StationName.Zh_tw}}
             </div>

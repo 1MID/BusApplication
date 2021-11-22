@@ -1,44 +1,43 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from '../service/common.service';
 import { QueryNearbyService } from '../service/query-nearby.service';
+import { Router } from '@angular/router';
+import { RouteHandlerService } from '../service/route-handler.service';
 @Component({
   selector: 'app-near-station',
   templateUrl: './near-station.component.html',
   styleUrls: ['./near-station.component.scss']
 })
 export class NearStationComponent implements OnInit {
-  myPosition = { lng: '', lat: '' }
+  myPosition = { lng: '', lat: '', city: '' }
   busStopData: any;
 
   constructor(
     private commonService: CommonService,
-    private queryNearbyService: QueryNearbyService
+    private queryNearbyService: QueryNearbyService,
+    private router: Router,
+    private routeHandlerService: RouteHandlerService
   ) { }
 
   ngOnInit(): void {
     this.getPosition();
-
-    this.commonService.getMyPositionV2().then(res => {
-      console.log('當前位置', res)
-    })
   }
 
   /**
-   * 透過Web API取得當前位置
+   * 取得當前位置
    */
   private getPosition() {
-    this.commonService.getMyPositionV1().then(res => {
-      this.myPosition.lng = res.lng;
-      this.myPosition.lat = res.lat;
+    Promise.all([
+      this.commonService.getMyPositionV1(), //取得當前經緯度
+      this.commonService.getMyPositionV2()  //取得當前所在城市
+    ]).then((res: any) => {
+      this.myPosition.lng = res[0].lng;
+      this.myPosition.lat = res[0].lat;
+      this.myPosition.city = res[1].city;
       this.getBusStopNearby();
-    }).catch(err => {
-      console.log('沒有打開地圖權限')
     })
   }
 
-  /**
-   * 透過網路API取得當前位置，主要是要取得當前城市
-   */
   private getBusStopNearby() {
     this.queryNearbyService.getBusStopNearby(this.myPosition.lat, this.myPosition.lng).then(res => {
       this.busStopData = res;
@@ -46,4 +45,13 @@ export class NearStationComponent implements OnInit {
     })
   }
 
+  itemOnClick(item) {
+    let positionData = {
+      stationID: item.StationID,
+      city: this.myPosition.city,
+      stationName: item.StationName.Zh_tw
+    }
+    this.routeHandlerService.setPositionDetailData(positionData);
+    this.router.navigate(['nearby/position-detail'], {});
+  }
 }

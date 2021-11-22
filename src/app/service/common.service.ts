@@ -27,7 +27,9 @@ export class CommonService {
     return { 'Authorization': Authorization, 'X-Date': GMTString /*,'Accept-Encoding': 'gzip'*/ };
   }
 
-
+  /**
+   * 透過Web API取得當前位置
+   */
   getMyPositionV1(): Promise<any> {
     return new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(resp => {
@@ -39,6 +41,9 @@ export class CommonService {
     });
   }
 
+  /**
+   * 透過網路API取得當前位置，主要是要取得當前城市
+   */
   getMyPositionV2() {
     return new Promise((resolve, reject) => {
       this.http.get<any>(`http://ip-api.com/json`).subscribe(res => {
