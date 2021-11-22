@@ -122,3 +122,20 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+//material-tabs
+.mat-tab-group.mat-primary .mat-ink-bar {
+    background-color: #1cc8ee;
+    box-shadow: 0px 0px 6px #1cc8ee, 0px 0px 2px #1cc8ee;
+    border-radius: 50px;
+}
+
+.mat-tab-label .mat-tab-label-content {
+    color: #ffffff;
+}
+
+.mat-tab-body-content {
+    overflow: hidden !important;
+}

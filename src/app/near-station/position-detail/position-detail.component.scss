@@ -11,21 +11,21 @@
         position: relative;
         display: flex;
         flex-direction: row;
-        align-items: center;
 
         .back-arrow {
             width: 3.3333vh;
             height: 3.3333vh;
             margin-left: 7.8125vw;
+            margin-top: 6.38888vh;
         }
 
         .main-logo {
             width: 10.625vw;
             height: 7.638888vh;
             position: absolute;
-            top: 50%;
+            top: 3.47222vh;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, 0);
         }
 
         .main-text {
