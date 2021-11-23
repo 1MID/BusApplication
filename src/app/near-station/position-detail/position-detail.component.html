@@ -1,6 +1,6 @@
 <div class="root">
     <div class="header">
-        <img src="assets/nearby/back-arrow.svg" class="back-arrow">
+        <img src="assets/nearby/back-arrow.svg" class="back-arrow" (click)="backOnClick()">
         <img src="assets/nearby/main-logo.svg" class="main-logo">
         <div class="main-text">{{paramsRes.stationName}}</div>
     </div>
@@ -8,7 +8,7 @@
 
     <div class="main-container" *ngIf="paramsRes">
         <div class="bus-data-item" *ngFor="let item of queryRes;let i = index;"
-            [ngStyle]="{ 'background-color': ((i % 2) == 0) ? '#1C1D1D' : '#131414' }">
+            [ngStyle]="{ 'background-color': ((i % 2) == 0) ? '#1C1D1D' : '#131414' }" (click)="itemOnClick(item)">
             <div class="bus-data-title">
                 {{item.RouteName.Zh_tw}}
             </div>

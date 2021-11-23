@@ -1,12 +1,47 @@
 <div class="root">
     <div class="header">
-        <img src="assets/nearby/back-arrow.svg" class="back-arrow">
+        <img src="assets/nearby/back-arrow.svg" class="back-arrow" (click)="backOnClick()">
         <img src="assets/nearby/main-logo.svg" class="main-logo">
         <div class="tab-container">
-            <mat-tab-group>
-                <mat-tab label="First"> Content 1 </mat-tab>
-                <mat-tab label="Second"> Content 2 </mat-tab>
+            <mat-tab-group [(selectedIndex)]="tabsIndex" (click)="tabsChange()">
+                <mat-tab [label]="queryData.DepartureStopNameZh"></mat-tab>
+                <mat-tab [label]="queryData.DestinationStopNameZh"></mat-tab>
             </mat-tab-group>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="refresh-time">*於 {{lastRefreshTime}} 秒前更新</div>
+        <div class="station-container"
+            *ngFor="let item of outputData;let i = index;let first = first ; let last = last;">
+
+            <div class="station-time not-active" *ngIf="item.StopStatus == 1">未發車</div>
+            <div class="station-time not-active" *ngIf="item.StopStatus == 2">交管不停靠</div>
+            <div class="station-time not-active" *ngIf="(item.StopStatus == 4) || (item.StopStatus == null)">今日未營運</div>
+            <div class="station-time finish" *ngIf="item.StopStatus == 3">末班車駛離</div>
+            <div *ngIf="item.StopStatus == 0">
+                <div class="station-time normal" *ngIf="item.EstimateTime > 60">{{item.EstimateTime / 60}}分</div>
+                <div class="station-time pulling" *ngIf="item.EstimateTime <= 60">進站中</div>
+            </div>
+
+            <div class="station-name">{{item.StopName.Zh_tw}}</div>
+            <div class="vertical-line" *ngIf="!first && !last"></div>
+
+
+            <!-- 是進站中的就給車牌號碼 -->
+            <div class="bus-number" *ngIf="(item.StopStatus == 0) && (item.EstimateTime <= 60)">
+                {{item.PlateNumb }}
+            </div>
+            <!-- 或是他上一個已經駛離，也給車牌號碼 -->
+            <ng-template [ngIf]="!first">
+                <div class="bus-number" *ngIf="outputData[i-1].StopStatus == 3"> {{item.PlateNumb }}
+                </div>
+            </ng-template>
+
+            <img class="circle-icon normal" src="assets/nearby/circle-icon-normal.svg">
+            <img class="circle-icon focus" src="assets/nearby/circle-icon-focus.svg"
+                *ngIf="(item.StopStatus == 0) && (item.EstimateTime <= 60)">
+
         </div>
     </div>
 

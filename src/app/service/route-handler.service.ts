@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
 export class RouteHandlerService {
 
-  constructor() { }
+  constructor(
+    private router: Router,
+  ) { }
 
   //附近公車站第二頁
   positionDetaildata;
@@ -24,6 +26,14 @@ export class RouteHandlerService {
 
   getPositionBusData() {
     return this.positionBusData;
+  }
+
+  backToNearStation() {
+    this.router.navigate(['nearby'], {});
+  }
+
+  backToPositionDetail() {
+    this.router.navigate(['nearby/position-detail'], {});
   }
 
 }

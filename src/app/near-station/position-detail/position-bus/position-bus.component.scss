@@ -38,4 +38,108 @@
             justify-content: center;
         }
     }
+
+    .main-container {
+        width: 100%;
+        height: 77.7777vh;
+        overflow: auto;
+        padding: 2.2222vh 21.25vw 0 21.25vw;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+
+        background-color: #1c1d1d;
+        .refresh-time {
+            font-size: 1.94444vh;
+            line-height: 2.77777vh;
+            margin: 0 0 1.94444vh auto;
+            color: #1cc8ee;
+        }
+        .station-container {
+            width: 100%;
+            height: 5.55555vh;
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.94444vh;
+            position: relative;
+
+            .station-time {
+                width: 6.25vw;
+                height: 5.5555vh;
+                box-sizing: border-box;
+                border-radius: 1.6666vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 2.2222vh;
+                line-height: 2.7777vh;
+
+                &.normal {
+                    box-shadow: 0px 0px 5px #1cc8ee;
+                    background: #131414;
+                    border: 1px solid #1cc8ee;
+                    color: #1cc8ee;
+                }
+                &.finish {
+                    background: #414242;
+                    border: 1px solid #414242;
+                    color: #f5f5f5;
+                    font-size: 1.1111vh;
+                }
+                &.not-active {
+                    background: #131414;
+                    border: 1px solid #414242;
+                    color: #414242;
+                }
+                &.pulling {
+                    background: #1cc8ee;
+                    border: 1px solid #1cc8ee;
+                    color: #131414;
+                }
+            }
+            .station-name {
+                font-size: 2.2222vh;
+                line-height: 2.7777vh;
+                display: flex;
+                align-items: center;
+                color: #f5f5f5;
+                margin-left: 1vw;
+            }
+
+            .vertical-line {
+                position: absolute;
+                right: 1vw;
+                height: 15vh;
+                border-right: solid #1cc8ee 2px;
+                margin-left: auto;
+                box-shadow: 0px 0px 0.5px #1cc8ee;
+            }
+
+            .bus-number {
+                position: absolute;
+                right: 3vw;
+                font-size: 1.94444vh;
+                line-height: 2.2222vh;
+                color: #1cc8ee;
+            }
+
+            .circle-icon {
+                width: 2.083333vh;
+                height: 2.083333vh;
+                position: absolute;
+                right: 1.05vw;
+                transform: translate(50%, 0);
+                object-fit: cover;
+
+                &.normal {
+                    z-index: 2;
+                }
+                &.focus {
+                    width: 4.083333vh;
+                    height: 4.083333vh;
+                    z-index: 3;
+                }
+            }
+        }
+    }
 }
