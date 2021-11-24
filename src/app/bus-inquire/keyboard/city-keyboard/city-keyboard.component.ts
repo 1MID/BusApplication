@@ -15,6 +15,7 @@ export class CityKeyboardComponent implements OnInit {
 
   cityOnClick(city: string) {
     this.emiter.emit(city);
+    this.backOnClick();
   }
 
   backOnClick() {

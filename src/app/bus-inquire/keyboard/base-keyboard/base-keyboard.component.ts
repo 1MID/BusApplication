@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-base-keyboard',
@@ -7,6 +7,7 @@ import { Output, EventEmitter } from '@angular/core';
 })
 export class BaseKeyboardComponent implements OnInit {
   @Output() emiter = new EventEmitter<any>();
+  @Input() currentCity: string;
 
   constructor() { }
 
@@ -19,6 +20,10 @@ export class BaseKeyboardComponent implements OnInit {
 
   moreOnClick() {
     this.emiter.emit('more');
+  }
+
+  keyOnClick(data: string) {
+    this.emiter.emit(data);
   }
 
 }

@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class BusInquireComponent implements OnInit {
 
   keyboardIndex = 0; //0 基本鍵盤 1 城市 2 更多
+  currentCity = "選擇縣市";
   constructor() { }
 
   ngOnInit(): void {
@@ -26,7 +27,7 @@ export class BusInquireComponent implements OnInit {
         this.keyboardIndex = 0;
         break;
       default:
-
+        if (this.keyboardIndex === 1) { this.currentCity = e };
         break;
     }
   }

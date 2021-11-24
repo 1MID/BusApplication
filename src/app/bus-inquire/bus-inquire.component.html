@@ -6,7 +6,8 @@
         </div>
 
         <div class="input-area">
-            <app-base-keyboard (emiter)="getEmitVal($event)" *ngIf="keyboardIndex === 0"></app-base-keyboard>
+            <app-base-keyboard (emiter)="getEmitVal($event)" *ngIf="keyboardIndex === 0" [currentCity]="currentCity">
+            </app-base-keyboard>
             <app-city-keyboard (emiter)="getEmitVal($event)" *ngIf="keyboardIndex === 1"></app-city-keyboard>
             <app-more-keyboard (emiter)="getEmitVal($event)" *ngIf="keyboardIndex === 2"></app-more-keyboard>
         </div>
