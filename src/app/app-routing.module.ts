@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { NearStationComponent } from './near-station/near-station.component';
 import { PositionDetailComponent } from './near-station/position-detail/position-detail.component';
 import { PositionBusComponent } from './near-station/position-detail/position-bus/position-bus.component';
+import { BusInquireComponent } from './bus-inquire/bus-inquire.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'nearby/position-detail/position-bus',
     component: PositionBusComponent,
+  },
+  {
+    path: 'bus-inquire',
+    component: BusInquireComponent,
   },
   {
     path: '**',

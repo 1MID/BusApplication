@@ -1,0 +1,35 @@
+<div class="root">
+    <div class="col">
+        <div class="header">
+            <img src="assets/nearby/main-logo.svg" class="main-logo">
+            <input class="search-input" placeholder="選擇路線或手動輸入關鍵字">
+        </div>
+
+        <div class="input-area">
+            <app-base-keyboard></app-base-keyboard>
+            <!-- <app-more-keyboard></app-more-keyboard> -->
+            <!-- <app-city-keyboard></app-city-keyboard> -->
+        </div>
+    </div>
+
+    <div class="output-area">
+        <div class="output-title">台北市</div>
+
+
+        <div class="bus-data-item" *ngFor="let item of [].constructor(20); let i = index;"
+            [ngStyle]="{ 'background-color': ((i % 2) == 0) ? '#1C1D1D' : '#131414' }">
+            <div class="bus-data-title">
+                標題
+            </div>
+            <div class="bus-data-content-container">
+                <div class="bus-data-content">
+                    內容
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>

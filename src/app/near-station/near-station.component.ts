@@ -35,6 +35,7 @@ export class NearStationComponent implements OnInit {
       this.myPosition.lat = res[0].lat;
       this.myPosition.city = res[1].city;
       this.getBusStopNearby();
+      console.log(res)
     })
   }
 

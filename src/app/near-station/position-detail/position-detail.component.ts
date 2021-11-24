@@ -27,7 +27,8 @@ export class PositionDetailComponent implements OnInit {
 
   getPositionDetailData() {
     this.paramsRes = this.routeHandlerService.getPositionDetailData();
-    if (!this.paramsRes) { this.routeHandlerService.backToNearStation(); }
+    console.log('***', this.paramsRes)
+    if (!this.paramsRes) { this.routeHandlerService.navigateToNearStation(); }
   }
 
   getPassThroughData() {
@@ -47,6 +48,6 @@ export class PositionDetailComponent implements OnInit {
   }
 
   backOnClick() {
-    this.routeHandlerService.backToNearStation();
+    this.routeHandlerService.navigateToNearStation();
   }
 }

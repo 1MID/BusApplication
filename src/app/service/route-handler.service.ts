@@ -28,12 +28,16 @@ export class RouteHandlerService {
     return this.positionBusData;
   }
 
-  backToNearStation() {
+  navigateToNearStation() {
     this.router.navigate(['nearby'], {});
   }
 
   backToPositionDetail() {
     this.router.navigate(['nearby/position-detail'], {});
+  }
+
+  navigateToBusInquire() {
+    this.router.navigate(['bus-inquire'], {});
   }
 
 }

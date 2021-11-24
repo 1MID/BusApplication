@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RouteHandlerService } from '../service/route-handler.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private routeHandlerService: RouteHandlerService
+  ) { }
 
   ngOnInit(): void {
   }
 
+  nearOnClick() {
+    this.routeHandlerService.navigateToNearStation();
+  }
+
+  busInquireOnClick() {
+    this.routeHandlerService.navigateToBusInquire();
+  }
 }

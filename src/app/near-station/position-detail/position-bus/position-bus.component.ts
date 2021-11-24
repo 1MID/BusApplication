@@ -38,7 +38,7 @@ export class PositionBusComponent implements OnInit, OnDestroy {
    */
   getPositionBusData() {
     this.paramsRes = this.routeHandlerService.getPositionBusData();
-    if (!this.paramsRes) { this.routeHandlerService.backToNearStation(); }
+    if (!this.paramsRes) { this.routeHandlerService.navigateToNearStation(); }
   }
 
   /**
