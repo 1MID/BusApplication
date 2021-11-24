@@ -61,8 +61,9 @@ export class QueryNearbyService {
    */
   getDestinationStop(city: string, stationName: string) {
     const headers = this.commonService.GetAuthorizationHeader();
+    let stationNameURI = encodeURI(stationName);
     return new Promise((resolve, reject) => {
-      this.http.get<any>(`https://ptx.transportdata.tw/MOTC/v2/Bus/Route/City/${city}/${stationName}?$top=1`, { headers }).subscribe(res => {
+      this.http.get<any>(`https://ptx.transportdata.tw/MOTC/v2/Bus/Route/City/${city}/${stationNameURI}?$top=1`, { headers }).subscribe(res => {
         if (res) {
           resolve(res);
         }
@@ -81,9 +82,10 @@ export class QueryNearbyService {
   getStopRealTimeData(city: string, stationName: string, direction: number) {
     const headers = this.commonService.GetAuthorizationHeader();
     let filterString = encodeURI(`(Direction eq '${direction}') and (RouteName/Zh_tw eq '${stationName}')`);
+    let stationNameURI = encodeURI(stationName);
 
     return new Promise((resolve, reject) => {
-      this.http.get<any>(`https://ptx.transportdata.tw/MOTC/v2/Bus/EstimatedTimeOfArrival/City/${city}/${stationName}?$filter=${filterString}&$orderby=StopSequence%20asc&$format=JSON`, { headers }).subscribe(res => {
+      this.http.get<any>(`https://ptx.transportdata.tw/MOTC/v2/Bus/EstimatedTimeOfArrival/City/${city}/${stationNameURI}?$filter=${filterString}&$orderby=StopSequence%20asc&$format=JSON`, { headers }).subscribe(res => {
         if (res) {
           resolve(res);
         }
