@@ -6,16 +6,14 @@
         </div>
 
         <div class="input-area">
-            <app-base-keyboard></app-base-keyboard>
-            <!-- <app-more-keyboard></app-more-keyboard> -->
-            <!-- <app-city-keyboard></app-city-keyboard> -->
+            <app-base-keyboard (emiter)="getEmitVal($event)" *ngIf="keyboardIndex === 0"></app-base-keyboard>
+            <app-city-keyboard (emiter)="getEmitVal($event)" *ngIf="keyboardIndex === 1"></app-city-keyboard>
+            <app-more-keyboard (emiter)="getEmitVal($event)" *ngIf="keyboardIndex === 2"></app-more-keyboard>
         </div>
     </div>
 
     <div class="output-area">
         <div class="output-title">台北市</div>
-
-
         <div class="bus-data-item" *ngFor="let item of [].constructor(20); let i = index;"
             [ngStyle]="{ 'background-color': ((i % 2) == 0) ? '#1C1D1D' : '#131414' }">
             <div class="bus-data-title">
@@ -26,10 +24,7 @@
                     內容
                 </div>
             </div>
-
         </div>
-
-
     </div>
 
 </div>
