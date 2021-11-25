@@ -50,6 +50,7 @@ export class BusInquireComponent implements OnInit {
           this.getBusDataByCity();
         } else {
           (<HTMLInputElement>document.getElementById('keywordInput')).value += e;
+          this.handleFilter();
         };
         break;
     }
@@ -71,5 +72,10 @@ export class BusInquireComponent implements OnInit {
     }
     this.routeHandlerService.setPositionBusData(positionBusData);
     this.router.navigate(['nearby/position-detail/position-bus'], {});
+  }
+
+  handleFilter() {
+    let filterStr = (<HTMLInputElement>document.getElementById('keywordInput')).value;
+    this.busData = this.busData.filter(item => item.RouteName.Zh_tw.indexOf(filterStr) > -1)
   }
 }
