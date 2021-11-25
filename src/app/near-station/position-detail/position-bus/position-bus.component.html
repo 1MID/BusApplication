@@ -20,7 +20,7 @@
             <div class="station-time not-active" *ngIf="(item.StopStatus == 4) || (item.StopStatus == null)">今日未營運</div>
             <div class="station-time finish" *ngIf="item.StopStatus == 3">末班車駛離</div>
             <div *ngIf="item.StopStatus == 0">
-                <div class="station-time normal" *ngIf="item.EstimateTime > 60">{{item.EstimateTime / 60}}分</div>
+                <div class="station-time normal" *ngIf="item.EstimateTime > 60">{{item.EstimateTime}}分</div>
                 <div class="station-time pulling" *ngIf="item.EstimateTime <= 60">進站中</div>
             </div>
 

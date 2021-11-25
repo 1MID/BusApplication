@@ -14,7 +14,7 @@ export class PositionBusComponent implements OnInit, OnDestroy {
   queryData = { DepartureStopNameZh: '', DestinationStopNameZh: '', Direction0: null, Direction1: null }
 
   tabsIndex = 0; //tab的索引
-  outputData //根據tab的索引值決定要輸出的資料(去程或返程)
+  outputData = []; //根據tab的索引值決定要輸出的資料(去程或返程)
   refreshInterval; // 刷新資料用 計時器
   lastRefreshTime = 0;
 
@@ -40,7 +40,7 @@ export class PositionBusComponent implements OnInit, OnDestroy {
    */
   getPositionBusData() {
     this.paramsRes = this.routeHandlerService.getPositionBusData();
-    if (!this.paramsRes) { this.routeHandlerService.navigateToNearStation(); }
+    if (!this.paramsRes) { this.routeHandlerService.navigateToHome(); }
   }
 
   /**
@@ -58,14 +58,16 @@ export class PositionBusComponent implements OnInit, OnDestroy {
    * 取得本路線實時動態
    */
   getRealTimeData() {
-    Promise.all([
-      this.queryNearbyService.getStopRealTimeData(this.paramsRes.city, this.paramsRes.stationName, 0),
-      this.queryNearbyService.getStopRealTimeData(this.paramsRes.city, this.paramsRes.stationName, 1),
-    ]).then((res: any) => {
-      this.queryData.Direction0 = res[0];//去程資料
-      this.queryData.Direction1 = res[1];//回程資料
-      this.tabsIndex == 0 ? this.outputData = this.queryData.Direction0 : this.outputData = this.queryData.Direction1;
-    })
+    if (this.paramsRes.city === 'Taichung' || this.paramsRes.city === 'Taoyuan' || this.paramsRes.city === 'Kaohsiung') {
+      Promise.all([
+        this.queryNearbyService.getStopRealTimeData(this.paramsRes.city, this.paramsRes.stationName, 0),
+        this.queryNearbyService.getStopRealTimeData(this.paramsRes.city, this.paramsRes.stationName, 1),
+      ]).then((res: any) => {
+        this.queryData.Direction0 = res[0];//去程資料
+        this.queryData.Direction1 = res[1];//回程資料
+        this.tabsIndex == 0 ? this.outputData = this.queryData.Direction0 : this.outputData = this.queryData.Direction1;
+      })
+    }
   }
 
   /**

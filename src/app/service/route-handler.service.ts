@@ -39,5 +39,8 @@ export class RouteHandlerService {
   navigateToBusInquire() {
     this.router.navigate(['bus-inquire'], {});
   }
+  navigateToHome() {
+    this.router.navigate(['home'], {});
+  }
 
 }

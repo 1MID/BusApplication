@@ -15,7 +15,7 @@
 
     <div class="output-area">
         <div class="output-title" *ngIf="currentCity != '選擇縣市'">{{currentCity}}</div>
-        <div class="bus-data-item" *ngFor="let item of busData; let i = index;"
+        <div class="bus-data-item" *ngFor="let item of busDataFilter; let i = index;"
             [ngStyle]="{ 'background-color': ((i % 2) == 0) ? '#1C1D1D' : '#131414' }" (click)="itemOnClick(item)">
             <div class="bus-data-title">
                 {{item.RouteName.Zh_tw}}

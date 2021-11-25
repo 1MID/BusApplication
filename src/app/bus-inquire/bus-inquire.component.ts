@@ -13,6 +13,7 @@ export class BusInquireComponent implements OnInit {
   keyboardIndex = 0; //0 基本鍵盤 1 城市 2 更多
   currentCity = "選擇縣市";
   busData;
+  busDataFilter;
 
   constructor(
     private cityListService: CityListService,
@@ -39,6 +40,7 @@ export class BusInquireComponent implements OnInit {
       case 'delete':
         let keywordInput = (<HTMLInputElement>document.getElementById('keywordInput')).value;
         (<HTMLInputElement>document.getElementById('keywordInput')).value = keywordInput.substring(0, keywordInput.length - 1)
+        this.handleFilter();
         break;
       case 'custom':
         (<HTMLInputElement>document.getElementById('keywordInput')).disabled = false;
@@ -49,8 +51,10 @@ export class BusInquireComponent implements OnInit {
           this.currentCity = e;
           this.getBusDataByCity();
         } else {
-          (<HTMLInputElement>document.getElementById('keywordInput')).value += e;
-          this.handleFilter();
+          if (this.busData) {
+            (<HTMLInputElement>document.getElementById('keywordInput')).value += e;
+            this.handleFilter();
+          }
         };
         break;
     }
@@ -60,6 +64,7 @@ export class BusInquireComponent implements OnInit {
     let cityEnName = this.cityListService.getCityNameEnByZh(this.currentCity);
     this.queryBusInquireService.getCityBusRouteData(cityEnName).then(res => {
       this.busData = res;
+      this.busDataFilter = JSON.parse(JSON.stringify(this.busData));
       console.log(res);
     })
   }
@@ -76,6 +81,9 @@ export class BusInquireComponent implements OnInit {
 
   handleFilter() {
     let filterStr = (<HTMLInputElement>document.getElementById('keywordInput')).value;
-    this.busData = this.busData.filter(item => item.RouteName.Zh_tw.indexOf(filterStr) > -1)
+    if (this.busData) {
+      let box = JSON.parse(JSON.stringify(this.busData));
+      this.busDataFilter = box.filter(item => item.RouteName.Zh_tw.indexOf(filterStr) > -1)
+    }
   }
 }
