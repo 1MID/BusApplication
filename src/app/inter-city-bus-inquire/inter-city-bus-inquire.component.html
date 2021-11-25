@@ -1,0 +1,24 @@
+<div class="root">
+    <div class="col">
+        <div class="header">
+            <img src="assets/nearby/main-logo.svg" class="main-logo">
+            <input class="search-input" *ngIf="keyboardIndex === 0" placeholder="選擇路線或手動輸入關鍵字" id="keywordInput"
+                disabled>
+        </div>
+
+
+        <div class="city-container" *ngIf="keyboardIndex === 1">
+            <input class="city-input left" placeholder="選擇出發縣市" id="startPoint" disabled>
+            <img src="assets/interbus/switch.svg" (click)="switchOnClick()">
+            <input class="city-input right" placeholder="選擇到達縣市" id="endPoint" disabled>
+        </div>
+        <div class="input-area">
+            <app-inter-base-keyboard *ngIf="keyboardIndex === 0" (emiter)="getEmitVal($event)">
+            </app-inter-base-keyboard>
+            <app-inter-from-to-keyboard *ngIf="keyboardIndex === 1" (emiter)="getEmitVal($event)">
+            </app-inter-from-to-keyboard>
+
+        </div>
+    </div>
+
+</div>

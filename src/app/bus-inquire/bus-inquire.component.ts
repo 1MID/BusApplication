@@ -37,9 +37,12 @@ export class BusInquireComponent implements OnInit {
       case 'back':
         this.keyboardIndex = 0;
         break;
+      case 'C':
+        this.handleClear();
+        this.handleFilter();
+        break;
       case 'delete':
-        let keywordInput = (<HTMLInputElement>document.getElementById('keywordInput')).value;
-        (<HTMLInputElement>document.getElementById('keywordInput')).value = keywordInput.substring(0, keywordInput.length - 1)
+        this.handleDelete();
         this.handleFilter();
         break;
       case 'custom':
@@ -48,8 +51,8 @@ export class BusInquireComponent implements OnInit {
         break;
       default:
         if (this.keyboardIndex === 1) {
-          this.currentCity = e;
-          this.getBusDataByCity();
+          this.handleCitySelect(e);
+          this.handleFilter();
         } else {
           if (this.busData) {
             (<HTMLInputElement>document.getElementById('keywordInput')).value += e;
@@ -79,11 +82,42 @@ export class BusInquireComponent implements OnInit {
     this.router.navigate(['nearby/position-detail/position-bus'], {});
   }
 
+  /**
+   * 負責處理搜尋過濾
+   */
   handleFilter() {
     let filterStr = (<HTMLInputElement>document.getElementById('keywordInput')).value;
     if (this.busData) {
       let box = JSON.parse(JSON.stringify(this.busData));
       this.busDataFilter = box.filter(item => item.RouteName.Zh_tw.indexOf(filterStr) > -1)
     }
+  }
+
+  /**
+   * 負責刪除(前一個字元)
+   * @returns
+   */
+  handleDelete() {
+    let keywordInput = (<HTMLInputElement>document.getElementById('keywordInput')).value;
+    if (keywordInput.length === 1) {
+      (<HTMLInputElement>document.getElementById('keywordInput')).value = "";
+      return;
+    }
+    (<HTMLInputElement>document.getElementById('keywordInput')).value = keywordInput.substring(0, keywordInput.length - 1)
+  }
+
+  /**
+   * 負責選完程式後的邏輯
+   */
+  handleCitySelect(e) {
+    this.currentCity = e;
+    this.getBusDataByCity();
+  }
+
+  /**
+   * 負責Clear 清除
+   */
+  handleClear() {
+    (<HTMLInputElement>document.getElementById('keywordInput')).value = "";
   }
 }

@@ -11,7 +11,7 @@
     </div>
 
     <div class="main-container">
-        <div class="refresh-time">*於 {{lastRefreshTime}} 秒前更新</div>
+        <div class="refresh-time" *ngIf="haveEstimateTime">*於 {{lastRefreshTime}} 秒前更新</div>
         <div class="station-container"
             *ngFor="let item of outputData;let i = index;let first = first ; let last = last;">
 
@@ -21,7 +21,7 @@
             <div class="station-time finish" *ngIf="item.StopStatus == 3">末班車駛離</div>
 
             <div *ngIf="item.StopStatus == 0 && haveEstimateTime">
-                <div class="station-time normal" *ngIf="item.EstimateTime > 60">{{item.EstimateTime}}分</div>
+                <div class="station-time normal" *ngIf="item.EstimateTime > 60">{{item.EstimateTime / 60}}分</div>
                 <div class="station-time pulling" *ngIf="item.EstimateTime <= 60">進站中</div>
             </div>
             <div *ngIf="!haveEstimateTime">

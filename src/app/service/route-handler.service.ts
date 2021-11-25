@@ -43,4 +43,8 @@ export class RouteHandlerService {
     this.router.navigate(['home'], {});
   }
 
+  navigateToInterCityBus() {
+    this.router.navigate(['inter-city-bus'], {});
+  }
+
 }

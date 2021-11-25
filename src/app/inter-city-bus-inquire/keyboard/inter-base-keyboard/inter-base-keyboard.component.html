@@ -1,0 +1,43 @@
+<div class="root">
+
+    <div class="row">
+        <div class="input-btn city" (click)="keyOnClick('change')">
+            <img src="assets/busInquire/location.svg" class="delete-icon" style="margin-right: 1vw;">以起訖地區搜尋
+        </div>
+        <div class="input-btn cutsom" (click)="keyOnClick('custom')">手動輸入</div>
+
+    </div>
+    <div class="row">
+        <div class="input-btn line-opt" (click)="keyOnClick($event.target.innerText)">臺北市</div>
+        <div class="input-btn line-opt" (click)="keyOnClick($event.target.innerText)">新北市</div>
+        <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)">1</div>
+        <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)">2</div>
+        <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)">3</div>
+    </div>
+
+    <div class="row">
+        <div class="input-btn line-opt" (click)="keyOnClick($event.target.innerText)">桃園市</div>
+        <div class="input-btn line-opt" (click)="keyOnClick($event.target.innerText)">臺中市</div>
+        <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)">4</div>
+        <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)">5</div>
+        <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)">6</div>
+    </div>
+
+    <div class="row">
+        <div class="input-btn line-opt" (click)="keyOnClick($event.target.innerText)">臺南市</div>
+        <div class="input-btn line-opt" (click)="keyOnClick($event.target.innerText)">高雄市</div>
+        <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)">7</div>
+        <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)">8</div>
+        <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)">9</div>
+    </div>
+
+    <div class="row">
+        <div class="input-btn line-opt" (click)="keyOnClick($event.target.innerText)">基隆市</div>
+        <div class="input-btn line-opt" (click)="keyOnClick('more')">其他</div>
+        <div class="input-btn line-opt" (click)="keyOnClick($event.target.innerText)">C</div>
+        <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)">0</div>
+        <div class="input-btn number-opt">
+            <img src="assets/busInquire/delete.svg" class="delete-icon" (click)="keyOnClick('delete')">
+        </div>
+    </div>
+</div>

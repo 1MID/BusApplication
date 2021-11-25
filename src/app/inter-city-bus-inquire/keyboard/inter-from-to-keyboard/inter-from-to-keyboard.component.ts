@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
 @Component({
-  selector: 'app-city-keyboard',
-  templateUrl: './city-keyboard.component.html',
-  styleUrls: ['./city-keyboard.component.scss']
+  selector: 'app-inter-from-to-keyboard',
+  templateUrl: './inter-from-to-keyboard.component.html',
+  styleUrls: ['./inter-from-to-keyboard.component.scss']
 })
-export class CityKeyboardComponent implements OnInit {
+export class InterFromToKeyboardComponent implements OnInit {
   @Output() emiter = new EventEmitter<any>();
 
   constructor() { }

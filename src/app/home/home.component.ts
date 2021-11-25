@@ -22,4 +22,8 @@ export class HomeComponent implements OnInit {
   busInquireOnClick() {
     this.routeHandlerService.navigateToBusInquire();
   }
+
+  interCityBusOnClick() {
+    this.routeHandlerService.navigateToInterCityBus();
+  }
 }

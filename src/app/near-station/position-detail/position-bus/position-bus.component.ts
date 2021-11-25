@@ -28,6 +28,7 @@ export class PositionBusComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getPositionBusData();
+    this.ifHaveEstimateTime();
     this.getDestinationStop();
     this.enabledAutoRefresh();
   }
