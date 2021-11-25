@@ -53,9 +53,14 @@ export class BusInquireComponent implements OnInit {
         if (this.keyboardIndex === 1) {
           this.handleCitySelect(e);
           this.handleFilter();
-        } else {
+        } else if (this.keyboardIndex === 0) {
           if (this.busData) {
             (<HTMLInputElement>document.getElementById('keywordInput')).value += e;
+            this.handleFilter();
+          }
+        } else if (this.keyboardIndex === 2) {
+          if (this.busData) {
+            (<HTMLInputElement>document.getElementById('keywordInput')).value = e;
             this.handleFilter();
           }
         };

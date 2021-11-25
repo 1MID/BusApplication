@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-more-keyboard',
-  templateUrl: './more-keyboard.component.html',
-  styleUrls: ['./more-keyboard.component.scss']
+  selector: 'app-inter-more-keyboard',
+  templateUrl: './inter-more-keyboard.component.html',
+  styleUrls: ['./inter-more-keyboard.component.scss']
 })
-export class MoreKeyboardComponent implements OnInit {
+export class InterMoreKeyboardComponent implements OnInit {
   @Output() emiter = new EventEmitter<any>();
 
   constructor() { }
@@ -17,5 +17,4 @@ export class MoreKeyboardComponent implements OnInit {
   btnOnClick(data: string) {
     this.emiter.emit(data);
   }
-
 }

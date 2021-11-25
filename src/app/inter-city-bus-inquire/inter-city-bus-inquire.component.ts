@@ -46,6 +46,9 @@ export class InterCityBusInquireComponent implements OnInit {
       case 'custom':
         this.handleCustomInput();
         break;
+      case 'more':
+        this.handleKeyboardChange(2);
+        break;
       default:
         this.handleInput(e);
         break;
@@ -61,30 +64,43 @@ export class InterCityBusInquireComponent implements OnInit {
       if (e.indexOf('市') != -1) {
         this.currentCity = e;
         let cityEn = this.cityListService.getCityNameEnByZh(this.currentCity);
-        this.queryInterBusService.getInterBusData(cityEn).then(res => {
+        this.queryInterBusService.getInterBusData(cityEn).then((res: any) => {
           console.log(res)
+          res.map(item => {
+            item.SubRoutes.map(subRoute => {
+              subRoute.from2flag = true;
+              subRoute.filterType = true;
+            })
+          })
           this.busDataOrigin = res;
+          this.busDataFilter = JSON.parse(JSON.stringify(this.busDataOrigin));
           this.handleFilter();
         });
       } else {
-        (<HTMLInputElement>document.getElementById('keyw')).value += e;
-        this.handleFilter();
+        if (this.busDataOrigin) {
+          (<HTMLInputElement>document.getElementById('keyw')).value += e;
+          this.handleFilter();
+        }
       }
     } else if (this.keyboardIndex === 1) {
-      this.cityInputIsFirstNow
-        ? (<HTMLInputElement>document.getElementById('startPoint')).value = e
-        : (<HTMLInputElement>document.getElementById('endPoint')).value = e
+      if (this.busDataOrigin) {
+        this.cityInputIsFirstNow
+          ? (<HTMLInputElement>document.getElementById('startPoint')).value = e
+          : (<HTMLInputElement>document.getElementById('endPoint')).value = e
 
-      //第一次點擊更改起始站，第二次點擊更改結束站
-      this.cityInputIsFirstNow = !this.cityInputIsFirstNow;
-      this.handleCity2CitySearch();
+        //第一次點擊更改起始站，第二次點擊更改結束站
+        this.cityInputIsFirstNow = !this.cityInputIsFirstNow;
+        this.handleCity2CitySearch();
+      }
+
+    } else if (this.keyboardIndex === 2) {
+      if (this.busDataOrigin) {
+        (<HTMLInputElement>document.getElementById('keyw')).value = e;
+      }
     }
   }
 
-  /**
-   * 負責Clear 全部清除
-   * @returns
-   */
+
   handleDelete() {
     let keywordInput = (<HTMLInputElement>document.getElementById('keyw')).value;
     if (keywordInput.length === 1) {
@@ -138,9 +154,21 @@ export class InterCityBusInquireComponent implements OnInit {
  */
   handleFilter() {
     let filterStr = (<HTMLInputElement>document.getElementById('keyw'))?.value;
+    console.log(filterStr)
     if (this.busDataOrigin && filterStr) {
       let box = JSON.parse(JSON.stringify(this.busDataOrigin));
-      this.busDataFilter = box.filter(item => item.RouteName.Zh_tw.indexOf(filterStr) > -1)
+
+      this.busDataFilter = box.filter(item =>
+        //filterType = True的意思是他是過濾條件符合的
+        //因為不知道為什麼我原本的filter有點失敗
+        item.SubRoutes.filter(subRoute =>
+          subRoute.SubRouteName.Zh_tw.indexOf(filterStr) > -1 ? subRoute.filterType = true : subRoute.filterType = false
+        )
+      )
+
+      console.log(this.busDataFilter, this.busDataOrigin)
+    } else if (this.busDataOrigin) {
+      this.busDataFilter = JSON.parse(JSON.stringify(this.busDataOrigin));
     }
   }
 
@@ -164,6 +192,7 @@ export class InterCityBusInquireComponent implements OnInit {
           item.SubRoutes.map(subRoute => {
             let subRouteSplit = subRoute.HeadsignEn.split('→');
             subRouteSplit[0].indexOf(fromCityEn) != -1 ? subRoute.from2flag = true : subRoute.from2flag = false;
+            subRoute.filterType = true;
           })
         })
 
@@ -172,4 +201,5 @@ export class InterCityBusInquireComponent implements OnInit {
       })
     }
   }
+
 }
