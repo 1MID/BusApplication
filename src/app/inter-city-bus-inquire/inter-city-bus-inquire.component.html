@@ -22,17 +22,20 @@
     <div class="output-area">
         <div class="output-title">{{currentCity}}</div>
         <ng-container *ngFor="let item of busDataFilter; let i = index;">
-            <div class="bus-data-item" *ngFor="let data of item.SubRoutes; let j = index;"
-                [ngStyle]="{ 'background-color': ((j % 2) == 0) ? '#1C1D1D' : '#131414' }" (click)="itemOnClick(item)">
-                <div class="bus-data-title">
-                    {{data.SubRouteName.Zh_tw}}
-                </div>
-                <div class="bus-data-content-container">
-                    <div class="bus-data-content text">
-                        {{data.Headsign}}
+            <ng-container *ngFor="let subRoute of item.SubRoutes; let j = index;">
+                <div class="bus-data-item" *ngIf="subRoute.from2flag == true"
+                    [ngStyle]="{ 'background-color': ((j % 2) == 0) ? '#1C1D1D' : '#131414' }"
+                    (click)="itemOnClick(item)">
+                    <div class="bus-data-title">
+                        {{subRoute.SubRouteName.Zh_tw}}
+                    </div>
+                    <div class="bus-data-content-container">
+                        <div class="bus-data-content text">
+                            {{subRoute.Headsign}}
+                        </div>
                     </div>
                 </div>
-            </div>
+            </ng-container>
         </ng-container>
     </div>
 

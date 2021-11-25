@@ -137,8 +137,8 @@ export class InterCityBusInquireComponent implements OnInit {
  * 負責處理搜尋過濾
  */
   handleFilter() {
-    let filterStr = (<HTMLInputElement>document.getElementById('keyw')).value;
-    if (this.busDataOrigin) {
+    let filterStr = (<HTMLInputElement>document.getElementById('keyw'))?.value;
+    if (this.busDataOrigin && filterStr) {
       let box = JSON.parse(JSON.stringify(this.busDataOrigin));
       this.busDataFilter = box.filter(item => item.RouteName.Zh_tw.indexOf(filterStr) > -1)
     }
@@ -155,10 +155,20 @@ export class InterCityBusInquireComponent implements OnInit {
       let fromCityEn = this.cityListService.getCityNameEnByZh(fromCity);
       let toCityEn = this.cityListService.getCityNameEnByZh(toCity);
 
-      this.queryInterBusService.getInterBusDataStart2End(fromCityEn, toCityEn).then(res => {
+      this.queryInterBusService.getInterBusDataStart2End(fromCityEn, toCityEn).then((res: any) => {
         console.log(res);
+
+        // 假如是台北到台中，則上面這個query會把台中到台北的也抓出來
+        // 因此如果是台北到台中(順序正確)，就把from2flag設True，讓HTML可以篩
+        res.map(item => {
+          item.SubRoutes.map(subRoute => {
+            let subRouteSplit = subRoute.HeadsignEn.split('→');
+            subRouteSplit[0].indexOf(fromCityEn) != -1 ? subRoute.from2flag = true : subRoute.from2flag = false;
+          })
+        })
+
         this.busDataOrigin = res;
-        this.busDataFilter = res;
+        this.busDataFilter = JSON.parse(JSON.stringify(this.busDataOrigin));
       })
     }
   }
