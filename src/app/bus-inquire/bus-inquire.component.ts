@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import { CityListService } from '../service/city-list.service';
+import { QueryBusInquireService } from '../service/query-bus-inquire.service';
+import { RouteHandlerService } from 'src/app/service/route-handler.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-bus-inquire',
   templateUrl: './bus-inquire.component.html',
@@ -9,7 +12,14 @@ export class BusInquireComponent implements OnInit {
 
   keyboardIndex = 0; //0 基本鍵盤 1 城市 2 更多
   currentCity = "選擇縣市";
-  constructor() { }
+  busData;
+
+  constructor(
+    private cityListService: CityListService,
+    private queryBusInquireService: QueryBusInquireService,
+    private routeHandlerService: RouteHandlerService,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
   }
@@ -26,15 +36,40 @@ export class BusInquireComponent implements OnInit {
       case 'back':
         this.keyboardIndex = 0;
         break;
+      case 'delete':
+        let keywordInput = (<HTMLInputElement>document.getElementById('keywordInput')).value;
+        (<HTMLInputElement>document.getElementById('keywordInput')).value = keywordInput.substring(0, keywordInput.length - 1)
+        break;
+      case 'custom':
+        (<HTMLInputElement>document.getElementById('keywordInput')).disabled = false;
+        (<HTMLInputElement>document.getElementById('keywordInput')).focus();
+        break;
       default:
-        if (this.keyboardIndex === 1) { this.currentCity = e };
+        if (this.keyboardIndex === 1) {
+          this.currentCity = e;
+          this.getBusDataByCity();
+        } else {
+          (<HTMLInputElement>document.getElementById('keywordInput')).value += e;
+        };
         break;
     }
   }
 
-  //應該打這支 v2/Bus/Route/City/{City} 取得指定[縣市]的市區公車路線資料
-  //拿到該城市的所有公車名稱 BusRouteType == 11 [BusRouteType (Int32): 公車路線類別 : [11:'市區公車',12:'公路客運',13:'國道客運',14:'接駁車'] ]
-  //再拿他的起點跟終點名稱
+  getBusDataByCity() {
+    let cityEnName = this.cityListService.getCityNameEnByZh(this.currentCity);
+    this.queryBusInquireService.getCityBusRouteData(cityEnName).then(res => {
+      this.busData = res;
+      console.log(res);
+    })
+  }
 
-  //全拿到之後就剩過慮了
+  itemOnClick(item) {
+    let cityEnName = this.cityListService.getCityNameEnByZh(this.currentCity);
+    let positionBusData = {
+      stationName: item.RouteName.Zh_tw,
+      city: cityEnName
+    }
+    this.routeHandlerService.setPositionBusData(positionBusData);
+    this.router.navigate(['nearby/position-detail/position-bus'], {});
+  }
 }

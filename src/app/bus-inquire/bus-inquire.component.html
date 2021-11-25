@@ -2,7 +2,7 @@
     <div class="col">
         <div class="header">
             <img src="assets/nearby/main-logo.svg" class="main-logo">
-            <input class="search-input" placeholder="選擇路線或手動輸入關鍵字">
+            <input class="search-input" placeholder="選擇路線或手動輸入關鍵字" id="keywordInput" disabled>
         </div>
 
         <div class="input-area">
@@ -14,15 +14,21 @@
     </div>
 
     <div class="output-area">
-        <div class="output-title">台北市</div>
-        <div class="bus-data-item" *ngFor="let item of [].constructor(20); let i = index;"
-            [ngStyle]="{ 'background-color': ((i % 2) == 0) ? '#1C1D1D' : '#131414' }">
+        <div class="output-title" *ngIf="currentCity != '選擇縣市'">{{currentCity}}</div>
+        <div class="bus-data-item" *ngFor="let item of busData; let i = index;"
+            [ngStyle]="{ 'background-color': ((i % 2) == 0) ? '#1C1D1D' : '#131414' }" (click)="itemOnClick(item)">
             <div class="bus-data-title">
-                標題
+                {{item.RouteName.Zh_tw}}
             </div>
             <div class="bus-data-content-container">
-                <div class="bus-data-content">
-                    內容
+                <div class="bus-data-content text">
+                    {{item.DepartureStopNameZh}}
+                </div>
+                <div class="bus-data-content to">
+                    往
+                </div>
+                <div class="bus-data-content text">
+                    {{item.DestinationStopNameZh}}
                 </div>
             </div>
         </div>

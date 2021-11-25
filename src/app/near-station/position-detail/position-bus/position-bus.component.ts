@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouteHandlerService } from 'src/app/service/route-handler.service';
 import { QueryNearbyService } from 'src/app/service/query-nearby.service';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-position-bus',
@@ -21,6 +22,7 @@ export class PositionBusComponent implements OnInit, OnDestroy {
     private routeHandlerService: RouteHandlerService,
     private queryNearbyService: QueryNearbyService,
     private router: Router,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
@@ -58,7 +60,7 @@ export class PositionBusComponent implements OnInit, OnDestroy {
   getRealTimeData() {
     Promise.all([
       this.queryNearbyService.getStopRealTimeData(this.paramsRes.city, this.paramsRes.stationName, 0),
-      this.queryNearbyService.getStopRealTimeData(this.paramsRes.city, this.paramsRes.stationName, 1)
+      this.queryNearbyService.getStopRealTimeData(this.paramsRes.city, this.paramsRes.stationName, 1),
     ]).then((res: any) => {
       this.queryData.Direction0 = res[0];//去程資料
       this.queryData.Direction1 = res[1];//回程資料
@@ -95,6 +97,6 @@ export class PositionBusComponent implements OnInit, OnDestroy {
    * 返回按鈕
    */
   backOnClick() {
-    this.routeHandlerService.backToPositionDetail();
+    this.location.back();
   }
 }

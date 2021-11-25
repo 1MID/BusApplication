@@ -43,6 +43,10 @@
                 *ngIf="(item.StopStatus == 0) && (item.EstimateTime <= 60)">
 
         </div>
+
+        <div *ngIf="outputData?.length == 0" style="color:#ffffff">
+            當前尚無資料
+        </div>
     </div>
 
 </div>
