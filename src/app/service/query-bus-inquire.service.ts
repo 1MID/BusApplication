@@ -12,12 +12,12 @@ export class QueryBusInquireService {
     private commonService: CommonService
   ) { }
 
+
   /**
- * 取得鄰近公車站點資訊
- * @param Lat
- * @param Lon
- * @returns
- */
+   * 取得鄰近公車站點資訊
+   * @param city
+   * @returns
+   */
   getCityBusRouteData(city: string) {
     const headers = this.commonService.GetAuthorizationHeader();
     return new Promise((resolve, reject) => {

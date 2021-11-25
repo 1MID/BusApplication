@@ -2,10 +2,8 @@
     <div class="col">
         <div class="header">
             <img src="assets/nearby/main-logo.svg" class="main-logo">
-            <input class="search-input" *ngIf="keyboardIndex === 0" placeholder="選擇路線或手動輸入關鍵字" id="keywordInput"
-                disabled>
+            <input class="search-input" *ngIf="keyboardIndex === 0" placeholder="選擇路線或手動輸入關鍵字" id="keyw" disabled>
         </div>
-
 
         <div class="city-container" *ngIf="keyboardIndex === 1">
             <input class="city-input left" placeholder="選擇出發縣市" id="startPoint" disabled>
@@ -17,8 +15,26 @@
             </app-inter-base-keyboard>
             <app-inter-from-to-keyboard *ngIf="keyboardIndex === 1" (emiter)="getEmitVal($event)">
             </app-inter-from-to-keyboard>
-
         </div>
     </div>
+
+
+    <div class="output-area">
+        <div class="output-title">{{currentCity}}</div>
+        <ng-container *ngFor="let item of busDataFilter; let i = index;">
+            <div class="bus-data-item" *ngFor="let data of item.SubRoutes; let j = index;"
+                [ngStyle]="{ 'background-color': ((j % 2) == 0) ? '#1C1D1D' : '#131414' }" (click)="itemOnClick(item)">
+                <div class="bus-data-title">
+                    {{data.SubRouteName.Zh_tw}}
+                </div>
+                <div class="bus-data-content-container">
+                    <div class="bus-data-content text">
+                        {{data.Headsign}}
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+
 
 </div>
