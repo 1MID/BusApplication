@@ -17,6 +17,7 @@ export class PositionBusComponent implements OnInit, OnDestroy {
   outputData = []; //根據tab的索引值決定要輸出的資料(去程或返程)
   refreshInterval; // 刷新資料用 計時器
   lastRefreshTime = 0;
+  haveEstimateTime = false; //高雄台中桃園才有預估到站時間
 
   constructor(
     private routeHandlerService: RouteHandlerService,
@@ -58,16 +59,17 @@ export class PositionBusComponent implements OnInit, OnDestroy {
    * 取得本路線實時動態
    */
   getRealTimeData() {
-    if (this.paramsRes.city === 'Taichung' || this.paramsRes.city === 'Taoyuan' || this.paramsRes.city === 'Kaohsiung') {
-      Promise.all([
-        this.queryNearbyService.getStopRealTimeData(this.paramsRes.city, this.paramsRes.stationName, 0),
-        this.queryNearbyService.getStopRealTimeData(this.paramsRes.city, this.paramsRes.stationName, 1),
-      ]).then((res: any) => {
-        this.queryData.Direction0 = res[0];//去程資料
-        this.queryData.Direction1 = res[1];//回程資料
-        this.tabsIndex == 0 ? this.outputData = this.queryData.Direction0 : this.outputData = this.queryData.Direction1;
-      })
-    }
+
+    Promise.all([
+      this.queryNearbyService.getStopRealTimeData(this.paramsRes.city, this.paramsRes.stationName, 0),
+      this.queryNearbyService.getStopRealTimeData(this.paramsRes.city, this.paramsRes.stationName, 1),
+    ]).then((res: any) => {
+      console.log(res)
+      this.queryData.Direction0 = res[0];//去程資料
+      this.queryData.Direction1 = res[1];//回程資料
+      this.tabsIndex == 0 ? this.outputData = this.queryData.Direction0 : this.outputData = this.queryData.Direction1;
+    })
+
   }
 
   /**
@@ -100,5 +102,11 @@ export class PositionBusComponent implements OnInit, OnDestroy {
    */
   backOnClick() {
     this.location.back();
+  }
+
+  ifHaveEstimateTime() {
+    if (this.paramsRes.city === 'Taichung' || this.paramsRes.city === 'Taoyuan' || this.paramsRes.city === 'Kaohsiung') {
+      this.haveEstimateTime = true;
+    }
   }
 }

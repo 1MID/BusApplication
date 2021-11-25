@@ -19,9 +19,13 @@
             <div class="station-time not-active" *ngIf="item.StopStatus == 2">交管不停靠</div>
             <div class="station-time not-active" *ngIf="(item.StopStatus == 4) || (item.StopStatus == null)">今日未營運</div>
             <div class="station-time finish" *ngIf="item.StopStatus == 3">末班車駛離</div>
-            <div *ngIf="item.StopStatus == 0">
+
+            <div *ngIf="item.StopStatus == 0 && haveEstimateTime">
                 <div class="station-time normal" *ngIf="item.EstimateTime > 60">{{item.EstimateTime}}分</div>
                 <div class="station-time pulling" *ngIf="item.EstimateTime <= 60">進站中</div>
+            </div>
+            <div *ngIf="!haveEstimateTime">
+                <div class="station-time finish">無即時資料</div>
             </div>
 
             <div class="station-name">{{item.StopName.Zh_tw}}</div>
@@ -29,18 +33,19 @@
 
 
             <!-- 是進站中的就給車牌號碼 -->
-            <div class="bus-number" *ngIf="(item.StopStatus == 0) && (item.EstimateTime <= 60)">
+            <div class="bus-number" *ngIf="(item.StopStatus == 0) && (item.EstimateTime <= 60) && haveEstimateTime">
                 {{item.PlateNumb }}
             </div>
             <!-- 或是他上一個已經駛離，也給車牌號碼 -->
             <ng-template [ngIf]="!first">
-                <div class="bus-number" *ngIf="outputData[i-1].StopStatus == 3"> {{item.PlateNumb }}
+                <div class="bus-number" *ngIf="(outputData[i-1].StopStatus == 3) && (haveEstimateTime)">
+                    {{item.PlateNumb }}
                 </div>
             </ng-template>
 
             <img class="circle-icon normal" src="assets/nearby/circle-icon-normal.svg">
             <img class="circle-icon focus" src="assets/nearby/circle-icon-focus.svg"
-                *ngIf="(item.StopStatus == 0) && (item.EstimateTime <= 60)">
+                *ngIf="(item.StopStatus == 0) && (item.EstimateTime <= 60) && haveEstimateTime">
 
         </div>
 
