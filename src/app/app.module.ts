@@ -21,6 +21,8 @@ import { InterBaseKeyboardComponent } from './inter-city-bus-inquire/keyboard/in
 import { InterFromToKeyboardComponent } from './inter-city-bus-inquire/keyboard/inter-from-to-keyboard/inter-from-to-keyboard.component';
 import { InterMoreKeyboardComponent } from './inter-city-bus-inquire/keyboard/inter-more-keyboard/inter-more-keyboard.component';
 import { InterBusDetailComponent } from './inter-city-bus-inquire/inter-bus-detail/inter-bus-detail.component';
+import { InterBusPriceComponent } from './inter-city-bus-inquire/inter-bus-price/inter-bus-price.component';
+import { BusPriceRoadKeyboardComponent } from './inter-city-bus-inquire/inter-bus-price/keyboard/bus-price-road-keyboard/bus-price-road-keyboard.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { InterBusDetailComponent } from './inter-city-bus-inquire/inter-bus-deta
     InterFromToKeyboardComponent,
     InterMoreKeyboardComponent,
     InterBusDetailComponent,
+    InterBusPriceComponent,
+    BusPriceRoadKeyboardComponent,
   ],
   imports: [
     BrowserModule,

@@ -50,14 +50,20 @@ export class RouteHandlerService {
 
   //客運詳細頁
   interBusDetaildata;
-  setInterBusDetailData(data) {
+  setInterBusItem(data) {
     this.interBusDetaildata = data;
   }
-  getInterBusDetailData() {
+  getInterBusItem() {
     return this.interBusDetaildata;
   }
 
   navigateToInterBusDetail() {
     this.router.navigate(['inter-city-bus/detail'], {});
   }
+
+  navigateToInterBusPrice() {
+    this.router.navigate(['inter-city-bus/price'], {});
+  }
+
+
 }

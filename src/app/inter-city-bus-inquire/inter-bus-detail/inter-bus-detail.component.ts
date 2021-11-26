@@ -30,7 +30,7 @@ export class InterBusDetailComponent implements OnInit {
   }
 
   getParamsRes() {
-    this.paramsRes = this.routeHandlerService.getInterBusDetailData();
+    this.paramsRes = this.routeHandlerService.getInterBusItem();
     let paramSplit = this.paramsRes.Headsign.split('→');
     if (paramSplit.length === 1) { paramSplit = this.paramsRes.Headsign.split('－'); }
     this.titleSplit.departure = paramSplit[0];
@@ -47,6 +47,10 @@ export class InterBusDetailComponent implements OnInit {
       this.queryInterBusService.getInterBusStartTime(subRouteQueryName, 0)
     ]).then(res => {
       console.log(res);
+      //把61880還回來
+      res[0] = (res[0] as any).filter(item => item.SubRouteName.Zh_tw == this.paramsRes.SubRouteName.Zh_tw)
+      res[1] = (res[1] as any).filter(item => item.SubRouteName.Zh_tw == this.paramsRes.SubRouteName.Zh_tw)
+
       this.originData = res;
       this.handleSetOutputData();
     })

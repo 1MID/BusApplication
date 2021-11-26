@@ -1,0 +1,8 @@
+<div class="root">
+    <div class="header-container">
+        <div class="title">{{directionName}}</div>
+        <div class="cancel" (click)="emitOnClick('cancel')">取消</div>
+    </div>
+
+    <div class="input-btn line-opt" *ngFor="let item of data;" (click)="emitOnClick(item)">{{item}}</div>
+</div>

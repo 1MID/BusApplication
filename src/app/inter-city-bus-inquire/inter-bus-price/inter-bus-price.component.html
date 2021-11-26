@@ -1,0 +1,35 @@
+<div class="root">
+    <div class="header">
+        <img src="assets/nearby/back-arrow.svg" class="back-arrow" (click)="backOnClick()">
+        <img src="assets/nearby/main-logo.svg" class="main-logo">
+        <div class="tab-container">
+            <div class="city-container" *ngIf="positionData.currentDeparture && positionData.currentDestination">
+                <div class="city-input left" (click)="roadSelectOnClick(0)"> {{positionData.currentDeparture}}</div>
+                <img src="assets/interbus/switch.svg" (click)="switchOnClick()">
+                <div class="city-input right" (click)="roadSelectOnClick(1)"> {{positionData.currentDestination}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="row">
+            <div class="date-container">選擇出發日期</div>
+            <div class="date-container">選擇出發時間</div>
+        </div>
+
+        <div class="row">
+            <div class="ticket-container">
+                <div class="line"></div>
+            </div>
+            <div class="ticket-container">
+                <div class="line"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="keyboard-area">
+        <app-bus-price-road-keyboard [data]="roadSelectData" [direction]="roadDirection" *ngIf="showInputKeyboard.road"
+            (emiter)="getEmitVal($event)">
+        </app-bus-price-road-keyboard>
+    </div>
+</div>

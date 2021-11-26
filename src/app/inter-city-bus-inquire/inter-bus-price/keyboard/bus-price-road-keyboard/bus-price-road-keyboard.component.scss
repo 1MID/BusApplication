@@ -1,0 +1,48 @@
+.root {
+    width: 28.5156vw;
+    height: 79.30555vh;
+    background-color: #131414;
+    border: 1px solid #1cc8ee;
+    border-radius: 6px;
+    padding: 3.3333vh 4.6875vw 3.3333vh 4.6875vw;
+    box-sizing: border-box;
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    .header-container {
+        font-size: 2.2222vh;
+        line-height: 3.3333vh;
+        display: flex;
+        flex-direction: row;
+        .title {
+            color: #f5f5f5;
+        }
+        .cancel {
+            color: #1cc8ee;
+            margin-left: auto;
+        }
+    }
+
+    .input-btn {
+        border: 1px solid #1cc8ee;
+        box-shadow: 0px 0px 6px #1cc8ee, 0px 0px 2px #1cc8ee;
+        border-radius: 5px;
+        background-color: #1c1d1d;
+        height: 5vh;
+        min-height: 5vh;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        font-size: 1vw;
+        padding-left: 1vw;
+        box-sizing: border-box;
+        margin-top: 2.5vh;
+
+        &.line-opt {
+            color: #1cc8ee;
+            width: 100%;
+        }
+    }
+}

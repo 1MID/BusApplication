@@ -75,4 +75,38 @@ export class QueryInterBusService {
     })
   }
 
+  getInterBusRoad(routeName: string) {
+    const headers = this.commonService.GetAuthorizationHeader();
+    let routeNameURI = encodeURI(routeName);
+
+    return new Promise((resolve, reject) => {
+      this.http.get<any>(`https://ptx.transportdata.tw/MOTC/v2/Bus/StopOfRoute/InterCity/${routeNameURI}`, { headers }).subscribe(res => {
+        if (res) {
+          resolve(res);
+        }
+        reject('fail : getInterBusRoad')
+      })
+    })
+  }
+
+
+  /**
+   * 取得該客運票價
+   * @param routeName
+   * @returns
+   */
+  getInterBusPrice(routeName: string) {
+    const headers = this.commonService.GetAuthorizationHeader();
+    let routeNameURI = encodeURI(routeName);
+
+    return new Promise((resolve, reject) => {
+      this.http.get<any>(`https://ptx.transportdata.tw/MOTC/v2/Bus/RouteFare/InterCity/${routeNameURI}`, { headers }).subscribe(res => {
+        if (res) {
+          resolve(res);
+        }
+        reject('fail : getInterBusPrice')
+      })
+    })
+  }
+
 }

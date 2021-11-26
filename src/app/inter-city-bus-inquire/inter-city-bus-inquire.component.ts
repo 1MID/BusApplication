@@ -148,8 +148,8 @@ export class InterCityBusInquireComponent implements OnInit {
    * @param item
    */
   itemOnClick(item) {
-    this.routeHandlerService.setInterBusDetailData(item);
-    this.routeHandlerService.navigateToInterBusDetail();
+    this.routeHandlerService.setInterBusItem(item);
+    this.routeHandlerService.navigateToInterBusPrice();
   }
 
   /**
