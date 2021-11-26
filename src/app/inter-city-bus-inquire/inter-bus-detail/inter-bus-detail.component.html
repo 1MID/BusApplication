@@ -1,0 +1,20 @@
+<div class="root">
+    <div class="header">
+        <img src="assets/nearby/back-arrow.svg" class="back-arrow" (click)="backOnClick()">
+        <img src="assets/nearby/main-logo.svg" class="main-logo">
+        <div class="tab-container">
+            <mat-tab-group [(selectedIndex)]="tabsIndex" (click)="tabsChange()">
+                <mat-tab [label]="titleSplit.departure" matTooltip="titleSplit.departure"></mat-tab>
+                <mat-tab [label]="titleSplit.destination" matTooltip="titleSplit.destination"></mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+
+    <div class="main-container" *ngIf="outputData">
+        <div class="ticket-container" *ngFor="let item of outputData;let i = index;">
+            <div class="input-btn  line-opt">{{i+1}}</div>
+            <div class="ticket-text">{{item}}</div>
+        </div>
+    </div>
+
+</div>

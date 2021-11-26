@@ -7,6 +7,7 @@ import { PositionDetailComponent } from './near-station/position-detail/position
 import { PositionBusComponent } from './near-station/position-detail/position-bus/position-bus.component';
 import { BusInquireComponent } from './bus-inquire/bus-inquire.component';
 import { InterCityBusInquireComponent } from './inter-city-bus-inquire/inter-city-bus-inquire.component';
+import { InterBusDetailComponent } from './inter-city-bus-inquire/inter-bus-detail/inter-bus-detail.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'inter-city-bus',
     component: InterCityBusInquireComponent,
+  },
+  {
+    path: 'inter-city-bus/detail',
+    component: InterBusDetailComponent,
   },
   {
     path: '**',

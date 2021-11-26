@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QueryInterBusService } from '../service/query-inter-bus.service';
 import { CityListService } from '../service/city-list.service';
+import { RouteHandlerService } from '../service/route-handler.service';
 @Component({
   selector: 'app-inter-city-bus-inquire',
   templateUrl: './inter-city-bus-inquire.component.html',
@@ -15,7 +16,8 @@ export class InterCityBusInquireComponent implements OnInit {
 
   constructor(
     private queryInterBusService: QueryInterBusService,
-    private cityListService: CityListService
+    private cityListService: CityListService,
+    private routeHandlerService: RouteHandlerService
   ) { }
 
   ngOnInit(): void {
@@ -146,7 +148,8 @@ export class InterCityBusInquireComponent implements OnInit {
    * @param item
    */
   itemOnClick(item) {
-    console.log(item);
+    this.routeHandlerService.setInterBusDetailData(item);
+    this.routeHandlerService.navigateToInterBusDetail();
   }
 
   /**

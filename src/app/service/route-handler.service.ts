@@ -39,6 +39,7 @@ export class RouteHandlerService {
   navigateToBusInquire() {
     this.router.navigate(['bus-inquire'], {});
   }
+
   navigateToHome() {
     this.router.navigate(['home'], {});
   }
@@ -47,4 +48,16 @@ export class RouteHandlerService {
     this.router.navigate(['inter-city-bus'], {});
   }
 
+  //客運詳細頁
+  interBusDetaildata;
+  setInterBusDetailData(data) {
+    this.interBusDetaildata = data;
+  }
+  getInterBusDetailData() {
+    return this.interBusDetaildata;
+  }
+
+  navigateToInterBusDetail() {
+    this.router.navigate(['inter-city-bus/detail'], {});
+  }
 }

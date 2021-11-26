@@ -4,8 +4,8 @@
         <img src="assets/nearby/main-logo.svg" class="main-logo">
         <div class="tab-container">
             <mat-tab-group [(selectedIndex)]="tabsIndex" (click)="tabsChange()">
-                <mat-tab [label]="queryData.DepartureStopNameZh"></mat-tab>
                 <mat-tab [label]="queryData.DestinationStopNameZh"></mat-tab>
+                <mat-tab [label]="queryData.DepartureStopNameZh"></mat-tab>
             </mat-tab-group>
         </div>
     </div>
@@ -15,18 +15,23 @@
         <div class="station-container"
             *ngFor="let item of outputData;let i = index;let first = first ; let last = last;">
 
-            <div class="station-time not-active" *ngIf="item.StopStatus == 1">未發車</div>
-            <div class="station-time not-active" *ngIf="item.StopStatus == 2">交管不停靠</div>
-            <div class="station-time not-active" *ngIf="(item.StopStatus == 4) || (item.StopStatus == null)">今日未營運</div>
-            <div class="station-time finish" *ngIf="item.StopStatus == 3">末班車駛離</div>
+            <div *ngIf="!haveEstimateTime">
+                <div class="station-time finish">無即時資料</div>
+            </div>
+
+            <div *ngIf="haveEstimateTime">
+                <div class="station-time not-active" *ngIf="item.StopStatus == 1">未發車</div>
+                <div class="station-time not-active" *ngIf="item.StopStatus == 2">交管不停靠</div>
+                <div class="station-time not-active" *ngIf="(item.StopStatus == 4) || (item.StopStatus == null)">今日未營運
+                </div>
+                <div class="station-time finish" *ngIf="item.StopStatus == 3">末班車駛離</div>
+            </div>
 
             <div *ngIf="item.StopStatus == 0 && haveEstimateTime">
                 <div class="station-time normal" *ngIf="item.EstimateTime > 60">{{item.EstimateTime / 60}}分</div>
                 <div class="station-time pulling" *ngIf="item.EstimateTime <= 60">進站中</div>
             </div>
-            <div *ngIf="!haveEstimateTime">
-                <div class="station-time finish">無即時資料</div>
-            </div>
+
 
             <div class="station-name">{{item.StopName.Zh_tw}}</div>
             <div class="vertical-line" *ngIf="!first && !last"></div>
