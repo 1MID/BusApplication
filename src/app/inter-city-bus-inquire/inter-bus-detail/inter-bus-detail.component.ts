@@ -31,6 +31,7 @@ export class InterBusDetailComponent implements OnInit {
 
   getParamsRes() {
     this.paramsRes = this.routeHandlerService.getInterBusItem();
+    if (!this.paramsRes) { this.routeHandlerService.navigateToInterCityBus() }
     let paramSplit = this.paramsRes.Headsign.split('→');
     if (paramSplit.length === 1) { paramSplit = this.paramsRes.Headsign.split('－'); }
     this.titleSplit.departure = paramSplit[0];
