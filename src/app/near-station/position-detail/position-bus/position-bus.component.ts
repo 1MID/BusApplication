@@ -121,6 +121,7 @@ export class PositionBusComponent implements OnInit, OnDestroy {
   }
 
   mapOnClick() {
+    console.log(this.queryData.mapImgSrc)
     if (this.queryData.mapImgSrc != "") {
       window.open(this.queryData.mapImgSrc, "_blank");
     } else {

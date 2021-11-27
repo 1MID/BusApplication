@@ -76,6 +76,7 @@
             line-height: 3.33333vh;
             color: #1cc8ee;
             cursor: pointer;
+            opacity: 1;
             .btn-icon {
                 width: 2.361111vh;
                 height: 2.361111vh;
@@ -101,6 +102,7 @@
             line-height: 3.33333vh;
             color: #1cc8ee;
             cursor: pointer;
+            opacity: 1;
             .btn-icon {
                 width: 2.361111vh;
                 height: 2.361111vh;
@@ -126,11 +128,21 @@
             line-height: 3.33333vh;
             color: #1cc8ee;
             cursor: pointer;
+            opacity: 1;
             .btn-icon {
                 width: 2.361111vh;
                 height: 2.361111vh;
                 margin-right: 0.5vw;
             }
+        }
+
+        .btn-pt-station:hover,
+        .btn-bus-station:hover,
+        .btn-near-station:hover {
+            animation-duration: 2.5s;
+            animation-fill-mode: both;
+            animation-iteration-count: infinite;
+            animation-name: rubberBand;
         }
     }
 
