@@ -117,13 +117,14 @@ export class InterBusPriceComponent implements OnInit {
         })
       })
 
-
+      this.priceResult = [];
       priceData?.Fares?.map(item => {   //整理成要輸出的資料
         let priceDataSplit = item.FareName.split('_');
-
+        let price;
+        item.Price == -1 ? price = "不提供售票服務" : price = item.Price;
         let obj = {
           ticketType: priceDataSplit[0] + '(' + priceDataSplit[1] + ')',
-          ticketPrice: item.Price,
+          ticketPrice: price,
           ticketSit: priceDataSplit[2],
         }
         this.priceResult.push(obj);
@@ -140,6 +141,7 @@ export class InterBusPriceComponent implements OnInit {
     let tmp = this.positionData.currentDeparture;
     this.positionData.currentDeparture = this.positionData.currentDestination;
     this.positionData.currentDestination = tmp;
+    this.getPriceData();
   }
 
   backOnClick() {
@@ -188,6 +190,7 @@ export class InterBusPriceComponent implements OnInit {
         return;
       } else {
         this.roadDirection == 0 ? this.positionData.currentDeparture = e : this.positionData.currentDestination = e
+        this.getPriceData();
       }
     } else if (this.showInputKeyboard.date) {
       if (e.type === 'cancel') {
