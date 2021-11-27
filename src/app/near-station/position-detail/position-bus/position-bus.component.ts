@@ -17,6 +17,7 @@ export class PositionBusComponent implements OnInit, OnDestroy {
   tabsIndex = 0; //tab的索引
   outputData = []; //根據tab的索引值決定要輸出的資料(去程或返程)
   refreshInterval; // 刷新資料用 計時器
+  refreshTimeout; // 刷新資料用 計時器
   lastRefreshTime = 0;
   haveEstimateTime = false; //高雄台中桃園才有預估到站時間
   hint = "查詢中...";
@@ -39,6 +40,7 @@ export class PositionBusComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     clearInterval(this.refreshInterval);
+    clearTimeout(this.refreshTimeout);
   }
 
   /**
@@ -100,7 +102,7 @@ export class PositionBusComponent implements OnInit, OnDestroy {
       this.lastRefreshTime += 1;
     }, 1000);
 
-    setTimeout(() => {
+    this.refreshTimeout = setTimeout(() => {
       clearInterval(lastRefreshInterval)
       this.enabledAutoRefresh();
     }, 30000);
