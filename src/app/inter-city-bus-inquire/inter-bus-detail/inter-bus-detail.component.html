@@ -1,7 +1,7 @@
 <div class="root">
     <div class="header">
         <img src="assets/nearby/back-arrow.svg" class="back-arrow" (click)="backOnClick()">
-        <img src="assets/nearby/main-logo.svg" class="main-logo">
+        <img src="assets/nearby/main-logo.svg" class="main-logo" (click)="navigateToHome()">
         <div class="tab-container">
             <mat-tab-group [(selectedIndex)]="tabsIndex" (click)="tabsChange()">
                 <mat-tab [label]="titleSplit.departure" matTooltip="titleSplit.departure"></mat-tab>

@@ -34,7 +34,7 @@
     <div class="input-btn line-opt" (click)="moreOnClick()">更多</div>
     <div class="input-btn line-opt" (click)="keyOnClick($event.target.innerText)">C</div>
     <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)">0</div>
-    <div class="input-btn number-opt">
-        <img src="assets/busInquire/delete.svg" class="delete-icon" (click)="keyOnClick('delete')">
+    <div class="input-btn number-opt" (click)="keyOnClick('delete')">
+        <img src="assets/busInquire/delete.svg" class="delete-icon">
     </div>
 </div>

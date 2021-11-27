@@ -44,6 +44,7 @@ export class InterBusPriceComponent implements OnInit {
     time: false
   }
 
+  noResData = false;
 
 
   constructor(
@@ -116,7 +117,8 @@ export class InterBusPriceComponent implements OnInit {
         })
       })
 
-      priceData.Fares.map(item => {   //整理成要輸出的資料
+
+      priceData?.Fares?.map(item => {   //整理成要輸出的資料
         let priceDataSplit = item.FareName.split('_');
 
         let obj = {
@@ -126,6 +128,8 @@ export class InterBusPriceComponent implements OnInit {
         }
         this.priceResult.push(obj);
       })
+
+      this.priceResult.length == 0 ? this.noResData = true : this.noResData = false;
 
       console.log('未整理之票價資訊', res)
       console.log('票價資訊', this.priceResult)
@@ -218,4 +222,7 @@ export class InterBusPriceComponent implements OnInit {
     this.routeHandlerService.navigateToInterBusDetail();
   }
 
+  navigateToHome() {
+    this.routeHandlerService.navigateToHome();
+  }
 }

@@ -18,6 +18,7 @@ export class PositionBusComponent implements OnInit, OnDestroy {
   refreshInterval; // 刷新資料用 計時器
   lastRefreshTime = 0;
   haveEstimateTime = false; //高雄台中桃園才有預估到站時間
+  hint = "查詢中...";
 
   constructor(
     private routeHandlerService: RouteHandlerService,
@@ -69,6 +70,7 @@ export class PositionBusComponent implements OnInit, OnDestroy {
       this.queryData.Direction0 = res[0];//去程資料
       this.queryData.Direction1 = res[1];//回程資料
       this.tabsIndex == 0 ? this.outputData = this.queryData.Direction0 : this.outputData = this.queryData.Direction1;
+      if (this.outputData.length == 0) { this.hint = "查無資料" }
     })
 
   }
@@ -78,6 +80,7 @@ export class PositionBusComponent implements OnInit, OnDestroy {
    */
   tabsChange() {
     this.tabsIndex === 0 ? this.outputData = this.queryData.Direction0 : this.outputData = this.queryData.Direction1;
+    if (this.outputData.length == 0) { this.hint = "查無資料" }
   }
 
   /**
@@ -109,5 +112,9 @@ export class PositionBusComponent implements OnInit, OnDestroy {
     if (this.paramsRes.city === 'Taichung' || this.paramsRes.city === 'Taoyuan' || this.paramsRes.city === 'Kaohsiung') {
       this.haveEstimateTime = true;
     }
+  }
+
+  navigateToHome() {
+    this.routeHandlerService.navigateToHome();
   }
 }

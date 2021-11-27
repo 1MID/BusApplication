@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { QueryNearbyService } from 'src/app/service/query-nearby.service';
 import { RouteHandlerService } from 'src/app/service/route-handler.service';
 import { Router } from '@angular/router';
+import { CityListService } from 'src/app/service/city-list.service';
 @Component({
   selector: 'app-position-detail',
   templateUrl: './position-detail.component.html',
@@ -11,13 +12,15 @@ import { Router } from '@angular/router';
 export class PositionDetailComponent implements OnInit {
   paramsRes;
   queryRes;
-
+  currentCity;
+  resNotEmpty = false;
 
   constructor(
     private activeRoute: ActivatedRoute,
     private queryNearbyService: QueryNearbyService,
     private routeHandlerService: RouteHandlerService,
     private router: Router,
+    private cityListService: CityListService
   ) { }
 
   ngOnInit(): void {
@@ -27,14 +30,15 @@ export class PositionDetailComponent implements OnInit {
 
   getPositionDetailData() {
     this.paramsRes = this.routeHandlerService.getPositionDetailData();
-    console.log('***', this.paramsRes)
     if (!this.paramsRes) { this.routeHandlerService.navigateToNearStation(); }
+    this.currentCity = this.cityListService.getCityNameZhByEn(this.paramsRes.city);
   }
 
   getPassThroughData() {
     if (!this.paramsRes) { return; }
     this.queryNearbyService.getPassThroughData(this.paramsRes.city, this.paramsRes.stationID).then(res => {
       this.queryRes = res;
+      this.queryRes.length == 0 ? this.resNotEmpty = true : this.resNotEmpty = false; //是否有查到資料
     })
   }
 
@@ -49,5 +53,19 @@ export class PositionDetailComponent implements OnInit {
 
   backOnClick() {
     this.routeHandlerService.navigateToNearStation();
+  }
+
+  getEmitVal(e) {
+    console.log(e, '收到')
+    if (e == 'back') {
+      this.backOnClick();
+    } else {
+      this.paramsRes.city = this.cityListService.getCityNameEnByZh(e);
+      this.getPassThroughData();
+    }
+  }
+
+  navigateToHome() {
+    this.routeHandlerService.navigateToHome();
   }
 }

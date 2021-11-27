@@ -40,5 +40,13 @@ export class CityListService {
     return enName;
   }
 
+  getCityNameZhByEn(city: string) {
+    let zhName = "";
+    this.city.forEach((item, index) => {
+      item.enName === city ? zhName = item.name : null;
+    })
+    return zhName;
+  }
+
 
 }

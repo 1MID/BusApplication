@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-bus-price-date-keyboard',
@@ -7,6 +7,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class BusPriceDateKeyboardComponent implements OnInit {
   @Output() emiter = new EventEmitter<any>();
+  @ViewChild('date_m') EleDateM;
+  @ViewChild('date_d') EleDateD;
 
   constructor() { }
 
@@ -24,9 +26,9 @@ export class BusPriceDateKeyboardComponent implements OnInit {
   inputAutoChange(currentEleId, maxlength) {
     if (currentEleId.value.length == maxlength) {
       if (currentEleId.id === 'date_y') {
-        (<HTMLInputElement>document.getElementById('date_m')).focus();
+        this.EleDateM.nativeElement.focus();
       } else if (currentEleId.id === 'date_m') {
-        (<HTMLInputElement>document.getElementById('date_d')).focus();
+        this.EleDateD.nativeElement.focus();
       }
     }
   }

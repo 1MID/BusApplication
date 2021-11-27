@@ -1,6 +1,6 @@
 <div class="root">
     <div class="header">
-        <img src="assets/nearby/main-logo.svg" class="main-logo">
+        <img src="assets/nearby/main-logo.svg" class="main-logo" (click)="navigateToHome()">
         <div class="main-title">我的附近</div>
     </div>
 
@@ -16,7 +16,8 @@
                     <div *ngIf="!last">,&nbsp;</div>
                 </div>
             </div>
-
         </div>
+
+        <div *ngIf="!busStopData" class="hint">{{hintText}}</div>
     </div>
 </div>

@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CityListService } from '../service/city-list.service';
 import { QueryBusInquireService } from '../service/query-bus-inquire.service';
 import { RouteHandlerService } from 'src/app/service/route-handler.service';
 import { Router } from '@angular/router';
+import Swal, { SweetAlertOptions } from "sweetalert2";
 @Component({
   selector: 'app-bus-inquire',
   templateUrl: './bus-inquire.component.html',
   styleUrls: ['./bus-inquire.component.scss']
 })
 export class BusInquireComponent implements OnInit {
+  @ViewChild('keywordInput') inputEle;
 
   keyboardIndex = 0; //0 基本鍵盤 1 城市 2 更多
   currentCity = "選擇縣市";
@@ -46,21 +48,23 @@ export class BusInquireComponent implements OnInit {
         this.handleFilter();
         break;
       case 'custom':
-        (<HTMLInputElement>document.getElementById('keywordInput')).disabled = false;
-        (<HTMLInputElement>document.getElementById('keywordInput')).focus();
+        if (this.showHintAlert()) {
+          this.inputEle.nativeElement.disabled = false;
+          this.inputEle.nativeElement.focus();
+        }
         break;
       default:
         if (this.keyboardIndex === 1) {
           this.handleCitySelect(e);
           this.handleFilter();
         } else if (this.keyboardIndex === 0) {
-          if (this.busData) {
-            (<HTMLInputElement>document.getElementById('keywordInput')).value += e;
+          if (this.showHintAlert()) {
+            this.inputEle.nativeElement.value += e;
             this.handleFilter();
           }
         } else if (this.keyboardIndex === 2) {
-          if (this.busData) {
-            (<HTMLInputElement>document.getElementById('keywordInput')).value = e;
+          if (this.showHintAlert()) {
+            this.inputEle.nativeElement.value = e;
             this.handleFilter();
           }
         };
@@ -91,7 +95,7 @@ export class BusInquireComponent implements OnInit {
    * 負責處理搜尋過濾
    */
   handleFilter() {
-    let filterStr = (<HTMLInputElement>document.getElementById('keywordInput')).value;
+    let filterStr = this.inputEle.nativeElement.value;
     if (this.busData) {
       let box = JSON.parse(JSON.stringify(this.busData));
       this.busDataFilter = box.filter(item => item.RouteName.Zh_tw.indexOf(filterStr) > -1)
@@ -103,12 +107,12 @@ export class BusInquireComponent implements OnInit {
    * @returns
    */
   handleDelete() {
-    let keywordInput = (<HTMLInputElement>document.getElementById('keywordInput')).value;
+    let keywordInput = this.inputEle.nativeElement.value;
     if (keywordInput.length === 1) {
-      (<HTMLInputElement>document.getElementById('keywordInput')).value = "";
+      this.inputEle.nativeElement.value = "";
       return;
     }
-    (<HTMLInputElement>document.getElementById('keywordInput')).value = keywordInput.substring(0, keywordInput.length - 1)
+    this.inputEle.nativeElement.value = keywordInput.substring(0, keywordInput.length - 1)
   }
 
   /**
@@ -123,6 +127,24 @@ export class BusInquireComponent implements OnInit {
    * 負責Clear 清除
    */
   handleClear() {
-    (<HTMLInputElement>document.getElementById('keywordInput')).value = "";
+    this.inputEle.nativeElement.value = "";
+  }
+
+  navigateToHome() {
+    this.routeHandlerService.navigateToHome();
+  }
+
+  /**
+   * 先選城市才能使用過濾條件
+   */
+  showHintAlert() {
+    if (!this.busData) {
+      Swal.fire({
+        title: '請先選擇縣市',
+        confirmButtonText: '關閉',
+      })
+      return false;
+    }
+    return true;
   }
 }

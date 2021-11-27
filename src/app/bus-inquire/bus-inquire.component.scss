@@ -32,7 +32,6 @@
             box-sizing: border-box;
 
             color: #1cc8ee;
-            font-size: 2.2222vh;
             line-height: 3.3333vh;
         }
     }
@@ -73,6 +72,7 @@
             padding-left: 1.25vw;
             border: none;
             outline: none;
+            cursor: pointer;
             .bus-data-title {
                 font-size: 2.36111vh;
                 line-height: 3.61111vh;

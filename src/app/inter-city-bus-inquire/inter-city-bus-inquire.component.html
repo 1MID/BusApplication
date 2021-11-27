@@ -1,15 +1,15 @@
 <div class="root">
     <div class="col">
         <div class="header">
-            <img src="assets/nearby/main-logo.svg" class="main-logo">
+            <img src="assets/nearby/main-logo.svg" class="main-logo" (click)="navigateToHome()">
             <input class="search-input" *ngIf="(keyboardIndex === 0) || (keyboardIndex === 2)"
-                placeholder="選擇路線或手動輸入關鍵字" id="keyw" (keyup)="handleFilter()" disabled>
+                placeholder="選擇路線或手動輸入關鍵字" id="keyw" (keyup)="handleFilter()" disabled #keyw>
         </div>
 
         <div class="city-container" *ngIf="keyboardIndex === 1">
-            <input class="city-input left" placeholder="選擇出發縣市" id="startPoint" disabled>
+            <input class="city-input left" placeholder="選擇出發縣市" id="startPoint" disabled #startPoint>
             <img src="assets/interbus/switch.svg" (click)="switchOnClick()">
-            <input class="city-input right" placeholder="選擇到達縣市" id="endPoint" disabled>
+            <input class="city-input right" placeholder="選擇到達縣市" id="endPoint" disabled #endPoint>
         </div>
         <div class="input-area">
             <app-inter-base-keyboard *ngIf="keyboardIndex === 0" (emiter)="getEmitVal($event)">
@@ -23,12 +23,17 @@
 
 
     <div class="output-area">
-        <div class="output-title">{{currentCity}}</div>
+
+        <div class="search-key-container">
+            <div class="text">{{currentCity}}</div>
+            <div class="text">{{filterString}}</div>
+        </div>
+
+
         <ng-container *ngFor="let item of busDataFilter; let i = index;">
-            <ng-container *ngFor="let subRoute of item.SubRoutes; let j = index;">
+            <ng-container *ngFor="let subRoute of item.SubRoutes; index as j;">
                 <div class="bus-data-item" *ngIf="(subRoute.from2flag == true) && (subRoute.filterType == true)"
-                    [ngStyle]="{ 'background-color': ((j % 2) == 0) ? '#1C1D1D' : '#131414' }"
-                    (click)="itemOnClick(subRoute)">
+                    [ngStyle]="{ 'background-color': '#1C1D1D' }" (click)="itemOnClick(subRoute)">
                     <div class="bus-data-title">
                         {{subRoute.SubRouteName.Zh_tw}}
                     </div>
@@ -40,6 +45,7 @@
                 </div>
             </ng-container>
         </ng-container>
+        <div *ngIf="noResData" class="hint">{{hintText}}</div>
     </div>
 
 

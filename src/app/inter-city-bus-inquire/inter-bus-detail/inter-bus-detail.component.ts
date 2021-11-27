@@ -110,4 +110,7 @@ export class InterBusDetailComponent implements OnInit {
     this.handleSetOutputData()
   }
 
+  navigateToHome() {
+    this.routeHandlerService.navigateToHome();
+  }
 }

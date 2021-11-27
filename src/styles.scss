@@ -156,3 +156,14 @@ table {
     color: #1cc8ee;
     margin-right: 1vw;
 }
+
+.main-logo,
+.input-btn {
+    cursor: pointer;
+}
+
+.swal2-container.swal2-center > .swal2-popup {
+    border: 0.3 solid #1cc8ee;
+    box-shadow: 0px 0px 6px #1cc8ee, 0px 0px 2px #1cc8ee;
+    border-radius: 5px;
+}

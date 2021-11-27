@@ -10,7 +10,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        object-fit: contain;
+        object-fit: cover;
         z-index: -1;
     }
 
@@ -46,7 +46,7 @@
             height: 2.91666vh;
             width: 2.916666vh;
             position: absolute;
-            left: 5.9vw;
+            right: 14.9vw;
             top: 32vh;
         }
 
@@ -75,6 +75,7 @@
             font-size: 2.22222vh;
             line-height: 3.33333vh;
             color: #1cc8ee;
+            cursor: pointer;
             .btn-icon {
                 width: 2.361111vh;
                 height: 2.361111vh;
@@ -99,6 +100,7 @@
             font-size: 2.22222vh;
             line-height: 3.33333vh;
             color: #1cc8ee;
+            cursor: pointer;
             .btn-icon {
                 width: 2.361111vh;
                 height: 2.361111vh;
@@ -123,6 +125,7 @@
             font-size: 2.22222vh;
             line-height: 3.33333vh;
             color: #1cc8ee;
+            cursor: pointer;
             .btn-icon {
                 width: 2.361111vh;
                 height: 2.361111vh;

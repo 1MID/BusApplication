@@ -1,7 +1,7 @@
 <div class="root">
     <div class="header">
         <img src="assets/nearby/back-arrow.svg" class="back-arrow" (click)="backOnClick()">
-        <img src="assets/nearby/main-logo.svg" class="main-logo">
+        <img src="assets/nearby/main-logo.svg" class="main-logo" (click)="navigateToHome()">
         <div class="tab-container">
             <div class="city-container" *ngIf="positionData.currentDeparture && positionData.currentDestination">
                 <div class="city-input left" (click)="roadSelectOnClick(0)"> {{positionData.currentDeparture}}</div>
@@ -27,6 +27,8 @@
                 <div class="ticket-type">{{item.ticketType}}</div>
                 <div class="ticket-price">${{item.ticketPrice}}</div>
             </div>
+
+            <div *ngIf="noResData" class="hint">查無資料</div>
         </div>
     </div>
 
