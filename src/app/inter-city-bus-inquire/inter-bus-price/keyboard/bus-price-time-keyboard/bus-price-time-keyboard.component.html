@@ -1,0 +1,19 @@
+<div class="root">
+    <div class="header-container">
+        <div class="title">選擇時間</div>
+    </div>
+
+    <div class="input-container">
+        <ng-container *ngFor="let item of [].constructor(24);let i = index">
+            <div class="input-btn line-opt" (click)="focusIndexChange(i)"
+                [ngClass]="i === focusIndex ? ['focus'] : ['']">
+                <div *ngIf="i < 10"> 0{{i}}:00</div>
+                <div *ngIf="!(i < 10)"> {{i}}:00</div>
+            </div>
+        </ng-container>
+
+        <div class="input-btn cancel" (click)="emitOnClick('cancel')"> 取消 </div>
+        <div class="input-btn setting" (click)="emitOnClick('setting')"> 設定 </div>
+    </div>
+
+</div>

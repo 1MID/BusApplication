@@ -1,0 +1,20 @@
+<div class="root">
+    <div class="header-container">
+        <div class="title">輸入日期</div>
+        <div class="sub-title">(格式例：2021 01 01) </div>
+    </div>
+
+    <div class="input-container">
+        <input class="search-input" placeholder="YYYY" type="number" #date_y id="date_y"
+            (keypress)="limitInputWord($event.target,4)" (input)="inputAutoChange($event.target,4)">
+        <input class="search-input" placeholder="MM" type="number" #date_m id="date_m"
+            (keypress)="limitInputWord($event.target,2)" (input)="inputAutoChange($event.target,2)">
+        <input class="search-input" placeholder="DD" type="number" #date_d id="date_d"
+            (keypress)="limitInputWord($event.target,2)">
+    </div>
+
+    <div class="btn-container">
+        <div class="input-btn disabled" (click)="dataOnEmit('cancel')">取消</div>
+        <div class="input-btn active" (click)="dataOnEmit('setting',date_y.value,date_m.value,date_d.value)">設定</div>
+    </div>
+</div>

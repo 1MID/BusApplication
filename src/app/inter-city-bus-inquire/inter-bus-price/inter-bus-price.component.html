@@ -9,20 +9,23 @@
                 <div class="city-input right" (click)="roadSelectOnClick(1)"> {{positionData.currentDestination}}</div>
             </div>
         </div>
+        <div class="time-list" (click)="clockOnClick()">
+            <img src="assets/interbus/clock.svg" class="clock-icon">時刻表
+        </div>
     </div>
 
     <div class="main-container">
         <div class="row">
-            <div class="date-container">選擇出發日期</div>
-            <div class="date-container">選擇出發時間</div>
+            <div class="date-container" (click)="dateSelectOnClick()">{{dateSelectData.dateString}}</div>
+            <div class="date-container" (click)="timeSelectOnClick()">{{dateSelectData.timeString}}</div>
         </div>
 
-        <div class="row">
-            <div class="ticket-container">
+        <div class="ticket-container">
+            <div class="ticket" *ngFor="let item of priceResult;let i = index;">
+                <div class="sit">{{item.ticketSit}}</div>
                 <div class="line"></div>
-            </div>
-            <div class="ticket-container">
-                <div class="line"></div>
+                <div class="ticket-type">{{item.ticketType}}</div>
+                <div class="ticket-price">${{item.ticketPrice}}</div>
             </div>
         </div>
     </div>
@@ -31,5 +34,9 @@
         <app-bus-price-road-keyboard [data]="roadSelectData" [direction]="roadDirection" *ngIf="showInputKeyboard.road"
             (emiter)="getEmitVal($event)">
         </app-bus-price-road-keyboard>
+        <app-bus-price-date-keyboard *ngIf="showInputKeyboard.date" (emiter)="getEmitVal($event)">
+        </app-bus-price-date-keyboard>
+        <app-bus-price-time-keyboard *ngIf="showInputKeyboard.time" (emiter)="getEmitVal($event)">
+        </app-bus-price-time-keyboard>
     </div>
 </div>

@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 import { MatTabsModule } from '@angular/material/tabs';
 
@@ -23,6 +24,8 @@ import { InterMoreKeyboardComponent } from './inter-city-bus-inquire/keyboard/in
 import { InterBusDetailComponent } from './inter-city-bus-inquire/inter-bus-detail/inter-bus-detail.component';
 import { InterBusPriceComponent } from './inter-city-bus-inquire/inter-bus-price/inter-bus-price.component';
 import { BusPriceRoadKeyboardComponent } from './inter-city-bus-inquire/inter-bus-price/keyboard/bus-price-road-keyboard/bus-price-road-keyboard.component';
+import { BusPriceDateKeyboardComponent } from './inter-city-bus-inquire/inter-bus-price/keyboard/bus-price-date-keyboard/bus-price-date-keyboard.component';
+import { BusPriceTimeKeyboardComponent } from './inter-city-bus-inquire/inter-bus-price/keyboard/bus-price-time-keyboard/bus-price-time-keyboard.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +45,8 @@ import { BusPriceRoadKeyboardComponent } from './inter-city-bus-inquire/inter-bu
     InterBusDetailComponent,
     InterBusPriceComponent,
     BusPriceRoadKeyboardComponent,
+    BusPriceDateKeyboardComponent,
+    BusPriceTimeKeyboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +56,7 @@ import { BusPriceRoadKeyboardComponent } from './inter-city-bus-inquire/inter-bu
     BrowserAnimationsModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

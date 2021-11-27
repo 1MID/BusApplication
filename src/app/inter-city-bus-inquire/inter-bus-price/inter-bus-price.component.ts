@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouteHandlerService } from 'src/app/service/route-handler.service';
-import { Location } from '@angular/common';
+import { Location, DatePipe } from '@angular/common';
 import { QueryInterBusService } from 'src/app/service/query-inter-bus.service';
 
 @Component({
@@ -23,20 +23,41 @@ export class InterBusPriceComponent implements OnInit {
     currentDestination: ''// 當前選擇的迄站
   }
 
+  dateSelectData = {
+    dateString: "輸入出發日期",
+    timeString: "選擇出發時間",
+    date: {
+      y: '',
+      m: '',
+      d: '',
+    },
+    time: {
+      hour: '',
+    }
+  }
+
+  priceResult = [];
+
   showInputKeyboard = {
     road: false,
-
+    date: false,
+    time: false
   }
+
+
 
   constructor(
     private routeHandlerService: RouteHandlerService,
     private location: Location,
     private queryInterBusService: QueryInterBusService,
+    private datePipe: DatePipe
   ) { }
 
   ngOnInit(): void {
     this.getParamsRes();
+    this.getCurrentDate();
     this.getInterBusRoad();
+    this.getPriceData();
   }
 
   getParamsRes() {
@@ -49,6 +70,10 @@ export class InterBusPriceComponent implements OnInit {
    * 透過RouteName取得他的路線，才能讓User選
    */
   getInterBusRoad() {
+    if (!this.paramsRes) {
+      this.routeHandlerService.navigateToInterCityBus();
+      return;
+    }
     // 61880 要輸入6188
     let subRouteQueryName = this.paramsRes.SubRouteName.Zh_tw.substring(0, this.paramsRes.SubRouteName.Zh_tw.length - 1)
     this.queryInterBusService.getInterBusRoad(subRouteQueryName).then((res: any) => {
@@ -78,7 +103,32 @@ export class InterBusPriceComponent implements OnInit {
       res = res.filter(item =>
         item.SubRouteName == this.paramsRes.SubRouteName.Zh_tw
       )
+
+      let priceData;
+      res.map(resItem => {
+        resItem.StageFares.map(item => {
+          if (
+            item.OriginStage.StopName == this.positionData.currentDeparture && //起點相符
+            item.DestinationStage.StopName == this.positionData.currentDestination //終點相符
+          ) {
+            priceData = item; //取得票價
+          }
+        })
+      })
+
+      priceData.Fares.map(item => {   //整理成要輸出的資料
+        let priceDataSplit = item.FareName.split('_');
+
+        let obj = {
+          ticketType: priceDataSplit[0] + '(' + priceDataSplit[1] + ')',
+          ticketPrice: item.Price,
+          ticketSit: priceDataSplit[2],
+        }
+        this.priceResult.push(obj);
+      })
+
       console.log('未整理之票價資訊', res)
+      console.log('票價資訊', this.priceResult)
     })
   }
 
@@ -102,14 +152,70 @@ export class InterBusPriceComponent implements OnInit {
     this.roadDirection = index;
   }
 
+  /**
+   * 選擇日期
+   * @param index
+   */
+  dateSelectOnClick() {
+    this.showInputKeyboard.date = true;
+  }
+
+  /**
+   * 選擇時間
+   */
+  timeSelectOnClick() {
+    this.showInputKeyboard.time = true;
+  }
 
   getEmitVal(e) {
     console.log('收到', e)
-    this.showInputKeyboard.road = false;
-    if (e === 'cancel') {
-      return;
-    } else {
-      this.roadDirection == 0 ? this.positionData.currentDeparture = e : this.positionData.currentDestination = e
+    if (this.showInputKeyboard.road) {
+      this.showInputKeyboard.road = false;
+      if (e === 'cancel') {
+        return;
+      } else {
+        this.roadDirection == 0 ? this.positionData.currentDeparture = e : this.positionData.currentDestination = e
+      }
+    } else if (this.showInputKeyboard.date) {
+      if (e.type === 'cancel') {
+        this.showInputKeyboard.date = false;
+        return;
+      } else if (e.type === 'setting') {
+        this.dateSelectData.date.y = e.y;
+        this.dateSelectData.date.m = e.m;
+        this.dateSelectData.date.d = e.d;
+        this.dateSelectData.dateString = e.y.padStart(4, '#') + ' / ' + e.m.padStart(2, '#') + ' / ' + e.d.padStart(2, '#');
+        this.showInputKeyboard.date = false;
+      }
+    } else if (this.showInputKeyboard.time) {
+      if (e.type === 'cancel') {
+        this.showInputKeyboard.time = false;
+        return;
+      } else if (e.type === 'setting') {
+        this.dateSelectData.time.hour = e.time.toString();
+        this.dateSelectData.timeString = e.time.toString().padStart(2, '0') + ' : 00';
+        this.showInputKeyboard.time = false;
+      }
     }
   }
+
+  /**
+   * 取得要搜尋票價用的資料
+   */
+  getPriceNeedData() {
+    console.log('起站', this.positionData.currentDeparture)
+    console.log('迄站', this.positionData.currentDestination)
+    console.log('日期', this.dateSelectData.date.y + this.dateSelectData.date.m + this.dateSelectData.date.d)
+    console.log('時間', this.dateSelectData.time.hour)
+  }
+
+  getCurrentDate() {
+    this.dateSelectData.dateString = this.datePipe.transform(new Date(), 'yyyy / MM / dd');
+    this.dateSelectData.timeString = "00:00";
+  }
+
+  clockOnClick() {
+    this.routeHandlerService.navigateToInterBusDetail();
+  }
+
 }
