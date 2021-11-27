@@ -1,9 +1,35 @@
-<div class="root">
+<div class="root" *ngIf="deviceModeService.device == '電腦'">
     <img src="assets/home/bg.jpg" class="home-background">
-    <img src="assets/home/main-logo.svg" class="home-logo">
+    <img src="assets/home/main-logo.png" class="home-logo">
     <div class="main-container">
         <img src="assets/home/dot-line.svg" class="home-dotline">
         <img src="assets/home/circle.svg" class="c1">
+        <img src="assets/home/circle.svg" class="c2">
+        <img src="assets/home/circle.svg" class="c3">
+
+        <div class="btn-near-station" (click)="nearOnClick()">
+            <img src="assets/home/btn-icon/location.svg" class="btn-icon">
+            附近公車站
+        </div>
+
+        <div class="btn-bus-station" (click)="busInquireOnClick()">
+            <img src="assets/home/btn-icon/search.svg" class="btn-icon">
+            查詢公車
+        </div>
+
+        <div class="btn-pt-station" (click)="interCityBusOnClick()">
+            <img src="assets/home/btn-icon/search.svg" class="btn-icon">
+            查詢客運
+        </div>
+    </div>
+    <div class="author-detail">Taiwan Bus © Code: Ray Yeh / Design: KT</div>
+</div>
+
+<div class="root-phone" *ngIf="deviceModeService.device == '手機'">
+    <img src="assets/home/bg.jpg" class="home-background">
+    <img src="assets/home/main-logo.png" class="home-logo">
+    <div class="main-container">
+        <img src="assets/home/dot-line.svg" class="home-dotline">
         <img src="assets/home/circle.svg" class="c2">
         <img src="assets/home/circle.svg" class="c3">
 

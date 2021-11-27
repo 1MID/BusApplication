@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { RouteHandlerService } from 'src/app/service/route-handler.service';
 import { Location, DatePipe } from '@angular/common';
 import { QueryInterBusService } from 'src/app/service/query-inter-bus.service';
-
+import { DeviceModeService } from 'src/app/service/device-mode.service';
 @Component({
   selector: 'app-inter-bus-price',
   templateUrl: './inter-bus-price.component.html',
-  styleUrls: ['./inter-bus-price.component.scss']
+  styleUrls: ['./inter-bus-price.component.scss', './inter-bus-price.component.phone.scss']
 })
 export class InterBusPriceComponent implements OnInit {
   paramsRes;
@@ -51,10 +51,12 @@ export class InterBusPriceComponent implements OnInit {
     private routeHandlerService: RouteHandlerService,
     private location: Location,
     private queryInterBusService: QueryInterBusService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    public deviceModeService: DeviceModeService
   ) { }
 
   ngOnInit(): void {
+    this.deviceModeService.detectCurrentDevice();
     this.getParamsRes();
     this.getCurrentDate();
     this.getInterBusRoad();

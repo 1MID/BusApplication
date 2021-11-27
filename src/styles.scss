@@ -135,10 +135,8 @@ table {
 .mat-tab-label .mat-tab-label-content {
     color: #ffffff;
     white-space: nowrap;
-    text-overflow: ellipsis;
     width: 15vw;
     display: block !important;
-    overflow: hidden;
     line-height: 2vh;
 }
 
@@ -148,7 +146,7 @@ table {
 
 .mat-tab-label,
 .mat-tab-group.mat-primary .mat-ink-bar {
-    width: 24.921875vw;
+    width: 30vw;
 }
 
 .mat-tab-label::before {

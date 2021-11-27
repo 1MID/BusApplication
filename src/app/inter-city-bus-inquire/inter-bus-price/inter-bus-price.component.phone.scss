@@ -1,4 +1,4 @@
-.root {
+.root-phone {
     width: 100vw;
     height: 100vh;
     background-color: #1c1d1d;
@@ -7,37 +7,39 @@
 
     .header {
         width: 100%;
-        height: 22.22222vh;
+        height: 18.5907vh;
         background: #131414;
         box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.5);
         position: relative;
         display: flex;
         flex-direction: row;
         .back-arrow {
+            position: absolute;
+            top: 4.797vh;
+            left: 6.6666vw;
+            transform: translate(0, -50%);
             cursor: pointer;
             width: 3.3333vh;
             height: 3.3333vh;
-            margin-left: 7.8125vw;
-            margin-top: 6.38888vh;
         }
 
         .main-logo {
-            width: 10.625vw;
-            height: 7.638888vh;
             position: absolute;
-            top: 3.47222vh;
+            width: 25.6vw;
+            height: 6vh;
+            top: 4.797vh;
             left: 50%;
-            transform: translate(-50%, 0);
+            transform: translate(-50%, -50%);
         }
 
         .tab-container {
             position: absolute;
             bottom: 0;
             height: 7.5vh;
+            width: 100%;
             display: flex;
             flex-direction: row;
             justify-content: center;
-            margin-left: 28vw;
 
             .city-container {
                 display: flex;
@@ -46,8 +48,8 @@
                 height: 5.5555vh;
                 margin-top: 1.1111vh 0 2.222vh 0;
                 .city-input {
-                    width: 12.421875vw;
                     height: 5.5555vh;
+                    width: 32.6666vw;
                     background: #1c1d1d;
                     border-radius: 6px;
                     color: #f5f5f5;
@@ -63,13 +65,8 @@
                     font-size: 2.22222vh;
                     line-height: 3.3333vh;
 
-                    &.left {
-                        margin-right: auto;
-                        margin-left: 7.8125vw;
-                    }
-                    &.right {
-                        margin-left: auto;
-                    }
+                    margin-right: auto;
+                    margin-left: auto;
                 }
                 img {
                     width: 3.3333vh;
@@ -82,8 +79,10 @@
 
         .time-list {
             position: absolute;
-            top: 6.38888vh;
-            right: 7.8125vw;
+            top: 4.797vh;
+            right: 11vw;
+            transform: translate(0, -50%);
+
             width: 5.78125vw;
             height: 3.3333vh;
             display: flex;
@@ -114,9 +113,9 @@
         align-items: center;
 
         .date-container {
-            width: 17.96875vw;
+            width: 42.6666vw;
             height: 5.5555vh;
-            margin: 0 0.46875vw 0 0.46875vw;
+            margin: 0 1.2vw 0 1.2vw;
             background: #131414;
             border: none;
             border-radius: 6px;
@@ -130,48 +129,51 @@
             font-size: 2.2222vh;
             line-height: 2.77777vh;
             color: #f5f5f5;
+            margin-bottom: 1.2vh;
         }
 
         .ticket-container {
             display: flex;
-            flex-direction: row;
-            width: 50vw;
-            height: 50vh;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            height: 70vh;
             overflow-y: auto;
-            flex-wrap: wrap;
+
             margin-left: 2.5vw;
             padding-bottom: 3vh;
 
             .ticket {
-                width: 22.7777vw;
-                height: 11.80555vh;
-                margin: 5.5555vh 0.46875vw 0 0.46875vw;
+                width: 87.46666vw;
+                height: 12.7436vh;
+                min-height: 12.7436vh;
+                margin-top: 2.69865vh;
                 background: #131414;
                 border: 1px solid #1cc8ee;
                 box-shadow: 0px 0px 6px #1cc8ee, 0px 0px 2px #1cc8ee;
                 border-radius: 6px;
                 box-sizing: border-box;
                 position: relative;
-
+                flex-wrap: wrap;
                 .sit {
                     color: #f5f5f5;
                     position: absolute;
                     top: 50%;
-                    left: 2.1093vw;
+                    left: 7.2vw;
                     transform: translate(0, -50%);
                 }
 
                 .ticket-type {
                     position: absolute;
                     top: 2.916666vh;
-                    left: 7.9375vw;
+                    left: 37.3333vw;
                     color: #1cc8ee;
                 }
 
                 .ticket-price {
                     position: absolute;
                     top: 5.69444vh;
-                    left: 7.9375vw;
+                    left: 37.3333vw;
                     color: #f5f5f5;
                 }
 

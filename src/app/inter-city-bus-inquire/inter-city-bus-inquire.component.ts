@@ -3,6 +3,7 @@ import { QueryInterBusService } from '../service/query-inter-bus.service';
 import { CityListService } from '../service/city-list.service';
 import { RouteHandlerService } from '../service/route-handler.service';
 import Swal, { SweetAlertOptions } from "sweetalert2";
+import { DeviceModeService } from 'src/app/service/device-mode.service';
 import {
   trigger,
   state,
@@ -21,7 +22,7 @@ import {
     ])
   ],
   templateUrl: './inter-city-bus-inquire.component.html',
-  styleUrls: ['./inter-city-bus-inquire.component.scss']
+  styleUrls: ['./inter-city-bus-inquire.component.scss', './inter-city-bus-inquire.component.phone.scss']
 })
 export class InterCityBusInquireComponent implements OnInit {
   @ViewChild('keyw') inputEle;
@@ -41,10 +42,12 @@ export class InterCityBusInquireComponent implements OnInit {
   constructor(
     private queryInterBusService: QueryInterBusService,
     private cityListService: CityListService,
-    private routeHandlerService: RouteHandlerService
+    private routeHandlerService: RouteHandlerService,
+    public deviceModeService: DeviceModeService
   ) { }
 
   ngOnInit(): void {
+    this.deviceModeService.detectCurrentDevice();
   }
 
   getEmitVal(e) {

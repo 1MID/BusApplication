@@ -1,12 +1,57 @@
-<div class="root">
+<div class="root" *ngIf="deviceModeService.device == '電腦'">
     <div class="header">
         <img src="assets/nearby/back-arrow.svg" class="back-arrow" (click)="backOnClick()">
-        <img src="assets/nearby/main-logo.svg" class="main-logo" (click)="navigateToHome()">
+        <img src="assets/nearby/main-logo.png" class="main-logo" (click)="navigateToHome()">
         <div class="tab-container">
             <div class="city-container" *ngIf="positionData.currentDeparture && positionData.currentDestination">
                 <div class="city-input left" (click)="roadSelectOnClick(0)"> {{positionData.currentDeparture}}</div>
                 <img src="assets/interbus/switch.svg" (click)="switchOnClick()">
                 <div class="city-input right" (click)="roadSelectOnClick(1)"> {{positionData.currentDestination}}</div>
+            </div>
+        </div>
+        <div class="time-list" (click)="clockOnClick()">
+            <img src="assets/interbus/clock.svg" class="clock-icon">時刻表
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="row">
+            <div class="date-container" (click)="dateSelectOnClick()">{{dateSelectData.dateString}}</div>
+            <div class="date-container" (click)="timeSelectOnClick()">{{dateSelectData.timeString}}</div>
+        </div>
+
+        <div class="ticket-container">
+            <div class="ticket" *ngFor="let item of priceResult;let i = index;">
+                <div class="sit">{{item.ticketSit}}</div>
+                <div class="line"></div>
+                <div class="ticket-type">{{item.ticketType}}</div>
+                <div class="ticket-price">${{item.ticketPrice}}</div>
+            </div>
+
+            <div *ngIf="noResData" class="hint">查無資料</div>
+        </div>
+    </div>
+
+    <div class="keyboard-area">
+        <app-bus-price-road-keyboard [data]="roadSelectData" [direction]="roadDirection" *ngIf="showInputKeyboard.road"
+            (emiter)="getEmitVal($event)">
+        </app-bus-price-road-keyboard>
+        <app-bus-price-date-keyboard *ngIf="showInputKeyboard.date" (emiter)="getEmitVal($event)">
+        </app-bus-price-date-keyboard>
+        <app-bus-price-time-keyboard *ngIf="showInputKeyboard.time" (emiter)="getEmitVal($event)">
+        </app-bus-price-time-keyboard>
+    </div>
+</div>
+
+<div class="root-phone" *ngIf="deviceModeService.device == '手機'">
+    <div class="header">
+        <img src="assets/nearby/back-arrow.svg" class="back-arrow" (click)="backOnClick()">
+        <img src="assets/nearby/main-logo.png" class="main-logo" (click)="navigateToHome()">
+        <div class="tab-container">
+            <div class="city-container" *ngIf="positionData.currentDeparture && positionData.currentDestination">
+                <div class="city-input" (click)="roadSelectOnClick(0)"> {{positionData.currentDeparture}}</div>
+                <img src="assets/interbus/switch.svg" (click)="switchOnClick()">
+                <div class="city-input" (click)="roadSelectOnClick(1)"> {{positionData.currentDestination}}</div>
             </div>
         </div>
         <div class="time-list" (click)="clockOnClick()">

@@ -4,6 +4,7 @@ import { QueryBusInquireService } from '../service/query-bus-inquire.service';
 import { RouteHandlerService } from 'src/app/service/route-handler.service';
 import { Router } from '@angular/router';
 import Swal, { SweetAlertOptions } from "sweetalert2";
+import { DeviceModeService } from 'src/app/service/device-mode.service';
 import {
   trigger,
   state,
@@ -22,7 +23,7 @@ import {
     ])
   ],
   templateUrl: './bus-inquire.component.html',
-  styleUrls: ['./bus-inquire.component.scss']
+  styleUrls: ['./bus-inquire.component.scss', './bus-inquire.component.phone.scss']
 })
 export class BusInquireComponent implements OnInit {
   @ViewChild('keywordInput') inputEle;
@@ -37,9 +38,11 @@ export class BusInquireComponent implements OnInit {
     private queryBusInquireService: QueryBusInquireService,
     private routeHandlerService: RouteHandlerService,
     private router: Router,
+    public deviceModeService: DeviceModeService
   ) { }
 
   ngOnInit(): void {
+    this.deviceModeService.detectCurrentDevice();
   }
 
   getEmitVal(e) {
@@ -72,6 +75,7 @@ export class BusInquireComponent implements OnInit {
         if (this.keyboardIndex === 1) {
           this.handleCitySelect(e);
           this.handleFilter();
+          this.handleChangeAnimation(0);
         } else if (this.keyboardIndex === 0) {
           if (this.showHintAlert()) {
             this.inputEle.nativeElement.value += e;

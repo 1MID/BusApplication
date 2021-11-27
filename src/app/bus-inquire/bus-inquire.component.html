@@ -1,7 +1,45 @@
-<div class="root">
+<div class="root" *ngIf="deviceModeService.device == '電腦'">
     <div class="col">
         <div class="header">
-            <img src="assets/nearby/main-logo.svg" class="main-logo" (click)="navigateToHome()">
+            <img src="assets/nearby/main-logo.png" class="main-logo" (click)="navigateToHome()">
+            <input class="search-input" placeholder="選擇路線或手動輸入關鍵字" id="keywordInput" disabled #keywordInput>
+        </div>
+
+        <div class="input-area" [@fadeInOut]="isFadeInOutNG ? 'closed' : 'open'">
+            <app-base-keyboard (emiter)="getEmitVal($event)" *ngIf="keyboardIndex === 0" [currentCity]="currentCity">
+            </app-base-keyboard>
+            <app-city-keyboard (emiter)="getEmitVal($event)" *ngIf="keyboardIndex === 1"></app-city-keyboard>
+            <app-more-keyboard (emiter)="getEmitVal($event)" *ngIf="keyboardIndex === 2"></app-more-keyboard>
+        </div>
+    </div>
+
+    <div class="output-area">
+        <div class="output-title" *ngIf="currentCity != '選擇縣市'">{{currentCity}}</div>
+        <div class="bus-data-item" *ngFor="let item of busDataFilter; let i = index;"
+            [ngStyle]="{ 'background-color': ((i % 2) == 0) ? '#1C1D1D' : '#131414' }" (click)="itemOnClick(item)">
+            <div class="bus-data-title">
+                {{item.RouteName.Zh_tw}}
+            </div>
+            <div class="bus-data-content-container">
+                <div class="bus-data-content text">
+                    {{item.DepartureStopNameZh}}
+                </div>
+                <div class="bus-data-content to">
+                    往
+                </div>
+                <div class="bus-data-content text">
+                    {{item.DestinationStopNameZh}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="root-phone" *ngIf="deviceModeService.device == '手機'">
+    <div class="col">
+        <div class="header">
+            <img src="assets/nearby/main-logo.png" class="main-logo" (click)="navigateToHome()">
             <input class="search-input" placeholder="選擇路線或手動輸入關鍵字" id="keywordInput" disabled #keywordInput>
         </div>
 

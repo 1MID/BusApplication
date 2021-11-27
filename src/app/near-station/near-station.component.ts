@@ -3,10 +3,11 @@ import { CommonService } from '../service/common.service';
 import { QueryNearbyService } from '../service/query-nearby.service';
 import { Router } from '@angular/router';
 import { RouteHandlerService } from '../service/route-handler.service';
+import { DeviceModeService } from '../service/device-mode.service';
 @Component({
   selector: 'app-near-station',
   templateUrl: './near-station.component.html',
-  styleUrls: ['./near-station.component.scss']
+  styleUrls: ['./near-station.component.scss', './near-station.component.phone.scss']
 })
 export class NearStationComponent implements OnInit {
   myPosition = { lng: '', lat: '', city: '' }
@@ -17,11 +18,13 @@ export class NearStationComponent implements OnInit {
     private commonService: CommonService,
     private queryNearbyService: QueryNearbyService,
     private router: Router,
-    private routeHandlerService: RouteHandlerService
+    private routeHandlerService: RouteHandlerService,
+    public deviceModeService: DeviceModeService
   ) { }
 
   ngOnInit(): void {
     this.getPosition();
+    this.deviceModeService.detectCurrentDevice();
   }
 
   /**

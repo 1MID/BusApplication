@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { RouteHandlerService } from 'src/app/service/route-handler.service';
 import { QueryInterBusService } from 'src/app/service/query-inter-bus.service';
 import { Location } from '@angular/common';
-
+import { DeviceModeService } from 'src/app/service/device-mode.service';
 @Component({
   selector: 'app-inter-bus-detail',
   templateUrl: './inter-bus-detail.component.html',
-  styleUrls: ['./inter-bus-detail.component.scss']
+  styleUrls: ['./inter-bus-detail.component.scss', './inter-bus-detail.component.phone.scss']
 })
 export class InterBusDetailComponent implements OnInit {
   paramsRes;
@@ -21,10 +21,12 @@ export class InterBusDetailComponent implements OnInit {
   constructor(
     private routeHandlerService: RouteHandlerService,
     private queryInterBusService: QueryInterBusService,
-    private location: Location
+    private location: Location,
+    public deviceModeService: DeviceModeService
   ) { }
 
   ngOnInit(): void {
+    this.deviceModeService.detectCurrentDevice();
     this.getParamsRes();
     this.getInterBusStartTime();
   }

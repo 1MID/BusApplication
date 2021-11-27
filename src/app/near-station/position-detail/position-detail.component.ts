@@ -4,10 +4,12 @@ import { QueryNearbyService } from 'src/app/service/query-nearby.service';
 import { RouteHandlerService } from 'src/app/service/route-handler.service';
 import { Router } from '@angular/router';
 import { CityListService } from 'src/app/service/city-list.service';
+import { DeviceModeService } from 'src/app/service/device-mode.service';
+
 @Component({
   selector: 'app-position-detail',
   templateUrl: './position-detail.component.html',
-  styleUrls: ['./position-detail.component.scss']
+  styleUrls: ['./position-detail.component.scss', './position-detail.component.phone.scss']
 })
 export class PositionDetailComponent implements OnInit {
   paramsRes;
@@ -20,10 +22,12 @@ export class PositionDetailComponent implements OnInit {
     private queryNearbyService: QueryNearbyService,
     private routeHandlerService: RouteHandlerService,
     private router: Router,
-    private cityListService: CityListService
+    private cityListService: CityListService,
+    public deviceModeService: DeviceModeService
   ) { }
 
   ngOnInit(): void {
+    this.deviceModeService.detectCurrentDevice();
     this.getPositionDetailData();
     this.getPassThroughData();
   }

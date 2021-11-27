@@ -4,10 +4,11 @@ import { QueryNearbyService } from 'src/app/service/query-nearby.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import Swal from "sweetalert2";
+import { DeviceModeService } from 'src/app/service/device-mode.service';
 @Component({
   selector: 'app-position-bus',
   templateUrl: './position-bus.component.html',
-  styleUrls: ['./position-bus.component.scss']
+  styleUrls: ['./position-bus.component.scss', './position-bus.component.phone.scss']
 })
 export class PositionBusComponent implements OnInit, OnDestroy {
   paramsRes;
@@ -24,10 +25,12 @@ export class PositionBusComponent implements OnInit, OnDestroy {
     private routeHandlerService: RouteHandlerService,
     private queryNearbyService: QueryNearbyService,
     private router: Router,
-    private location: Location
+    private location: Location,
+    public deviceModeService: DeviceModeService
   ) { }
 
   ngOnInit(): void {
+    this.deviceModeService.detectCurrentDevice();
     this.getPositionBusData();
     this.ifHaveEstimateTime();
     this.getDestinationStop();
@@ -43,7 +46,7 @@ export class PositionBusComponent implements OnInit, OnDestroy {
    */
   getPositionBusData() {
     this.paramsRes = this.routeHandlerService.getPositionBusData();
-    if (!this.paramsRes) { this.routeHandlerService.navigateToHome(); }
+    if (!this.paramsRes) { this.routeHandlerService.navigateToNearStation(); }
   }
 
   /**
