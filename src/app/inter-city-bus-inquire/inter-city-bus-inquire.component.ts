@@ -22,7 +22,7 @@ import {
     ])
   ],
   templateUrl: './inter-city-bus-inquire.component.html',
-  styleUrls: ['./inter-city-bus-inquire.component.scss', './inter-city-bus-inquire.component.phone.scss']
+  styleUrls: ['./inter-city-bus-inquire.component.scss', './inter-city-bus-inquire.component.phone.scss', './inter-city-bus-inquire.component.tablet.scss']
 })
 export class InterCityBusInquireComponent implements OnInit {
   @ViewChild('keyw') inputEle;

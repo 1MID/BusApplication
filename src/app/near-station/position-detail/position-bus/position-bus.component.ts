@@ -8,7 +8,7 @@ import { DeviceModeService } from 'src/app/service/device-mode.service';
 @Component({
   selector: 'app-position-bus',
   templateUrl: './position-bus.component.html',
-  styleUrls: ['./position-bus.component.scss', './position-bus.component.phone.scss']
+  styleUrls: ['./position-bus.component.scss', './position-bus.component.phone.scss', './position-bus.component.tablet.scss']
 })
 export class PositionBusComponent implements OnInit, OnDestroy {
   paramsRes;

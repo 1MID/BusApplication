@@ -19,6 +19,27 @@
 
 </div>
 
+<div class="root-tablet" *ngIf="deviceModeService.device == '平板'">
+    <div class="header">
+        <img src="assets/nearby/back-arrow.svg" class="back-arrow" (click)="backOnClick()">
+        <img src="assets/nearby/main-logo.png" class="main-logo" (click)="navigateToHome()">
+        <div class="tab-container">
+            <mat-tab-group [(selectedIndex)]="tabsIndex" (click)="tabsChange()">
+                <mat-tab [label]="titleSplit.departure" matTooltip="titleSplit.departure"></mat-tab>
+                <mat-tab [label]="titleSplit.destination" matTooltip="titleSplit.destination"></mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+
+    <div class="main-container" *ngIf="outputData">
+        <div class="ticket-container" *ngFor="let item of outputData;let i = index;">
+            <div class="input-btn-no-animation  line-opt">{{i+1}}</div>
+            <div class="ticket-text">{{item}}</div>
+        </div>
+    </div>
+
+</div>
+
 <div class="root-phone" *ngIf="deviceModeService.device == '手機'">
     <div class="header">
         <img src="assets/nearby/back-arrow.svg" class="back-arrow" (click)="backOnClick()">

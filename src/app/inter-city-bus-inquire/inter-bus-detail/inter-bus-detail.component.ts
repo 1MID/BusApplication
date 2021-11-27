@@ -6,7 +6,7 @@ import { DeviceModeService } from 'src/app/service/device-mode.service';
 @Component({
   selector: 'app-inter-bus-detail',
   templateUrl: './inter-bus-detail.component.html',
-  styleUrls: ['./inter-bus-detail.component.scss', './inter-bus-detail.component.phone.scss']
+  styleUrls: ['./inter-bus-detail.component.scss', './inter-bus-detail.component.phone.scss', './inter-bus-detail.component.tablet.scss']
 })
 export class InterBusDetailComponent implements OnInit {
   paramsRes;
@@ -55,7 +55,8 @@ export class InterBusDetailComponent implements OnInit {
       res[1] = (res[1] as any).filter(item => item.SubRouteName.Zh_tw == this.paramsRes.SubRouteName.Zh_tw)
 
       this.originData = res;
-      this.handleSetOutputData();
+      if (res) { this.handleSetOutputData(); }
+
     })
   }
 

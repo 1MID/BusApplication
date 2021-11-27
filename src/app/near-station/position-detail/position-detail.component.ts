@@ -9,7 +9,7 @@ import { DeviceModeService } from 'src/app/service/device-mode.service';
 @Component({
   selector: 'app-position-detail',
   templateUrl: './position-detail.component.html',
-  styleUrls: ['./position-detail.component.scss', './position-detail.component.phone.scss']
+  styleUrls: ['./position-detail.component.scss', './position-detail.component.phone.scss', './position-detail.component.tablet.scss']
 })
 export class PositionDetailComponent implements OnInit {
   paramsRes;

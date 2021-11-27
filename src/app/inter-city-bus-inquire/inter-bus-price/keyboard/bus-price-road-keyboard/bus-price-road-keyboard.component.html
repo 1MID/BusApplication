@@ -1,4 +1,22 @@
-<div class="root">
+<div class="root" *ngIf="deviceModeService.device == '電腦'">
+    <div class="header-container">
+        <div class="title">{{directionName}}</div>
+        <div class="cancel" (click)="emitOnClick('cancel')">取消</div>
+    </div>
+
+    <div class="input-btn line-opt" *ngFor="let item of data;" (click)="emitOnClick(item)">{{item}}</div>
+</div>
+
+<div class="root-tablet" *ngIf="deviceModeService.device == '平板'">
+    <div class="header-container">
+        <div class="title">{{directionName}}</div>
+        <div class="cancel" (click)="emitOnClick('cancel')">取消</div>
+    </div>
+
+    <div class="input-btn line-opt" *ngFor="let item of data;" (click)="emitOnClick(item)">{{item}}</div>
+</div>
+
+<div class="root-phone" *ngIf="deviceModeService.device == '手機'">
     <div class="header-container">
         <div class="title">{{directionName}}</div>
         <div class="cancel" (click)="emitOnClick('cancel')">取消</div>

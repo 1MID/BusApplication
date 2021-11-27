@@ -1,18 +1,21 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
-
+import { DeviceModeService } from 'src/app/service/device-mode.service';
 @Component({
   selector: 'app-bus-price-date-keyboard',
   templateUrl: './bus-price-date-keyboard.component.html',
-  styleUrls: ['./bus-price-date-keyboard.component.scss']
+  styleUrls: ['./bus-price-date-keyboard.component.scss', './bus-price-date-keyboard.component.phone.scss', './bus-price-date-keyboard.component.tablet.scss']
 })
 export class BusPriceDateKeyboardComponent implements OnInit {
   @Output() emiter = new EventEmitter<any>();
   @ViewChild('date_m') EleDateM;
   @ViewChild('date_d') EleDateD;
 
-  constructor() { }
+  constructor(
+    public deviceModeService: DeviceModeService
+  ) { }
 
   ngOnInit(): void {
+    this.deviceModeService.detectCurrentDevice();
   }
 
   limitInputWord(e, maxlength: number) {

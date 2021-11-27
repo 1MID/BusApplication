@@ -7,7 +7,7 @@ import { DeviceModeService } from '../service/device-mode.service';
 @Component({
   selector: 'app-near-station',
   templateUrl: './near-station.component.html',
-  styleUrls: ['./near-station.component.scss', './near-station.component.phone.scss']
+  styleUrls: ['./near-station.component.scss', './near-station.component.phone.scss', './near-station.component.tablet.scss']
 })
 export class NearStationComponent implements OnInit {
   myPosition = { lng: '', lat: '', city: '' }

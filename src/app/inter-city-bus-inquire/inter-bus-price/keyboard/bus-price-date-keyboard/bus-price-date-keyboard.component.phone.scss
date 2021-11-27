@@ -1,0 +1,83 @@
+.root-phone {
+    width: 78.13333vw;
+    height: 27.5862vh;
+    background-color: #131414;
+    border: 1px solid #1cc8ee;
+    border-radius: 6px;
+    padding: 2.333vh 4.6875vw 2.33333vh 4.6875vw;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    .header-container {
+        font-size: 2.2222vh;
+        line-height: 3.3333vh;
+        display: flex;
+        flex-direction: row;
+        .title {
+            color: #f5f5f5;
+        }
+        .sub-title {
+            margin-left: 1vw;
+            font-size: 1.8888vh;
+            color: #1cc8ee;
+        }
+    }
+    .input-container {
+        display: flex;
+        flex-direction: row;
+        gap: 3.34vw;
+        margin-top: 3.47222vh;
+        .search-input {
+            background: #1c1d1d;
+            border-radius: 6px;
+            width: 20.5333vw;
+            height: 5.55555vh;
+            outline: none;
+            border: none;
+            padding: 1.18vh 0.9375vw;
+            box-sizing: border-box;
+
+            color: #1cc8ee;
+            font-size: 2.2222vh;
+            line-height: 3.3333vh;
+        }
+    }
+
+    .btn-container {
+        display: flex;
+        flex-direction: row;
+        gap: 3.09375vw;
+        margin-top: 3.25vh;
+
+        .input-btn {
+            border: 1px solid #1cc8ee;
+            box-shadow: 0px 0px 6px #1cc8ee, 0px 0px 2px #1cc8ee;
+            border-radius: 5px;
+            background-color: #1c1d1d;
+            height: 5.83333vh;
+            min-height: 5.83333vh;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            justify-content: center;
+            font-size: 1vw;
+            padding-left: 1vw;
+            box-sizing: border-box;
+            letter-spacing: 1vw;
+            cursor: pointer;
+
+            &.active {
+                color: #f5f5f5;
+                width: 100%;
+            }
+
+            &.disabled {
+                color: #414242;
+                width: 100%;
+            }
+        }
+    }
+}

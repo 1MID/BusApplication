@@ -23,7 +23,7 @@ import {
     ])
   ],
   templateUrl: './bus-inquire.component.html',
-  styleUrls: ['./bus-inquire.component.scss', './bus-inquire.component.phone.scss']
+  styleUrls: ['./bus-inquire.component.scss', './bus-inquire.component.phone.scss', './bus-inquire.component.tablet.scss']
 })
 export class BusInquireComponent implements OnInit {
   @ViewChild('keywordInput') inputEle;

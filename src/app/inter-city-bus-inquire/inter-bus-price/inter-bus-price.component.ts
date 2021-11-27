@@ -6,7 +6,7 @@ import { DeviceModeService } from 'src/app/service/device-mode.service';
 @Component({
   selector: 'app-inter-bus-price',
   templateUrl: './inter-bus-price.component.html',
-  styleUrls: ['./inter-bus-price.component.scss', './inter-bus-price.component.phone.scss']
+  styleUrls: ['./inter-bus-price.component.scss', './inter-bus-price.component.phone.scss', './inter-bus-price.component.tablet.scss']
 })
 export class InterBusPriceComponent implements OnInit {
   paramsRes;

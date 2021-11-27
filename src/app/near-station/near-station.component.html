@@ -22,6 +22,30 @@
     </div>
 </div>
 
+<div class="root-tablet" *ngIf="deviceModeService.device == '平板'">
+    <div class="header">
+        <img src="assets/nearby/main-logo.png" class="main-logo" (click)="navigateToHome()">
+        <div class="main-title">我的附近</div>
+    </div>
+
+    <div class="main-container">
+        <div class="bus-data-item" *ngFor="let item of busStopData; let i = index;"
+            [ngStyle]="{ 'background-color': ((i % 2) == 0) ? '#1C1D1D' : '#131414' }" (click)="itemOnClick(item)">
+            <div class="bus-data-title">
+                {{item.StationName.Zh_tw}}
+            </div>
+            <div class="bus-data-content-container">
+                <div class="bus-data-content" *ngFor="let station of item.Stops; let j = index; let last = last">
+                    {{station.RouteName.Zh_tw}}
+                    <div *ngIf="!last">,&nbsp;</div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="!busStopData" class="hint">{{hintText}}</div>
+    </div>
+</div>
+
 <div class="root-phone" *ngIf="deviceModeService.device == '手機'">
     <div class="header">
         <img src="assets/nearby/main-logo.png" class="main-logo" (click)="navigateToHome()">

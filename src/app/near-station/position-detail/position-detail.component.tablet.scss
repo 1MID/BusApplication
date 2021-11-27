@@ -1,4 +1,4 @@
-.root {
+.root-tablet {
     width: 100vw;
     height: 100vh;
     background-color: #131414;
@@ -6,7 +6,7 @@
 
     .header {
         width: 100%;
-        height: 16.66666vh;
+        height: 10.156vh;
         background: #131414;
         box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.5);
         position: relative;
@@ -17,21 +17,25 @@
             cursor: pointer;
             width: 3.3333vh;
             height: 3.3333vh;
-            margin-left: 7.8125vw;
-            margin-top: 6.38888vh;
+            position: absolute;
+            left: 3.255vw;
+            top: 50%;
+            transform: translate(0, -50%);
         }
 
         .main-logo {
-            width: 10.625vw;
-            height: 7.638888vh;
+            width: 17.1875vw;
+            height: 5.371vh;
             position: absolute;
-            top: 3.47222vh;
             left: 50%;
-            transform: translate(-50%, 0);
+            top: 50%;
+            transform: translate(-50%, -50%);
         }
 
         .main-text {
-            margin: 6.38888vh 7.8125vw 0 auto;
+            position: absolute;
+            top: 4.001vh;
+            right: 2.083333vw;
             font-size: 2.2222vh;
             line-height: 3.3333vh;
             color: #f5f5f5;
@@ -40,12 +44,12 @@
 
     .main-container {
         height: 67.083333vh;
-        width: 84.375vw;
+        width: 100%;
         overflow-y: auto;
         overflow-x: hidden;
-        margin: 5.5555vh 7.8125vw 9.72222vh 7.8125vw;
+        margin: 4vh 1.171vw;
         .bus-data-item {
-            width: 100%;
+            width: 96.7448vw;
             height: 9.72222vh;
             background-color: #1c1d1d;
             display: flex;

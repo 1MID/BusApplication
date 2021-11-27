@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-
+import { DeviceModeService } from 'src/app/service/device-mode.service';
 @Component({
   selector: 'app-bus-price-road-keyboard',
   templateUrl: './bus-price-road-keyboard.component.html',
-  styleUrls: ['./bus-price-road-keyboard.component.scss']
+  styleUrls: ['./bus-price-road-keyboard.component.scss', './bus-price-road-keyboard.component.phone.scss', './bus-price-road-keyboard.component.tablet.scss']
 })
 export class BusPriceRoadKeyboardComponent implements OnInit {
   @Input() data: any;
@@ -11,9 +11,12 @@ export class BusPriceRoadKeyboardComponent implements OnInit {
   @Output() emiter = new EventEmitter<any>();
 
   directionName = '';
-  constructor() { }
+  constructor(
+    public deviceModeService: DeviceModeService
+  ) { }
 
   ngOnInit(): void {
+    this.deviceModeService.detectCurrentDevice();
     this.getParamsData();
   }
 
