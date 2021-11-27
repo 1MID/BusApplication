@@ -17,8 +17,8 @@ import {
     trigger("fadeInOut", [
       state("closed", style({ opacity: "0" })),
       state("open", style({ opacity: "1" })),
-      transition("open => closed", animate("0.5s ease-in")),
-      transition("closed => open", animate("0.5s ease-in"))
+      transition("open => closed", animate("0.3s ease-in")),
+      transition("closed => open", animate("0.3s ease-in"))
     ])
   ],
   templateUrl: './bus-inquire.component.html',
@@ -169,6 +169,6 @@ export class BusInquireComponent implements OnInit {
     setTimeout(() => {
       this.isFadeInOutNG = !this.isFadeInOutNG;
       this.keyboardIndex = i;
-    }, 500);
+    }, 300);
   }
 }
