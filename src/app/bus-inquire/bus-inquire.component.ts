@@ -4,14 +4,29 @@ import { QueryBusInquireService } from '../service/query-bus-inquire.service';
 import { RouteHandlerService } from 'src/app/service/route-handler.service';
 import { Router } from '@angular/router';
 import Swal, { SweetAlertOptions } from "sweetalert2";
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate
+} from "@angular/animations";
 @Component({
   selector: 'app-bus-inquire',
+  animations: [
+    trigger("fadeInOut", [
+      state("closed", style({ opacity: "0" })),
+      state("open", style({ opacity: "1" })),
+      transition("open => closed", animate("0.5s ease-in")),
+      transition("closed => open", animate("0.5s ease-in"))
+    ])
+  ],
   templateUrl: './bus-inquire.component.html',
   styleUrls: ['./bus-inquire.component.scss']
 })
 export class BusInquireComponent implements OnInit {
   @ViewChild('keywordInput') inputEle;
-
+  isFadeInOutNG = false;
   keyboardIndex = 0; //0 基本鍵盤 1 城市 2 更多
   currentCity = "選擇縣市";
   busData;
@@ -31,13 +46,13 @@ export class BusInquireComponent implements OnInit {
     console.log(e)
     switch (e) {
       case 'city':
-        this.keyboardIndex = 1;
+        this.handleChangeAnimation(1);
         break;
       case 'more':
-        this.keyboardIndex = 2;
+        this.handleChangeAnimation(2);
         break;
       case 'back':
-        this.keyboardIndex = 0;
+        this.handleChangeAnimation(0);
         break;
       case 'C':
         this.handleClear();
@@ -146,5 +161,13 @@ export class BusInquireComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  handleChangeAnimation(i: number) {
+    this.isFadeInOutNG = !this.isFadeInOutNG;
+    setTimeout(() => {
+      this.isFadeInOutNG = !this.isFadeInOutNG;
+      this.keyboardIndex = i;
+    }, 500);
   }
 }

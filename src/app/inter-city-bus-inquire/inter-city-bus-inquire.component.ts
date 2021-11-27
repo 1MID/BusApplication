@@ -3,8 +3,23 @@ import { QueryInterBusService } from '../service/query-inter-bus.service';
 import { CityListService } from '../service/city-list.service';
 import { RouteHandlerService } from '../service/route-handler.service';
 import Swal, { SweetAlertOptions } from "sweetalert2";
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate
+} from "@angular/animations";
 @Component({
   selector: 'app-inter-city-bus-inquire',
+  animations: [
+    trigger("fadeInOut", [
+      state("closed", style({ opacity: "0" })),
+      state("open", style({ opacity: "1" })),
+      transition("open => closed", animate("0.5s ease-in")),
+      transition("closed => open", animate("0.5s ease-in"))
+    ])
+  ],
   templateUrl: './inter-city-bus-inquire.component.html',
   styleUrls: ['./inter-city-bus-inquire.component.scss']
 })
@@ -12,6 +27,7 @@ export class InterCityBusInquireComponent implements OnInit {
   @ViewChild('keyw') inputEle;
   @ViewChild('startPoint') inputEleStart;
   @ViewChild('endPoint') inputEleEnd;
+  isFadeInOutNG = false;
 
   keyboardIndex = 0; //0 基本鍵盤 1 起訖鍵盤 2 更多
   cityInputIsFirstNow = true;
@@ -143,6 +159,7 @@ export class InterCityBusInquireComponent implements OnInit {
   handleClear() {
     this.inputEle.nativeElement.value = "";
     this.filterString = "";
+    this.handleFilter();
   }
 
   /**
@@ -158,7 +175,11 @@ export class InterCityBusInquireComponent implements OnInit {
    * @param i
    */
   handleKeyboardChange(i: number) {
-    this.keyboardIndex = i;
+    this.isFadeInOutNG = !this.isFadeInOutNG;
+    setTimeout(() => {
+      this.isFadeInOutNG = !this.isFadeInOutNG;
+      this.keyboardIndex = i;
+    }, 500);
   }
 
   switchOnClick() {
@@ -204,12 +225,13 @@ export class InterCityBusInquireComponent implements OnInit {
         })
       })
 
-      this.noResData == true ? this.hintText = "查無資料" : null;
+      this.noResData == true ? this.hintText = "查無資料" : this.hintText = "";
 
       console.log(this.noResData)
       console.log(this.busDataFilter, this.busDataOrigin)
     } else if (this.busDataOrigin) {
       this.busDataFilter = JSON.parse(JSON.stringify(this.busDataOrigin));
+      this.busDataFilter.length == 0 ? this.hintText = "查無資料" : this.hintText = "";
     }
 
   }
@@ -241,7 +263,7 @@ export class InterCityBusInquireComponent implements OnInit {
         this.busDataOrigin = res;
         this.busDataFilter = JSON.parse(JSON.stringify(this.busDataOrigin));
 
-
+        this.busDataFilter.length == 0 ? this.hintText = "查無資料" : this.hintText = "";
         console.log(this.busDataFilter)
       })
     }

@@ -94,6 +94,7 @@
         box-sizing: border-box;
         background-color: #131414;
         overflow-y: auto;
+        overflow-x: hidden;
         .search-key-container {
             display: flex;
             flex-direction: row;

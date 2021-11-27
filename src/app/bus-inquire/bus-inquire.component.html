@@ -5,7 +5,7 @@
             <input class="search-input" placeholder="選擇路線或手動輸入關鍵字" id="keywordInput" disabled #keywordInput>
         </div>
 
-        <div class="input-area">
+        <div class="input-area" [@fadeInOut]="isFadeInOutNG ? 'closed' : 'open'">
             <app-base-keyboard (emiter)="getEmitVal($event)" *ngIf="keyboardIndex === 0" [currentCity]="currentCity">
             </app-base-keyboard>
             <app-city-keyboard (emiter)="getEmitVal($event)" *ngIf="keyboardIndex === 1"></app-city-keyboard>
