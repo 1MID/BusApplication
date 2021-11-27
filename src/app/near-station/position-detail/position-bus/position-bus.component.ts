@@ -3,7 +3,7 @@ import { RouteHandlerService } from 'src/app/service/route-handler.service';
 import { QueryNearbyService } from 'src/app/service/query-nearby.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-
+import Swal from "sweetalert2";
 @Component({
   selector: 'app-position-bus',
   templateUrl: './position-bus.component.html',
@@ -11,7 +11,7 @@ import { Location } from '@angular/common';
 })
 export class PositionBusComponent implements OnInit, OnDestroy {
   paramsRes;
-  queryData = { DepartureStopNameZh: '', DestinationStopNameZh: '', Direction0: null, Direction1: null }
+  queryData = { DepartureStopNameZh: '', DestinationStopNameZh: '', Direction0: null, Direction1: null, mapImgSrc: '' }
 
   tabsIndex = 0; //tab的索引
   outputData = []; //根據tab的索引值決定要輸出的資料(去程或返程)
@@ -54,6 +54,8 @@ export class PositionBusComponent implements OnInit, OnDestroy {
     this.queryNearbyService.getDestinationStop(this.paramsRes.city, this.paramsRes.stationName).then(res => {
       this.queryData.DepartureStopNameZh = res[0].DepartureStopNameZh;
       this.queryData.DestinationStopNameZh = res[0].DestinationStopNameZh;
+      this.queryData.mapImgSrc = res[0].RouteMapImageUrl;
+      console.log(res)
     })
   }
 
@@ -116,5 +118,18 @@ export class PositionBusComponent implements OnInit, OnDestroy {
 
   navigateToHome() {
     this.routeHandlerService.navigateToHome();
+  }
+
+  mapOnClick() {
+    if (this.queryData.mapImgSrc != "") {
+      window.open(this.queryData.mapImgSrc, "_blank");
+    } else {
+      Swal.fire({
+        icon: 'info',
+        title: '本路線無地圖資訊',
+        confirmButtonText: '關閉',
+      })
+    }
+
   }
 }

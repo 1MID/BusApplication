@@ -155,6 +155,7 @@ export class BusInquireComponent implements OnInit {
   showHintAlert() {
     if (!this.busData) {
       Swal.fire({
+        icon: 'info',
         title: '請先選擇縣市',
         confirmButtonText: '關閉',
       })

@@ -151,6 +151,9 @@ export class InterBusPriceComponent implements OnInit {
    * @param index 0代表選擇起站 1代表選擇迄站
    */
   roadSelectOnClick(index: number) {
+    if (this.showInputKeyboard.date != false || this.showInputKeyboard.time != false) {
+      return;
+    }
     this.showInputKeyboard.road = true;
     index == 0 ? this.roadSelectData = this.positionData.departure : this.roadSelectData = this.positionData.destination
     this.roadDirection = index;
@@ -161,6 +164,9 @@ export class InterBusPriceComponent implements OnInit {
    * @param index
    */
   dateSelectOnClick() {
+    if (this.showInputKeyboard.road != false || this.showInputKeyboard.time != false) {
+      return;
+    }
     this.showInputKeyboard.date = true;
   }
 
@@ -168,6 +174,9 @@ export class InterBusPriceComponent implements OnInit {
    * 選擇時間
    */
   timeSelectOnClick() {
+    if (this.showInputKeyboard.date != false || this.showInputKeyboard.road != false) {
+      return;
+    }
     this.showInputKeyboard.time = true;
   }
 

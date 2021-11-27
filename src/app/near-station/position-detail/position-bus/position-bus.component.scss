@@ -38,6 +38,15 @@
             flex-direction: row;
             justify-content: center;
         }
+
+        .map-icon {
+            position: absolute;
+            top: 6.6666vh;
+            right: 7.8125vw;
+            width: 3.3333vh;
+            height: 3.3333vh;
+            cursor: pointer;
+        }
     }
 
     .main-container {
