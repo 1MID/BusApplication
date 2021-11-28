@@ -12,7 +12,7 @@ $ npm install
 $ ng serve -o
 ``` 
 ```sh
-*注意:需要於.src下建立enviorment資料夾，其中.ts包含PTX APP KEY以及PTX APP ID
+*注意: ng serve前 需要於.src下建立enviorment資料夾，其中.ts包含PTX APP KEY以及PTX APP ID
 ```
 
 ### 版本
