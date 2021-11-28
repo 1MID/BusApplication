@@ -30,20 +30,24 @@ export class NearStationComponent implements OnInit {
   /**
    * 取得當前位置
    */
-  private getPosition() {
-    Promise.all([
-      this.commonService.getMyPositionV1(), //取得當前經緯度
-      this.commonService.getMyPositionV2()  //取得當前所在城市
-    ]).then((res: any) => {
-      // 測資 (台北)"25.05666019880863", "121.61793350715327"
-      this.myPosition.lng = res[0].lng;
-      this.myPosition.lat = res[0].lat;
-      this.myPosition.city = res[1].city;
-      this.getBusStopNearby();
-      console.log(res)
-    }).catch(res => {
-      console.log('取得位置失敗', res)
-      this.hintText = "取得位置失敗，請確認是否允許權限，或重新開啟"
+  private async getPosition() {
+    this.commonService.getIPAddress().then((ip: string) => {
+      Promise.all([
+        this.commonService.getMyPositionV1(), //取得當前經緯度
+        this.commonService.getMyPositionV2(ip)  //取得當前所在城市
+      ]).then((res: any) => {
+        // 測資 (台北)"25.05666019880863", "121.61793350715327"
+        this.myPosition.lng = res[0].lng;
+        this.myPosition.lat = res[0].lat;
+        this.myPosition.city = res[1].city;
+        this.getBusStopNearby();
+        console.log(res)
+      }).catch(res => {
+        console.log('取得位置失敗', res)
+        this.hintText = "取得位置失敗，請確認是否允許權限，或重新開啟"
+      })
+    }).catch(err => {
+      console.log('取得Client端IP失敗', err)
     })
   }
 
