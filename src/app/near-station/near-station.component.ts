@@ -4,6 +4,7 @@ import { QueryNearbyService } from '../service/query-nearby.service';
 import { Router } from '@angular/router';
 import { RouteHandlerService } from '../service/route-handler.service';
 import { DeviceModeService } from '../service/device-mode.service';
+import { CityListService } from '../service/city-list.service';
 @Component({
   selector: 'app-near-station',
   templateUrl: './near-station.component.html',
@@ -19,7 +20,8 @@ export class NearStationComponent implements OnInit {
     private queryNearbyService: QueryNearbyService,
     private router: Router,
     private routeHandlerService: RouteHandlerService,
-    public deviceModeService: DeviceModeService
+    public deviceModeService: DeviceModeService,
+    private cityListService: CityListService
   ) { }
 
   ngOnInit(): void {
@@ -39,8 +41,7 @@ export class NearStationComponent implements OnInit {
       // 測資 (台北)"25.05666019880863", "121.61793350715327"
       this.myPosition.lng = res[0].lng;
       this.myPosition.lat = res[0].lat;
-      // this.myPosition.city = res[1].city;
-      this.myPosition.city = 'LienchiangCounty';
+      this.myPosition.city = res[1].city;
       console.log(res)
       this.getBusStopNearby();
     }).catch(res => {
@@ -57,9 +58,10 @@ export class NearStationComponent implements OnInit {
   }
 
   itemOnClick(item) {
+    console.log('城市轉換後:', this.cityListService.cityNameFilter(this.myPosition.city))
     let positionData = {
       stationID: item.StationID,
-      city: this.myPosition.city,
+      city: this.cityListService.cityNameFilter(this.myPosition.city),
       stationName: item.StationName.Zh_tw
     }
     this.routeHandlerService.setPositionDetailData(positionData);

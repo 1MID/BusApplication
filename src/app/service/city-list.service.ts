@@ -48,5 +48,16 @@ export class CityListService {
     return zhName;
   }
 
+  /**
+   * API打下來的格式是 ex. Taoyuan City 要回傳TDX的格式
+   */
+  cityNameFilter(city: string) {
+    let tdxCity = "";
+    this.city.forEach((item, index) => {
+      city.toLowerCase().indexOf(item.enName.toLowerCase()) != -1 ? tdxCity = item.enName : null;
+    })
+    return tdxCity
+  }
+
 
 }
