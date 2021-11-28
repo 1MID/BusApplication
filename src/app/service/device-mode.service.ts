@@ -11,7 +11,7 @@ export class DeviceModeService {
   ) { }
 
   detectCurrentDevice() {
-    if (this.breakpointObserver.isMatched('(max-width: 767px) and (min-width: 375px)')) {
+    if (this.breakpointObserver.isMatched('(max-width: 767px) and (min-width: 1px)')) {
       this.mode = '手機';
     } else if (this.breakpointObserver.isMatched('(max-width: 1024px) and (min-width: 768px)')) {
       this.mode = '平板';
