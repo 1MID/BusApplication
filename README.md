@@ -24,7 +24,7 @@ $ ng serve -o
 - bus-inquire : 公車查詢
 - near-station : 附近公車站
 - inter-city-bus-inquire : 客運查詢
-- service : 相關服務(如:Query)
+- service : 相關服務(如:http.get)
 
 ### 使用技術
 - Angular
