@@ -39,7 +39,9 @@ export class NearStationComponent implements OnInit {
       // 測資 (台北)"25.05666019880863", "121.61793350715327"
       this.myPosition.lng = res[0].lng;
       this.myPosition.lat = res[0].lat;
-      this.myPosition.city = res[1].city;
+      // this.myPosition.city = res[1].city;
+      this.myPosition.city = 'LienchiangCounty';
+      console.log(res)
       this.getBusStopNearby();
     }).catch(res => {
       console.log('取得位置失敗', res)
