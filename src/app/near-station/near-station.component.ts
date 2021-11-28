@@ -42,7 +42,7 @@ export class NearStationComponent implements OnInit {
       this.myPosition.lng = res[0].lng;
       this.myPosition.lat = res[0].lat;
       this.myPosition.city = res[1].city;
-      console.log(res)
+      //console.log('當前座標資料', res)
       this.getBusStopNearby();
     }).catch(res => {
       console.log('取得位置失敗', res)
