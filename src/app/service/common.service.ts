@@ -44,9 +44,9 @@ export class CommonService {
   /**
    * 透過網路API取得當前位置，主要是要取得當前城市
    */
-  getMyPositionV2(ip: string) {
+  getMyPositionV2() {
     return new Promise((resolve, reject) => {
-      this.http.get<any>(`http://ip-api.com/json#${ip}`).subscribe(res => {
+      this.http.get<any>(`https://ipinfo.io?token=${environment.ipInfoToken}`).subscribe(res => {
         if (res) {
           resolve(res);
         }
@@ -55,19 +55,5 @@ export class CommonService {
     })
   }
 
-  /**
-   * 取得當前IP位置
-   * @returns IP Address
-   */
-  getIPAddress() {
-    return new Promise((resolve, reject) => {
-      this.http.get("http://api.ipify.org/?format=json").subscribe((res: any) => {
-        if (res) {
-          resolve(res.ip);
-        }
-        reject('fail : getIPAddress')
-      });
-    })
-  }
 
 }
