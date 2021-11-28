@@ -11,9 +11,9 @@ $ npm install
 ```
 $ ng serve -o
 ``` 
-```sh
-*注意: ng serve前 需要於.src下建立enviorment資料夾，其中.ts包含PTX APP KEY以及PTX APP ID
-```
+
+*注意: ng serve前 需要於.src下建立enviorment資料夾，其中.ts包含PTX APP KEY以及PTX APP ID*
+
 
 ### 版本
 - angular/cli: 12.1.4
@@ -28,7 +28,7 @@ $ ng serve -o
 
 ### 使用技術
 - Angular
-- AWD (support Mobile,Tablet,Desktop)
+- AWD (support Mobile,Tablet,Desktop) *瀏覽器更換畫面長寬後請刷新頁面*
 
 ### 第三方服務
 - PTX API
