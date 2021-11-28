@@ -107,17 +107,28 @@ export class InterBusPriceComponent implements OnInit {
         item.SubRouteName == this.paramsRes.SubRouteName.Zh_tw
       )
 
+
       let priceData;
       res.map(resItem => {
         resItem.StageFares.map(item => {
-          if (
-            item.OriginStage.StopName == this.positionData.currentDeparture && //起點相符
-            item.DestinationStage.StopName == this.positionData.currentDestination //終點相符
-          ) {
-            priceData = item; //取得票價
+          if (item.Direction == 0) {
+            if (
+              item.OriginStage.StopName == this.positionData.currentDeparture && //起點相符
+              item.DestinationStage.StopName == this.positionData.currentDestination //終點相符
+            ) {
+              priceData = item; //取得票價
+            }
+          } else if (item.Direction == 1) { //反向
+            if (
+              item.OriginStage.StopName == this.positionData.currentDestination &&
+              item.DestinationStage.StopName == this.positionData.currentDeparture
+            ) {
+              priceData = item;
+            }
           }
         })
       })
+
 
       this.priceResult = [];
       priceData?.Fares?.map(item => {   //整理成要輸出的資料
