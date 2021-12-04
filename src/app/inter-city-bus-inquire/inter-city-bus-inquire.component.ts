@@ -11,6 +11,7 @@ import {
   transition,
   animate
 } from "@angular/animations";
+import { LocalStorageControllerService } from '../service/local-storage-controller.service';
 @Component({
   selector: 'app-inter-city-bus-inquire',
   animations: [
@@ -43,7 +44,8 @@ export class InterCityBusInquireComponent implements OnInit {
     private queryInterBusService: QueryInterBusService,
     private cityListService: CityListService,
     private routeHandlerService: RouteHandlerService,
-    public deviceModeService: DeviceModeService
+    public deviceModeService: DeviceModeService,
+    private localStorageControllerService: LocalStorageControllerService
   ) { }
 
   ngOnInit(): void {
@@ -94,8 +96,11 @@ export class InterCityBusInquireComponent implements OnInit {
         this.currentCity = e;
         let cityEn = this.cityListService.getCityNameEnByZh(this.currentCity);
         this.hintText = "查詢中..."
+        let ls = this.localStorageControllerService.getCurrentData();
         this.queryInterBusService.getInterBusData(cityEn).then((res: any) => {
-          console.log(res)
+
+
+
           res.length == 0 ? this.noResData = true : this.noResData = false;
           res.length == 0 ? this.hintText = "查無資料" : this.hintText = "";
 
@@ -103,6 +108,15 @@ export class InterCityBusInquireComponent implements OnInit {
             item.SubRoutes.map(subRoute => {
               subRoute.from2flag = true;
               subRoute.filterType = true;
+
+              // 標出已經是收藏的項目
+              subRoute.favorFlag = false;
+              if (ls) {
+                ls.map(lsItem => {
+                  ((subRoute.SubRouteName.Zh_tw === lsItem?.stationName) && (subRoute.Direction === lsItem?.direction))
+                    ? subRoute.favorFlag = true : null
+                })
+              }
             })
           })
           this.busDataOrigin = res;
@@ -287,4 +301,46 @@ export class InterCityBusInquireComponent implements OnInit {
       confirmButtonText: '關閉',
     })
   }
+
+  /**
+* 收藏
+* @param e
+* @param item
+*/
+  favorOnClick(e, item) {
+    e.stopPropagation();
+    item.favorFlag = true;
+    let cityEnName = this.cityListService.getCityNameEnByZh(this.currentCity);
+    let subRouteSplit = item.Headsign.split('→');
+    console.log(item)
+    const favorObj = {
+      stationName: item.SubRouteName.Zh_tw,
+      city: cityEnName,
+      stopFrom: subRouteSplit[0],
+      stopTo: subRouteSplit[subRouteSplit.length - 1],
+      type: 1, // 0 公車 1 客運,
+      direction: item.Direction,
+      data: item
+    }
+
+    this.localStorageControllerService.push(favorObj);
+  }
+
+  /**
+   * 取消收藏
+   * @param e
+   * @param item
+   */
+  disFavorOnClick(e, item) {
+    let cityEnName = this.cityListService.getCityNameEnByZh(this.currentCity);
+    e.stopPropagation();
+    item.favorFlag = false;
+    this.localStorageControllerService.deleteByInterBus(cityEnName, item.SubRouteName.Zh_tw, item.Direction);
+    console.log(this.localStorageControllerService.getCurrentData())
+  }
+
+  navigateToCollectPage() {
+    this.routeHandlerService.navigateToCollectPage();
+  }
+
 }

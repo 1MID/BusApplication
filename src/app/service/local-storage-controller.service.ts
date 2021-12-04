@@ -43,4 +43,24 @@ export class LocalStorageControllerService {
     localStorage.setItem('favor', JSON.stringify(newLS));
 
   }
+
+  deleteByInterBus(city: string, stationName: string, direction: number) {
+    let ls = [];
+    ls = JSON.parse(localStorage.getItem('favor')) || [];
+    ls.map((item, index) => {
+      if (item) {
+        if ((item.city === city) && (item.stationName === stationName) && (item.direction === direction)) {
+          delete ls[index];
+        }
+      }
+    })
+
+    let newLS = [];
+    ls.map(item => {
+      item != null ? newLS.push(item) : null;
+    })
+
+    this.clear();
+    localStorage.setItem('favor', JSON.stringify(newLS));
+  }
 }

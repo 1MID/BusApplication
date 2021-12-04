@@ -9,6 +9,8 @@
             [ngStyle]="{ 'background-color': ((i % 2) == 0) ? '#1C1D1D' : '#131414' }" (click)="itemOnClick(item)">
             <div class="bus-data-title">
                 {{item.stationName}}
+                <div *ngIf="item.type == 0">(公車)</div>
+                <div *ngIf="item.type == 1">(客運)</div>
             </div>
             <div class="bus-data-content-container">
                 <div class="bus-data-content text">

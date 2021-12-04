@@ -40,6 +40,9 @@ export class CollectPageComponent implements OnInit {
       }
       this.routeHandlerService.setPositionBusData(positionBusData);
       this.router.navigate(['nearby/position-detail/position-bus'], {});
+    } else if (item.type === 1) {
+      this.routeHandlerService.setInterBusItem(item.data);
+      this.routeHandlerService.navigateToInterBusPrice();
     }
   }
 

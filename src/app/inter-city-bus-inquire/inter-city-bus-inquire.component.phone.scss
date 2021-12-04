@@ -24,7 +24,7 @@
 
             background: #1c1d1d;
             border-radius: 6px;
-            width: 58.6666vw;
+            width: 44.86666vw;
             height: 6vh;
             outline: none;
             border: none;
@@ -33,6 +33,21 @@
 
             color: #1cc8ee;
             line-height: 3.3333vh;
+        }
+        .collect-container {
+            margin-top: 2.5487vh;
+            margin-left: 1.546875vw;
+            width: 10.6666vw;
+            height: 6vh;
+            background: #1cc8ee;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .collect-icon {
+                width: 4.26666vw;
+                height: 4.2666vw;
+            }
         }
     }
 
@@ -121,6 +136,7 @@
             border: none;
             outline: none;
             cursor: pointer;
+            position: relative;
 
             .bus-data-title {
                 font-size: 2.36111vh;
@@ -151,6 +167,14 @@
                         margin: 0 1vw;
                     }
                 }
+            }
+            .like-icon {
+                position: absolute;
+                right: 1.25vw;
+                top: 50%;
+                width: 4.2666vw;
+                height: 4.2666vw;
+                transform: translate(-50%, -50%);
             }
         }
 

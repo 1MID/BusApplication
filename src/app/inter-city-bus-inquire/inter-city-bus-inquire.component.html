@@ -5,6 +5,9 @@
             <input class="search-input" *ngIf="(keyboardIndex === 0) || (keyboardIndex === 2)"
                 placeholder="選擇路線或手動輸入關鍵字" id="keyw" (keyup)="handleFilter()" disabled #keyw
                 [@fadeInOut]="isFadeInOutNG ? 'closed' : 'open'">
+            <div class="collect-container" (click)="navigateToCollectPage()">
+                <img class="collect-icon" src="assets/common/collect.svg">
+            </div>
         </div>
 
         <div class="city-container" *ngIf="keyboardIndex === 1" [@fadeInOut]="isFadeInOutNG ? 'closed' : 'open'">
@@ -43,6 +46,10 @@
                             {{subRoute.Headsign}}
                         </div>
                     </div>
+                    <img *ngIf="subRoute.favorFlag" class="like-icon" src="assets/common/like-focus.svg"
+                        (click)="disFavorOnClick($event,subRoute)">
+                    <img *ngIf="!subRoute.favorFlag" class="like-icon" src="assets/common/like-unfocus.svg"
+                        (click)="favorOnClick($event,subRoute)">
                 </div>
             </ng-container>
         </ng-container>
@@ -58,6 +65,9 @@
             <input class="search-input" *ngIf="(keyboardIndex === 0) || (keyboardIndex === 2)"
                 placeholder="選擇路線或手動輸入關鍵字" id="keyw" (keyup)="handleFilter()" disabled #keyw
                 [@fadeInOut]="isFadeInOutNG ? 'closed' : 'open'">
+            <div class="collect-container" (click)="navigateToCollectPage()">
+                <img class="collect-icon" src="assets/common/collect.svg">
+            </div>
         </div>
 
         <div class="city-container" *ngIf="keyboardIndex === 1" [@fadeInOut]="isFadeInOutNG ? 'closed' : 'open'">
@@ -96,6 +106,10 @@
                             {{subRoute.Headsign}}
                         </div>
                     </div>
+                    <img *ngIf="subRoute.favorFlag" class="like-icon" src="assets/common/like-focus.svg"
+                        (click)="disFavorOnClick($event,subRoute)">
+                    <img *ngIf="!subRoute.favorFlag" class="like-icon" src="assets/common/like-unfocus.svg"
+                        (click)="favorOnClick($event,subRoute)">
                 </div>
             </ng-container>
         </ng-container>
@@ -111,6 +125,9 @@
             <input class="search-input" *ngIf="(keyboardIndex === 0) || (keyboardIndex === 2)"
                 placeholder="選擇路線或手動輸入關鍵字" id="keyw" (keyup)="handleFilter()" disabled #keyw
                 [@fadeInOut]="isFadeInOutNG ? 'closed' : 'open'">
+            <div class="collect-container" (click)="navigateToCollectPage()">
+                <img class="collect-icon" src="assets/common/collect.svg">
+            </div>
         </div>
 
         <div class="city-container" *ngIf="keyboardIndex === 1" [@fadeInOut]="isFadeInOutNG ? 'closed' : 'open'">
@@ -149,6 +166,10 @@
                             {{subRoute.Headsign}}
                         </div>
                     </div>
+                    <img *ngIf="subRoute.favorFlag" class="like-icon" src="assets/common/like-focus.svg"
+                        (click)="disFavorOnClick($event,subRoute)">
+                    <img *ngIf="!subRoute.favorFlag" class="like-icon" src="assets/common/like-unfocus.svg"
+                        (click)="favorOnClick($event,subRoute)">
                 </div>
             </ng-container>
         </ng-container>
