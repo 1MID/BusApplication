@@ -70,4 +70,9 @@ export class NearStationComponent implements OnInit {
   navigateToHome() {
     this.routeHandlerService.navigateToHome();
   }
+
+  navigateToCollectPage() {
+    this.routeHandlerService.navigateToCollectPage();
+  }
+
 }

@@ -27,6 +27,23 @@
             line-height: 3.3333vh;
             color: #f5f5f5;
         }
+        .collect-container {
+            position: absolute;
+            right: 7.8125vw;
+            top: 50%;
+            transform: translate(0, -50%);
+            width: 3.125vw;
+            height: 5.208333vh;
+            background: #1cc8ee;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .collect-icon {
+                width: 1.25vw;
+                height: 1.25vw;
+            }
+        }
     }
 
     .main-container {

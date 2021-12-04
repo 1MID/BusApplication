@@ -13,18 +13,38 @@
         .main-logo {
             width: 25.6vw;
             height: 6vh;
-            margin-left: 7.8125vw;
-            margin-top: 3.47222vh;
+
+            position: absolute;
+            top: 50%;
+            left: 7.8125vw;
+            transform: translate(0%, -50%);
         }
 
         .main-title {
             position: absolute;
             top: 50%;
-            right: 4.2666vw;
-            transform: translate(0, -50%);
+            left: 50%;
+            transform: translate(-50%, -50%);
             font-size: 2.22222vh;
             line-height: 3.3333vh;
             color: #f5f5f5;
+        }
+        .collect-container {
+            position: absolute;
+            right: 7.8125vw;
+            top: 50%;
+            transform: translate(0%, -50%);
+            width: 10.6666vw;
+            height: 6vh;
+            background: #1cc8ee;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .collect-icon {
+                width: 4.26666vw;
+                height: 4.2666vw;
+            }
         }
     }
 
