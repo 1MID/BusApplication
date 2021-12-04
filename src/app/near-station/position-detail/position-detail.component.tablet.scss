@@ -60,6 +60,7 @@
             outline: none;
             cursor: pointer;
             border-radius: 6px;
+            position: relative;
 
             .bus-data-title {
                 font-size: 2.36111vh;
@@ -84,6 +85,14 @@
                     display: flex;
                     flex-direction: row;
                 }
+            }
+            .like-icon {
+                position: absolute;
+                right: 1.25vw;
+                top: 50%;
+                width: 2.2222vw;
+                height: 2.2222vw;
+                transform: translate(-50%, -50%);
             }
         }
     }

@@ -61,6 +61,10 @@
                 <div class="bus-data-content">
                     {{item.DestinationStopNameZh}}
                 </div>
+                <img *ngIf="item.favorFlag" class="like-icon" src="assets/common/like-focus.svg"
+                    (click)="disFavorOnClick($event,item)">
+                <img *ngIf="!item.favorFlag" class="like-icon" src="assets/common/like-unfocus.svg"
+                    (click)="favorOnClick($event,item)">
             </div>
         </div>
     </div>
@@ -97,6 +101,10 @@
                 <div class="bus-data-content">
                     {{item.DestinationStopNameZh}}
                 </div>
+                <img *ngIf="item.favorFlag" class="like-icon" src="assets/common/like-focus.svg"
+                    (click)="disFavorOnClick($event,item)">
+                <img *ngIf="!item.favorFlag" class="like-icon" src="assets/common/like-unfocus.svg"
+                    (click)="favorOnClick($event,item)">
             </div>
         </div>
     </div>
