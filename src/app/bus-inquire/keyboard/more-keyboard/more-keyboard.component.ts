@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
+import { SoundEffectService } from 'src/app/service/sound-effect.service';
 
 @Component({
   selector: 'app-more-keyboard',
@@ -9,12 +10,15 @@ import { Output, EventEmitter } from '@angular/core';
 export class MoreKeyboardComponent implements OnInit {
   @Output() emiter = new EventEmitter<any>();
 
-  constructor() { }
+  constructor(
+    private soundEffectService: SoundEffectService
+  ) { }
 
   ngOnInit(): void {
   }
 
   btnOnClick(data: string) {
+    this.soundEffectService.playAudio();
     this.emiter.emit(data);
   }
 

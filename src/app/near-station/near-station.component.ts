@@ -37,11 +37,13 @@ export class NearStationComponent implements OnInit {
       this.commonService.getMyPositionV1(), //取得當前經緯度
       this.commonService.getMyPositionV2()  //取得當前所在城市
     ]).then((res: any) => {
+      // console.log('當前座標資料', res)
       // 測資 (台北)"25.05666019880863", "121.61793350715327"
+      // 測資 (台北)"25.034829304593586, 121.49770253915966"
+
       this.myPosition.lng = res[0].lng;
       this.myPosition.lat = res[0].lat;
       this.myPosition.city = res[1].city;
-      //console.log('當前座標資料', res)
       this.getBusStopNearby();
     }).catch(res => {
       console.log('取得位置失敗', res)
@@ -58,6 +60,7 @@ export class NearStationComponent implements OnInit {
 
   itemOnClick(item) {
     console.log('城市轉換後:', this.cityListService.cityNameFilter(this.myPosition.city))
+    console.log(item)
     let positionData = {
       stationID: item.StationID,
       city: this.cityListService.cityNameFilter(this.myPosition.city),
