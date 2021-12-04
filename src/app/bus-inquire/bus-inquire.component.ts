@@ -81,7 +81,7 @@ export class BusInquireComponent implements OnInit {
           this.handleChangeAnimation(0);
         } else if (this.keyboardIndex === 0) {
           if (this.showHintAlert()) {
-            this.inputEle.nativeElement.value += e;
+            isNaN(e) ? this.inputEle.nativeElement.value = e : this.inputEle.nativeElement.value += e;
             this.handleFilter();
           }
         } else if (this.keyboardIndex === 2) {
