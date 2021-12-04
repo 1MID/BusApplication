@@ -9,7 +9,8 @@
         </div>
 
         <div class="input-area" [@fadeInOut]="isFadeInOutNG ? 'closed' : 'open'">
-            <app-base-keyboard (emiter)="getEmitVal($event)" *ngIf="keyboardIndex === 0" [currentCity]="currentCity">
+            <app-base-keyboard (emiter)="getEmitVal($event)" *ngIf="keyboardIndex === 0" [currentCity]="currentCity"
+                [cityLock]="cityLock">
             </app-base-keyboard>
             <app-city-keyboard (emiter)="getEmitVal($event)" *ngIf="keyboardIndex === 1"></app-city-keyboard>
             <app-more-keyboard (emiter)="getEmitVal($event)" *ngIf="keyboardIndex === 2"></app-more-keyboard>
@@ -60,7 +61,8 @@
         </div>
 
         <div class="input-area" [@fadeInOut]="isFadeInOutNG ? 'closed' : 'open'">
-            <app-base-keyboard (emiter)="getEmitVal($event)" *ngIf="keyboardIndex === 0" [currentCity]="currentCity">
+            <app-base-keyboard (emiter)="getEmitVal($event)" *ngIf="keyboardIndex === 0" [currentCity]="currentCity"
+                [cityLock]="cityLock">
             </app-base-keyboard>
             <app-city-keyboard (emiter)="getEmitVal($event)" *ngIf="keyboardIndex === 1"></app-city-keyboard>
             <app-more-keyboard (emiter)="getEmitVal($event)" *ngIf="keyboardIndex === 2"></app-more-keyboard>
@@ -105,7 +107,8 @@
         </div>
 
         <div class="input-area" [@fadeInOut]="isFadeInOutNG ? 'closed' : 'open'">
-            <app-base-keyboard (emiter)="getEmitVal($event)" *ngIf="keyboardIndex === 0" [currentCity]="currentCity">
+            <app-base-keyboard (emiter)="getEmitVal($event)" *ngIf="keyboardIndex === 0" [currentCity]="currentCity"
+                [cityLock]="cityLock">
             </app-base-keyboard>
             <app-city-keyboard (emiter)="getEmitVal($event)" *ngIf="keyboardIndex === 1"></app-city-keyboard>
             <app-more-keyboard (emiter)="getEmitVal($event)" *ngIf="keyboardIndex === 2"></app-more-keyboard>

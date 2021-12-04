@@ -2,39 +2,57 @@
     <div class="input-btn city" (click)="cityOnClick()">
         <img src="assets/busInquire/location.svg" class="delete-icon" style="margin-right: 1vw;">{{currentCity}}
     </div>
-    <div class="input-btn cutsom" (click)="keyOnClick('custom')">手動輸入</div>
+    <div class="input-btn cutsom" (click)="keyOnClick('custom')" [ngStyle]="cityLock && {'opacity': '0.5'}">手動輸入</div>
 
 </div>
 <div class="row">
-    <div class="input-btn line-opt" (click)="keyOnClick($event.target.innerText)">紅</div>
-    <div class="input-btn line-opt" (click)="keyOnClick($event.target.innerText)">藍</div>
-    <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)">1</div>
-    <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)">2</div>
-    <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)">3</div>
+    <div class="input-btn line-opt" (click)="keyOnClick($event.target.innerText)"
+        [ngStyle]="cityLock && {'opacity': '0.5'}">紅</div>
+    <div class="input-btn line-opt" (click)="keyOnClick($event.target.innerText)"
+        [ngStyle]="cityLock && {'opacity': '0.5'}">藍</div>
+    <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)"
+        [ngStyle]="cityLock && {'opacity': '0.5'}">1</div>
+    <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)"
+        [ngStyle]="cityLock && {'opacity': '0.5'}">2</div>
+    <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)"
+        [ngStyle]="cityLock && {'opacity': '0.5'}">3</div>
 </div>
 
 <div class="row">
-    <div class="input-btn line-opt" (click)="keyOnClick($event.target.innerText)">綠</div>
-    <div class="input-btn line-opt" (click)="keyOnClick($event.target.innerText)">棕</div>
-    <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)">4</div>
-    <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)">5</div>
-    <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)">6</div>
+    <div class="input-btn line-opt" (click)="keyOnClick($event.target.innerText)"
+        [ngStyle]="cityLock && {'opacity': '0.5'}">綠</div>
+    <div class="input-btn line-opt" (click)="keyOnClick($event.target.innerText)"
+        [ngStyle]="cityLock && {'opacity': '0.5'}">棕</div>
+    <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)"
+        [ngStyle]="cityLock && {'opacity': '0.5'}">4</div>
+    <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)"
+        [ngStyle]="cityLock && {'opacity': '0.5'}">5</div>
+    <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)"
+        [ngStyle]="cityLock && {'opacity': '0.5'}">6</div>
 </div>
 
 <div class="row">
-    <div class="input-btn line-opt" (click)="keyOnClick($event.target.innerText)">橘</div>
-    <div class="input-btn line-opt" (click)="keyOnClick($event.target.innerText)">小</div>
-    <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)">7</div>
-    <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)">8</div>
-    <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)">9</div>
+    <div class="input-btn line-opt" (click)="keyOnClick($event.target.innerText)"
+        [ngStyle]="cityLock && {'opacity': '0.5'}">橘</div>
+    <div class="input-btn line-opt" (click)="keyOnClick($event.target.innerText)"
+        [ngStyle]="cityLock && {'opacity': '0.5'}">小</div>
+    <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)"
+        [ngStyle]="cityLock && {'opacity': '0.5'}">7</div>
+    <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)"
+        [ngStyle]="cityLock && {'opacity': '0.5'}">8</div>
+    <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)"
+        [ngStyle]="cityLock && {'opacity': '0.5'}">9</div>
 </div>
 
 <div class="row">
-    <div class="input-btn line-opt" (click)="keyOnClick($event.target.innerText)">幹線</div>
-    <div class="input-btn line-opt" (click)="moreOnClick()">更多</div>
-    <div class="input-btn line-opt" (click)="keyOnClick($event.target.innerText)">C</div>
-    <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)">0</div>
-    <div class="input-btn number-opt" (click)="keyOnClick('delete')">
+    <div class="input-btn line-opt" (click)="keyOnClick($event.target.innerText)"
+        [ngStyle]="cityLock && {'opacity': '0.5'}">幹線</div>
+    <div class="input-btn line-opt" (click)="moreOnClick()" [ngStyle]="cityLock && {'opacity': '0.5'}">更多</div>
+    <div class="input-btn line-opt" (click)="keyOnClick($event.target.innerText)"
+        [ngStyle]="cityLock && {'opacity': '0.5'}">C</div>
+    <div class="input-btn number-opt" (click)="keyOnClick($event.target.innerText)"
+        [ngStyle]="cityLock && {'opacity': '0.5'}">0</div>
+    <div class="input-btn number-opt" (click)="keyOnClick('delete')" [ngStyle]="cityLock && {'opacity': '0.5'}">
         <img src="assets/busInquire/delete.svg" class="delete-icon">
     </div>
 </div>

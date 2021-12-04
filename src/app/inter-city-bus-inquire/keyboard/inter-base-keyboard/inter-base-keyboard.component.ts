@@ -9,8 +9,10 @@ import { SoundEffectService } from 'src/app/service/sound-effect.service';
 })
 export class InterBaseKeyboardComponent implements OnInit {
   @Output() emiter = new EventEmitter<any>();
+  @Input() cityLock: boolean = true; //把除了城市以外的都鎖起來
+
   constructor(
-    private soundEffectService: SoundEffectService
+    private soundEffectService: SoundEffectService,
   ) { }
 
   ngOnInit(): void {

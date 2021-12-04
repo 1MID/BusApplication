@@ -34,6 +34,7 @@ export class BusInquireComponent implements OnInit {
   currentCity = "選擇縣市";
   busData;
   busDataFilter;
+  cityLock = true;
 
   constructor(
     private cityListService: CityListService,
@@ -41,10 +42,11 @@ export class BusInquireComponent implements OnInit {
     private routeHandlerService: RouteHandlerService,
     private router: Router,
     public deviceModeService: DeviceModeService,
-    private localStorageControllerService: LocalStorageControllerService
+    private localStorageControllerService: LocalStorageControllerService,
   ) { }
 
   ngOnInit(): void {
+    this.cityLock = true;
     this.deviceModeService.detectCurrentDevice();
   }
 
@@ -108,6 +110,7 @@ export class BusInquireComponent implements OnInit {
           })
         })
       }
+      this.cityLock = false;
 
       this.busData = res;
       this.busDataFilter = JSON.parse(JSON.stringify(this.busData));

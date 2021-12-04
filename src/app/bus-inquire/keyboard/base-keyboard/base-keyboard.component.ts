@@ -9,12 +9,15 @@ import { SoundEffectService } from 'src/app/service/sound-effect.service';
 export class BaseKeyboardComponent implements OnInit {
   @Output() emiter = new EventEmitter<any>();
   @Input() currentCity: string;
+  @Input() cityLock: boolean = false;
+
 
   constructor(
-    private soundEffectService: SoundEffectService
+    private soundEffectService: SoundEffectService,
   ) { }
 
   ngOnInit(): void {
+
   }
 
   cityOnClick() {

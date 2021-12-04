@@ -36,6 +36,7 @@ export class InterCityBusInquireComponent implements OnInit {
   currentCity = '';
   busDataOrigin;
   busDataFilter;
+  cityLock = true;
 
   noResData = false;
   hintText = "";
@@ -45,10 +46,12 @@ export class InterCityBusInquireComponent implements OnInit {
     private cityListService: CityListService,
     private routeHandlerService: RouteHandlerService,
     public deviceModeService: DeviceModeService,
-    private localStorageControllerService: LocalStorageControllerService
+    private localStorageControllerService: LocalStorageControllerService,
+
   ) { }
 
   ngOnInit(): void {
+    this.cityLock = true;
     this.deviceModeService.detectCurrentDevice();
   }
 
@@ -119,6 +122,7 @@ export class InterCityBusInquireComponent implements OnInit {
               }
             })
           })
+          this.cityLock = false;
           this.busDataOrigin = res;
           this.busDataFilter = JSON.parse(JSON.stringify(this.busDataOrigin));
           this.handleFilter();
@@ -277,6 +281,7 @@ export class InterCityBusInquireComponent implements OnInit {
           })
         })
 
+        this.cityLock = false;
         this.busDataOrigin = res;
         this.busDataFilter = JSON.parse(JSON.stringify(this.busDataOrigin));
 

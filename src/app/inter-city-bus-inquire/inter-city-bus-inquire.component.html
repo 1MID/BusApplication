@@ -16,7 +16,7 @@
             <input class="city-input right" placeholder="選擇到達縣市" id="endPoint" disabled #endPoint>
         </div>
         <div class="input-area" [@fadeInOut]="isFadeInOutNG ? 'closed' : 'open'">
-            <app-inter-base-keyboard *ngIf="keyboardIndex === 0" (emiter)="getEmitVal($event)">
+            <app-inter-base-keyboard *ngIf="keyboardIndex === 0" (emiter)="getEmitVal($event)" [cityLock]="cityLock">
             </app-inter-base-keyboard>
             <app-inter-from-to-keyboard *ngIf="keyboardIndex === 1" (emiter)="getEmitVal($event)">
             </app-inter-from-to-keyboard>
@@ -76,7 +76,7 @@
             <input class="city-input" placeholder="選擇到達縣市" id="endPoint" disabled #endPoint>
         </div>
         <div class="input-area" [@fadeInOut]="isFadeInOutNG ? 'closed' : 'open'">
-            <app-inter-base-keyboard *ngIf="keyboardIndex === 0" (emiter)="getEmitVal($event)">
+            <app-inter-base-keyboard *ngIf="keyboardIndex === 0" (emiter)="getEmitVal($event)" [cityLock]="cityLock">
             </app-inter-base-keyboard>
             <app-inter-from-to-keyboard *ngIf="keyboardIndex === 1" (emiter)="getEmitVal($event)">
             </app-inter-from-to-keyboard>
@@ -135,7 +135,7 @@
             <input class="city-input right" placeholder="選擇到達縣市" id="endPoint" disabled #endPoint>
         </div>
         <div class="input-area" [@fadeInOut]="isFadeInOutNG ? 'closed' : 'open'">
-            <app-inter-base-keyboard *ngIf="keyboardIndex === 0" (emiter)="getEmitVal($event)">
+            <app-inter-base-keyboard *ngIf="keyboardIndex === 0" (emiter)="getEmitVal($event)" [cityLock]="cityLock">
             </app-inter-base-keyboard>
             <app-inter-from-to-keyboard *ngIf="keyboardIndex === 1" (emiter)="getEmitVal($event)">
             </app-inter-from-to-keyboard>
