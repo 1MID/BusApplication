@@ -24,7 +24,7 @@
 
             background: #1c1d1d;
             border-radius: 6px;
-            width: 17.109375vw;
+            width: 13.1375vw;
             height: 5.55555vh;
             outline: none;
             border: none;
@@ -33,6 +33,21 @@
 
             color: #1cc8ee;
             line-height: 3.3333vh;
+        }
+        .collect-container {
+            margin-top: 5.277777vh;
+            margin-left: 0.546875vw;
+            width: 3.125vw;
+            height: 5.208333vh;
+            background: #1cc8ee;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .collect-icon {
+                width: 1.25vw;
+                height: 1.25vw;
+            }
         }
     }
 

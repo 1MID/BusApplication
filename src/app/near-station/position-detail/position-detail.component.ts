@@ -5,6 +5,7 @@ import { RouteHandlerService } from 'src/app/service/route-handler.service';
 import { Router } from '@angular/router';
 import { CityListService } from 'src/app/service/city-list.service';
 import { DeviceModeService } from 'src/app/service/device-mode.service';
+import { LocalStorageControllerService } from 'src/app/service/local-storage-controller.service';
 
 @Component({
   selector: 'app-position-detail',
@@ -23,7 +24,8 @@ export class PositionDetailComponent implements OnInit {
     private routeHandlerService: RouteHandlerService,
     private router: Router,
     private cityListService: CityListService,
-    public deviceModeService: DeviceModeService
+    public deviceModeService: DeviceModeService,
+    private localStorageControllerService: LocalStorageControllerService
   ) { }
 
   ngOnInit(): void {
@@ -40,7 +42,20 @@ export class PositionDetailComponent implements OnInit {
 
   getPassThroughData() {
     if (!this.paramsRes) { return; }
-    this.queryNearbyService.getPassThroughData(this.paramsRes.city, this.paramsRes.stationID).then(res => {
+    let ls = this.localStorageControllerService.getCurrentData();
+    this.queryNearbyService.getPassThroughData(this.paramsRes.city, this.paramsRes.stationID).then((res: any) => {
+
+      // 標出已經是收藏的項目
+      if (ls) {
+        res.map(resItem => {
+          resItem.favorFlag = false;
+          ls.map(lsItem => {
+            ((resItem.City === lsItem?.city) && (resItem.RouteName.Zh_tw === lsItem?.stationName)) ? resItem.favorFlag = true : null
+          })
+        })
+      }
+
+      console.log(res)
       this.queryRes = res;
       this.queryRes.length == 0 ? this.resNotEmpty = true : this.resNotEmpty = false; //是否有查到資料
     })
@@ -71,5 +86,36 @@ export class PositionDetailComponent implements OnInit {
 
   navigateToHome() {
     this.routeHandlerService.navigateToHome();
+  }
+
+  /**
+   * 收藏
+   * @param e
+   * @param item
+   */
+  favorOnClick(e, item) {
+    e.stopPropagation();
+    item.favorFlag = true;
+
+    const favorObj = {
+      stationName: item.RouteName.Zh_tw,
+      city: this.paramsRes.city,
+      stopFrom: item.DepartureStopNameZh,
+      stopTo: item.DestinationStopNameZh,
+      type: 0 // 0 公車 1 客運
+    }
+
+    this.localStorageControllerService.push(favorObj);
+  }
+
+  /**
+   * 取消收藏
+   * @param e
+   * @param item
+   */
+  disFavorOnClick(e, item) {
+    e.stopPropagation();
+    item.favorFlag = false;
+    this.localStorageControllerService.deleteByCityAndStationName(this.paramsRes.city, item.RouteName.Zh_tw);
   }
 }

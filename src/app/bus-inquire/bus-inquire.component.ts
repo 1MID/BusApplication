@@ -175,4 +175,8 @@ export class BusInquireComponent implements OnInit {
       this.keyboardIndex = i;
     }, 300);
   }
+
+  navigateToCollectPage() {
+    this.routeHandlerService.navigateToCollectPage();
+  }
 }

@@ -1,0 +1,26 @@
+<div class="root">
+    <div class="header">
+        <img src="assets/nearby/back-arrow.svg" class="back-arrow" (click)="navigateToHome()">
+        <div class="main-title">我的收藏</div>
+    </div>
+
+    <div class="main-container">
+        <div class="bus-data-item" *ngFor="let item of ls; let i = index;"
+            [ngStyle]="{ 'background-color': ((i % 2) == 0) ? '#1C1D1D' : '#131414' }" (click)="itemOnClick(item)">
+            <div class="bus-data-title">
+                {{item.stationName}}
+            </div>
+            <div class="bus-data-content-container">
+                <div class="bus-data-content text">
+                    {{item.stopFrom}}
+                </div>
+                <div class="bus-data-content to">
+                    往
+                </div>
+                <div class="bus-data-content text">
+                    {{item.stopTo}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

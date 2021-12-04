@@ -3,6 +3,9 @@
         <div class="header">
             <img src="assets/nearby/main-logo.png" class="main-logo" (click)="navigateToHome()">
             <input class="search-input" placeholder="選擇路線或手動輸入關鍵字" id="keywordInput" disabled #keywordInput>
+            <div class="collect-container" (click)="navigateToCollectPage()">
+                <img class="collect-icon" src="assets/common/collect.svg">
+            </div>
         </div>
 
         <div class="input-area" [@fadeInOut]="isFadeInOutNG ? 'closed' : 'open'">

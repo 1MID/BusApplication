@@ -26,6 +26,7 @@ import { InterBusPriceComponent } from './inter-city-bus-inquire/inter-bus-price
 import { BusPriceRoadKeyboardComponent } from './inter-city-bus-inquire/inter-bus-price/keyboard/bus-price-road-keyboard/bus-price-road-keyboard.component';
 import { BusPriceDateKeyboardComponent } from './inter-city-bus-inquire/inter-bus-price/keyboard/bus-price-date-keyboard/bus-price-date-keyboard.component';
 import { BusPriceTimeKeyboardComponent } from './inter-city-bus-inquire/inter-bus-price/keyboard/bus-price-time-keyboard/bus-price-time-keyboard.component';
+import { CollectPageComponent } from './common/collect-page/collect-page.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { BusPriceTimeKeyboardComponent } from './inter-city-bus-inquire/inter-bu
     BusPriceRoadKeyboardComponent,
     BusPriceDateKeyboardComponent,
     BusPriceTimeKeyboardComponent,
+    CollectPageComponent,
   ],
   imports: [
     BrowserModule,

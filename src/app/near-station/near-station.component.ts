@@ -25,7 +25,6 @@ export class NearStationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
     this.getPosition();
     this.deviceModeService.detectCurrentDevice();
   }

@@ -48,6 +48,7 @@ export class PositionBusComponent implements OnInit, OnDestroy {
    */
   getPositionBusData() {
     this.paramsRes = this.routeHandlerService.getPositionBusData();
+    console.log(this.paramsRes)
     if (!this.paramsRes) { this.routeHandlerService.navigateToNearStation(); }
   }
 
@@ -127,7 +128,7 @@ export class PositionBusComponent implements OnInit, OnDestroy {
 
   mapOnClick() {
     console.log(this.queryData.mapImgSrc)
-    if (this.queryData.mapImgSrc != "") {
+    if (this.queryData.mapImgSrc) {
       window.open(this.queryData.mapImgSrc, "_blank");
     } else {
       Swal.fire({
