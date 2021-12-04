@@ -1,4 +1,4 @@
-<div class="root">
+<div class="root" *ngIf="deviceModeService.device == '電腦'">
     <div class="header">
         <img src="assets/nearby/back-arrow.svg" class="back-arrow" (click)="navigateToHome()">
         <div class="main-title">我的收藏</div>
@@ -24,5 +24,66 @@
                 </div>
             </div>
         </div>
+        <div *ngIf="!ls" class="hint">暫時還沒有收藏資料～</div>
+    </div>
+</div>
+
+<div class="root-tablet" *ngIf="deviceModeService.device == '平板'">
+    <div class="header">
+        <img src="assets/nearby/back-arrow.svg" class="back-arrow" (click)="navigateToHome()">
+        <div class="main-title">我的收藏</div>
+    </div>
+
+    <div class="main-container">
+        <div class="bus-data-item" *ngFor="let item of ls; let i = index;"
+            [ngStyle]="{ 'background-color': ((i % 2) == 0) ? '#1C1D1D' : '#131414' }" (click)="itemOnClick(item)">
+            <div class="bus-data-title">
+                {{item.stationName}}
+                <div *ngIf="item.type == 0">(公車)</div>
+                <div *ngIf="item.type == 1">(客運)</div>
+            </div>
+            <div class="bus-data-content-container">
+                <div class="bus-data-content text">
+                    {{item.stopFrom}}
+                </div>
+                <div class="bus-data-content to">
+                    往
+                </div>
+                <div class="bus-data-content text">
+                    {{item.stopTo}}
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!ls" class="hint">暫時還沒有收藏資料～</div>
+    </div>
+</div>
+
+<div class="root-phone" *ngIf="deviceModeService.device == '手機'">
+    <div class="header">
+        <img src="assets/nearby/back-arrow.svg" class="back-arrow" (click)="navigateToHome()">
+        <div class="main-title">我的收藏</div>
+    </div>
+
+    <div class="main-container">
+        <div class="bus-data-item" *ngFor="let item of ls; let i = index;"
+            [ngStyle]="{ 'background-color': ((i % 2) == 0) ? '#1C1D1D' : '#131414' }" (click)="itemOnClick(item)">
+            <div class="bus-data-title">
+                {{item.stationName}}
+                <div *ngIf="item.type == 0">(公車)</div>
+                <div *ngIf="item.type == 1">(客運)</div>
+            </div>
+            <div class="bus-data-content-container">
+                <div class="bus-data-content text">
+                    {{item.stopFrom}}
+                </div>
+                <div class="bus-data-content to">
+                    往
+                </div>
+                <div class="bus-data-content text">
+                    {{item.stopTo}}
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!ls" class="hint">暫時還沒有收藏資料～</div>
     </div>
 </div>

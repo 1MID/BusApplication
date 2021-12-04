@@ -181,4 +181,8 @@
             color: #f5f5f5;
         }
     }
+    .collect-container:hover {
+        animation-name: pulse;
+        animation-duration: 1s;
+    }
 }

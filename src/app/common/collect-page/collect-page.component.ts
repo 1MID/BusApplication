@@ -7,10 +7,12 @@ import { RouteHandlerService } from 'src/app/service/route-handler.service';
 @Component({
   selector: 'app-collect-page',
   templateUrl: './collect-page.component.html',
-  styleUrls: ['./collect-page.component.scss']
+  styleUrls: ['./collect-page.component.scss', './collect-page.component.phone.scss', './collect-page.component.tablet.scss']
 })
 export class CollectPageComponent implements OnInit {
   ls
+  headerSize = '';
+
   constructor(
     public deviceModeService: DeviceModeService,
     private localStorageControllerService: LocalStorageControllerService,

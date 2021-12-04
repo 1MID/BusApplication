@@ -132,4 +132,8 @@
             }
         }
     }
+    .collect-container:hover {
+        animation-name: pulse;
+        animation-duration: 1s;
+    }
 }
