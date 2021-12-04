@@ -62,73 +62,80 @@
         padding: 0.5555vh 1.5625vw;
     }
 
-    .output-area {
-        width: 53.125vw;
-        height: 100%;
-        padding: 4vh 0;
-        margin: 0 7.8125vw 0 3.28125vw;
-        box-sizing: border-box;
-        background-color: #131414;
-        overflow-y: auto;
-        overflow-x: hidden;
+    .output-container {
+        display: flex;
+        flex-direction: column;
+        margin-left: auto;
+        padding-bottom: 10vh;
+
         .output-title {
             font-size: 2.2222vh;
             line-height: 3.3333vh;
             color: #f5f5f5;
-            margin-bottom: 2.5vh;
+            margin: 4.5vh 0 2.5vh 3.28125vw;
         }
+        .output-area {
+            width: 53.125vw;
+            height: 100%;
+            padding: 4vh 0;
+            margin: 0 7.8125vw 0 3.28125vw;
+            box-sizing: border-box;
+            background-color: #131414;
+            overflow-y: auto;
+            overflow-x: hidden;
 
-        .bus-data-item {
-            width: 100%;
-            height: 9.72222vh;
-            background-color: #1c1d1d;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding-left: 1.25vw;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            border-radius: 6px;
-            position: relative;
-
-            .bus-data-title {
-                font-size: 2.36111vh;
-                line-height: 3.61111vh;
-                color: #1cc8ee;
-            }
-            .bus-data-content-container {
+            .bus-data-item {
+                width: 100%;
+                height: 9.72222vh;
+                background-color: #1c1d1d;
                 display: flex;
-                flex-direction: row;
+                flex-direction: column;
+                justify-content: center;
+                padding-left: 1.25vw;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                border-radius: 6px;
+                position: relative;
 
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                width: 80vw;
-                overflow: hidden;
-
-                .bus-data-content {
-                    font-size: 1.9444vh;
-                    line-height: 2.7777vh;
+                .bus-data-title {
+                    font-size: 2.36111vh;
+                    line-height: 3.61111vh;
+                    color: #1cc8ee;
+                }
+                .bus-data-content-container {
                     display: flex;
                     flex-direction: row;
 
-                    &.text {
-                        color: #f5f5f5;
-                    }
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    width: 80vw;
+                    overflow: hidden;
 
-                    &.to {
-                        color: #1cc8ee;
-                        margin: 0 1vw;
+                    .bus-data-content {
+                        font-size: 1.9444vh;
+                        line-height: 2.7777vh;
+                        display: flex;
+                        flex-direction: row;
+
+                        &.text {
+                            color: #f5f5f5;
+                        }
+
+                        &.to {
+                            color: #1cc8ee;
+                            margin: 0 1vw;
+                        }
                     }
                 }
-            }
-            .like-icon {
-                position: absolute;
-                right: 1.25vw;
-                top: 50%;
-                width: 2.2222vw;
-                height: 2.2222vw;
-                transform: translate(-50%, -50%);
+                .like-icon {
+                    position: absolute;
+                    right: 1.25vw;
+                    top: 50%;
+                    width: 2.2222vw;
+                    height: 2.2222vw;
+                    transform: translate(-50%, -50%);
+                }
             }
         }
     }

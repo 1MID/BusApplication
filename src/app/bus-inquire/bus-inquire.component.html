@@ -16,28 +16,34 @@
         </div>
     </div>
 
-    <div class="output-area">
+
+    <div class="output-container">
         <div class="output-title" *ngIf="currentCity != '選擇縣市'">{{currentCity}}</div>
-        <div class="bus-data-item" *ngFor="let item of busDataFilter; let i = index;"
-            [ngStyle]="{ 'background-color': ((i % 2) == 0) ? '#1C1D1D' : '#131414' }" (click)="itemOnClick(item)">
-            <div class="bus-data-title">
-                {{item.RouteName.Zh_tw}}
+
+
+        <div class="output-area">
+
+            <div class="bus-data-item" *ngFor="let item of busDataFilter; let i = index;"
+                [ngStyle]="{ 'background-color': ((i % 2) == 0) ? '#1C1D1D' : '#131414' }" (click)="itemOnClick(item)">
+                <div class="bus-data-title">
+                    {{item.RouteName.Zh_tw}}
+                </div>
+                <div class="bus-data-content-container">
+                    <div class="bus-data-content text">
+                        {{item.DepartureStopNameZh}}
+                    </div>
+                    <div class="bus-data-content to">
+                        往
+                    </div>
+                    <div class="bus-data-content text">
+                        {{item.DestinationStopNameZh}}
+                    </div>
+                </div>
+                <img *ngIf="item.favorFlag" class="like-icon" src="assets/common/like-focus.svg"
+                    (click)="disFavorOnClick($event,item)">
+                <img *ngIf="!item.favorFlag" class="like-icon" src="assets/common/like-unfocus.svg"
+                    (click)="favorOnClick($event,item)">
             </div>
-            <div class="bus-data-content-container">
-                <div class="bus-data-content text">
-                    {{item.DepartureStopNameZh}}
-                </div>
-                <div class="bus-data-content to">
-                    往
-                </div>
-                <div class="bus-data-content text">
-                    {{item.DestinationStopNameZh}}
-                </div>
-            </div>
-            <img *ngIf="item.favorFlag" class="like-icon" src="assets/common/like-focus.svg"
-                (click)="disFavorOnClick($event,item)">
-            <img *ngIf="!item.favorFlag" class="like-icon" src="assets/common/like-unfocus.svg"
-                (click)="favorOnClick($event,item)">
         </div>
     </div>
 
