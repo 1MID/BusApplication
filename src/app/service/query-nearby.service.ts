@@ -61,9 +61,10 @@ export class QueryNearbyService {
    */
   getDestinationStop(city: string, stationName: string) {
     const headers = this.commonService.GetAuthorizationHeader();
+    let filterString = encodeURI(`(RouteName/Zh_tw eq '${stationName}')`);
     let stationNameURI = encodeURI(stationName);
     return new Promise((resolve, reject) => {
-      this.http.get<any>(`https://ptx.transportdata.tw/MOTC/v2/Bus/Route/City/${city}/${stationNameURI}?$top=1`, { headers }).subscribe(res => {
+      this.http.get<any>(`https://ptx.transportdata.tw/MOTC/v2/Bus/Route/City/${city}/${stationNameURI}?$filter=${filterString}&$top=1`, { headers }).subscribe(res => {
         if (res) {
           resolve(res);
         }
