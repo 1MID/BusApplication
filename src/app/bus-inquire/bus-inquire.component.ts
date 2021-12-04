@@ -5,6 +5,8 @@ import { RouteHandlerService } from 'src/app/service/route-handler.service';
 import { Router } from '@angular/router';
 import Swal, { SweetAlertOptions } from "sweetalert2";
 import { DeviceModeService } from 'src/app/service/device-mode.service';
+import { LocalStorageControllerService } from '../service/local-storage-controller.service';
+
 import {
   trigger,
   state,
@@ -38,7 +40,8 @@ export class BusInquireComponent implements OnInit {
     private queryBusInquireService: QueryBusInquireService,
     private routeHandlerService: RouteHandlerService,
     private router: Router,
-    public deviceModeService: DeviceModeService
+    public deviceModeService: DeviceModeService,
+    private localStorageControllerService: LocalStorageControllerService
   ) { }
 
   ngOnInit(): void {
@@ -92,8 +95,20 @@ export class BusInquireComponent implements OnInit {
   }
 
   getBusDataByCity() {
+    let ls = this.localStorageControllerService.getCurrentData();
     let cityEnName = this.cityListService.getCityNameEnByZh(this.currentCity);
-    this.queryBusInquireService.getCityBusRouteData(cityEnName).then(res => {
+    this.queryBusInquireService.getCityBusRouteData(cityEnName).then((res: any) => {
+
+      // 標出已經是收藏的項目
+      if (ls) {
+        res.map(resItem => {
+          resItem.favorFlag = false;
+          ls.map(lsItem => {
+            ((resItem.City === lsItem?.city) && (resItem.RouteName.Zh_tw === lsItem?.stationName)) ? resItem.favorFlag = true : null
+          })
+        })
+      }
+
       this.busData = res;
       this.busDataFilter = JSON.parse(JSON.stringify(this.busData));
       console.log(res);
@@ -178,5 +193,38 @@ export class BusInquireComponent implements OnInit {
 
   navigateToCollectPage() {
     this.routeHandlerService.navigateToCollectPage();
+  }
+
+  /**
+ * 收藏
+ * @param e
+ * @param item
+ */
+  favorOnClick(e, item) {
+    e.stopPropagation();
+    item.favorFlag = true;
+    let cityEnName = this.cityListService.getCityNameEnByZh(this.currentCity);
+
+    const favorObj = {
+      stationName: item.RouteName.Zh_tw,
+      city: cityEnName,
+      stopFrom: item.DepartureStopNameZh,
+      stopTo: item.DestinationStopNameZh,
+      type: 0 // 0 公車 1 客運
+    }
+
+    this.localStorageControllerService.push(favorObj);
+  }
+
+  /**
+   * 取消收藏
+   * @param e
+   * @param item
+   */
+  disFavorOnClick(e, item) {
+    let cityEnName = this.cityListService.getCityNameEnByZh(this.currentCity);
+    e.stopPropagation();
+    item.favorFlag = false;
+    this.localStorageControllerService.deleteByCityAndStationName(cityEnName, item.RouteName.Zh_tw);
   }
 }

@@ -240,9 +240,14 @@ table {
 }
 
 //global btn
-.input-btn:hover {
+.input-btn:hover,
+.collect-container:hover {
     animation-name: pulse;
     animation-duration: 1s;
+}
+
+.collect-container {
+    cursor: pointer;
 }
 
 //font
