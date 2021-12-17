@@ -37,3 +37,6 @@ $ ng serve -o
 
 ### 第三方服務
 - PTX API
+
+
+若有疑問歡迎來信詢問(*LT1stSoloMID@gmail.com*)
