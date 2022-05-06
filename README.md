@@ -1,5 +1,10 @@
 # BusApplication
 
+---
+ # 特別感謝：設計師[KT](https://2021.thef2e.com/users/6296432819610583177)
+---
+
+
 ### 作品說明
 The F2E 全台公車動態時刻查詢應用服務
 
@@ -32,3 +37,6 @@ $ ng serve -o
 
 ### 第三方服務
 - PTX API
+
+
+若有疑問歡迎來信詢問(*LT1stSoloMID@gmail.com*)
