@@ -2,8 +2,20 @@
 
 ---
  # 特別感謝：設計師[KT](https://2021.thef2e.com/users/6296432819610583177)
----
+![設計圖](./extra/design.png)
 
+---
+### 參賽名次
+
+個人組 1615 人參賽，其中：
+- 未得獎者：1605 人
+- 得獎者：10 人 (0.62%)
+
+![參賽人數](./extra/attend.png)
+![入圍](./extra/shortlisted.png)
+![喜歡排名](./extra/like.png)
+
+---
 
 ### 作品說明
 The F2E 全台公車動態時刻查詢應用服務
@@ -15,14 +27,10 @@ $ npm install
 ```
 ```
 $ ng serve -o
-``` 
+```
 
 *注意: ng serve前 需要於.src下建立enviorment資料夾，其中.ts包含PTX APP KEY以及PTX APP ID*
 
-
-### 版本
-- angular/cli: 12.1.4
-- npm : 6.14.14
 
 ### 主要資料夾說明
 - home : 起始頁
@@ -31,12 +39,5 @@ $ ng serve -o
 - inter-city-bus-inquire : 客運查詢
 - service : 相關服務(如:http.get)
 
-### 使用技術
-- Angular
-- AWD (support Mobile,Tablet,Desktop) *瀏覽器更換畫面長寬後請刷新頁面*
-
 ### 第三方服務
 - PTX API
-
-
-若有疑問歡迎來信詢問(*LT1stSoloMID@gmail.com*)
